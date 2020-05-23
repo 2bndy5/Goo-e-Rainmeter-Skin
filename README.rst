@@ -11,7 +11,7 @@ windows 10 desktop icons. Most of these skins are in beta state. The list of ski
 
 All skins except "volume knob" are stable enough to test. Each skin has its own customizable settings (scroll to bottom for detailed preview images).
 
-.. image:: Sample.png
+.. image:: sample.png
 
 Rainmeter required
 ##################
