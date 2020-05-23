@@ -1,0 +1,3 @@
+﻿
+[Variables]
+iconSize=153

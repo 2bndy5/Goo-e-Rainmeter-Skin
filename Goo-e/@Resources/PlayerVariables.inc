@@ -1,0 +1,11 @@
+[Variables]
+IconSize=350
+Player=CAD
+HideVolume=10
+WinColors=1
+Rank=-1
+CurrentColor=173,94,1
+FontColor=6,47,238
+BGcolor=7,210,212
+Alpha=49
+BevelType=0
