@@ -41,7 +41,7 @@ stringalign=leftCenter
 hidden=1
 
 [playtimeStyle]
-imageName="#@#images\time.png"
+imageName="#@#images\Games\time.png"
 dynamicvariables=1
 x=(#useBoxArt#=1?(#IconW#-(#IconH#/8*4))/2-2.5:0)r
 y=(#useBoxArt#=0?(#IconH#-(#IconW#/8*3))/2:5)r
@@ -50,7 +50,7 @@ h=(#useBoxArt#=1?#IconH#/8:#IconW#/8)
 hidden=1
 
 [trophiesStyle]
-imageName="#@#images\badge.png"
+imageName="#@#images\Games\badge.png"
 dynamicvariables=1
 x=(#useBoxArt#=1?#IconH#/8+5:#IconW#/-8)r
 y=(#useBoxArt#=1?-#IconH#/16:#IconW#/16)r
@@ -59,7 +59,7 @@ h=(#useBoxArt#=1?#IconH#/8:#IconW#/8)
 hidden=1
 
 [sizeStyle]
-imageName="#@#images\folders.png"
+imageName="#@#images\Games\folders.png"
 dynamicvariables=1
 x=(#useBoxArt#=1?#IconH#/-8-#IconH#/8:#IconW#/-8)r
 y=(#useBoxArt#=1?#IconH#/16+5:#IconW#/16)r

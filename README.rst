@@ -15,3 +15,10 @@ Rainmeter required
 ##################
 
 The minimum required version of rainmeter is 4.0, but the `latest stable release <https://www.rainmeter.net>`_ is recommended.
+
+Manual Install
+##############
+
+Download this repository's zip file and extract the folder "Goo-e" into the Rainmeter skins folder
+(defualts to "C:\Users\%USERNAME%\Documents\Rainmeter\skins" - unless onedrive manages your user
+documents folder).
