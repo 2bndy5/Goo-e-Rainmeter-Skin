@@ -9,4 +9,9 @@ windows 10 desktop icons. Most of these skins are in beta state. The list of ski
 * recycling bin
 * volume knob
 
-All skins except "volume knob" are stable enough to test. 
+All skins except "volume knob" are stable enough to test.
+
+Rainmeter required
+##################
+
+The minimum required version of rainmeter is 4.0, but the `latest stable release <https://www.rainmeter.net>`_ is recommended.
