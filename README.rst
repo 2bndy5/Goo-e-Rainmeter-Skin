@@ -9,7 +9,9 @@ windows 10 desktop icons. Most of these skins are in beta state. The list of ski
 * recycling bin
 * volume knob
 
-All skins except "volume knob" are stable enough to test.
+All skins except "volume knob" are stable enough to test. Each skin has its own customizable settings (scroll to bottom for detailed preview images).
+
+.. image:: Sample.png
 
 Rainmeter required
 ##################
@@ -22,3 +24,32 @@ Manual Install
 Download this repository's zip file and extract the folder "Goo-e" into the Rainmeter skins folder
 (defualts to "C:\Users\%USERNAME%\Documents\Rainmeter\skins" - unless onedrive manages your user
 documents folder).
+
+Previews
+########
+
+clocks preview
+**************
+
+.. image:: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/9d354760-79b7-44eb-9a4c-5fc831468200/dblj0cx-1ad84dea-26eb-4102-80f6-8cc125f57237.png
+    :target: https://www.deviantart.com/2bndy5/art/Goo-e-Clocks-2-0-701286801
+
+
+player preview
+**************
+
+.. image:: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/9d354760-79b7-44eb-9a4c-5fc831468200/dblzlye-82bf199d-d3a9-4d4d-8bfa-7deafc527bd1.png/v1/fill/w_800,h_800,q_80,strp/goo_e_player_2_0_by_2bndy5_dblzlye-fullview.jpg
+    :target: https://www.deviantart.com/2bndy5/art/Goo-e-Player-2-0-702061286
+
+My Computer preview
+*******************
+
+.. image:: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/9d354760-79b7-44eb-9a4c-5fc831468200/dblk2iz-e1512e0a-33bb-45bf-8e70-0bda52cdd4a4.png/v1/fill/w_804,h_720,q_80,strp/goo_e_computer_1_5_by_2bndy5_dblk2iz-fullview.jpg
+    :target: https://www.deviantart.com/2bndy5/art/Goo-e-Computer-1-5-701336267
+
+Steam preview
+*************
+
+.. image:: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/9d354760-79b7-44eb-9a4c-5fc831468200/dazjgi2-1f44710c-1133-4f0b-b94d-f8b9b246787f.png/v1/fill/w_1192,h_670,q_70,strp/goo_e_steam_launcher_by_2bndy5_dazjgi2-pre.jpg
+    :target:https://www.deviantart.com/2bndy5/art/Goo-e-Steam-Launcher-664356170
+
