@@ -65,13 +65,6 @@ ButtAttributes=StrokeWidth ((([#CurrentSection#:W]+[#CurrentSection#:H])/2)*0.06
 shape=Path Star | Extend ButtAttributes
 Star=([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.1) | LineTo ([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.4) | LineTo ([#CurrentSection#:W]*0.92),([#CurrentSection#:H]*0.4) | LineTo ([#CurrentSection#:W]*0.66),([#CurrentSection#:H]*0.61) | LineTo ([#CurrentSection#:W]*0.77),([#CurrentSection#:H]*0.94) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.725) | LineTo ([#CurrentSection#:W]*0.235),([#CurrentSection#:H]*0.94) | LineTo ([#CurrentSection#:W]*0.34),([#CurrentSection#:H]*0.61) | LineTo ([#CurrentSection#:W]*0.08),([#CurrentSection#:H]*0.4) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.4) | ClosePath 1
 
-[RoundButtShape]
-ButtAttributes=StrokeWidth 0 | Fill Color 139,139,139
-shape=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5) | Extend ButtAttributes
-shape2=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5) | Fill Color 255,255,255,60 | StrokeWidth 0
-shape3=Ellipse ([#CurrentSection#:W]*0.645),([#CurrentSection#:H]*0.645),([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.425) | Rotate -36.5
-shape4=Combine Shape2 | exclude shape3
-
 [RightArrow]
 ButtAttributes=StrokeWidth ((([#CurrentSection#:W]+[#CurrentSection#:H])/2)*0.065) | StrokeColor #CurrentColor2# | Fill Color 0,0,0,1
 shape=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.4) | Extend ButtAttributes
@@ -84,17 +77,4 @@ ButtAttributes=StrokeWidth ((([#CurrentSection#:W]+[#CurrentSection#:H])/2)*0.06
 shape=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.4) | Extend ButtAttributes
 shape2=Path ArrowL | Extend ButtAttributes
 ArrowL=([#CurrentSection#:W]*0.42),([#CurrentSection#:H]*0.3) | LineTo ([#CurrentSection#:W]*0.62),([#CurrentSection#:H]*0.5) | LineTo ([#CurrentSection#:W]*0.42),([#CurrentSection#:H]*0.7)
-shape3=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | StrokeWidth 0 | Fill Color 0,0,0,1
-
-[PlusShape]
-ButtAttributes=StrokeWidth ((([#CurrentSection#:W]+[#CurrentSection#:H])/2)*0.065) | StrokeColor #CurrentColor2# | Fill Color 0,0,0,1
-shape=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.4) | Extend ButtAttributes
-shape2=Line ([#CurrentSection#:W]*0.3225),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.6775),([#CurrentSection#:H]*0.5) | Extend ButtAttributes
-shape3=Line ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.3225),([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.6775) | Extend ButtAttributes
-shape4=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | StrokeWidth 0 | Fill Color 0,0,0,1
-
-[MinusShape]
-ButtAttributes=StrokeWidth ((([#CurrentSection#:W]+[#CurrentSection#:H])/2)*0.065) | StrokeColor #CurrentColor2# | Fill Color 0,0,0,1
-shape=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.4) | Extend ButtAttributes
-shape2=Line ([#CurrentSection#:W]*0.3225),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.6775),([#CurrentSection#:H]*0.5) | Extend ButtAttributes
 shape3=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | StrokeWidth 0 | Fill Color 0,0,0,1

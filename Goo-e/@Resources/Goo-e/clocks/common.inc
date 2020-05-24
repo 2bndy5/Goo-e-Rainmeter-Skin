@@ -39,7 +39,7 @@ h=(#IconSize#*0.25)
 DynamicVariables=1
 focusdismiss=1
 DefaultValue="#IconSize#"
-Command1=[!writekeyvalue variables IconSize "$UserInput$" "#@#ClockVariables.inc"][!refresh]
+Command1=[!writekeyvalue variables IconSize "$UserInput$" "#@##ROOTCONFIG#\clocks\ClockVariables.inc"][!refresh]
 
 [WidthHeight]
 x=0
