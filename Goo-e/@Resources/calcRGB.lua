@@ -116,10 +116,10 @@ Modified to set variables 'Hue' & 'ActiveHex'
 	SKIN:Bang('!SetVariable', 'Hue', Hue)
 	SKIN:Bang('!SetVariable', 'Sat', Sat)
 	SKIN:Bang('!SetVariable', 'Val', Val)
-	SKIN:Bang('!writeKeyValue', 'Variables', 'ActiveHex', table.concat(hex), SaveSettings)
-	SKIN:Bang('!writeKeyValue', 'Variables', 'Hue', Hue, SaveSettings)
-	SKIN:Bang('!writeKeyValue', 'Variables', 'Sat', Sat, SaveSettings)
-	SKIN:Bang('!writeKeyValue', 'Variables', 'Val', Val, SaveSettings)
+	SKIN:Bang('!writeKeyValue', 'Variables', 'ActiveHex', table.concat(hex), ColorPickerCommon)
+	SKIN:Bang('!writeKeyValue', 'Variables', 'Hue', Hue, ColorPickerCommon)
+	SKIN:Bang('!writeKeyValue', 'Variables', 'Sat', Sat, ColorPickerCommon)
+	SKIN:Bang('!writeKeyValue', 'Variables', 'Val', Val, ColorPickerCommon)
 end
 
 function HexToRGB(color)
@@ -143,10 +143,10 @@ Modified to set variables 'Hue' & 'ActiveRGB'
 	SKIN:Bang('!SetVariable', 'Hue', Hue)
 	SKIN:Bang('!SetVariable', 'Sat', Sat)
 	SKIN:Bang('!SetVariable', 'Val', Val)
-	SKIN:Bang('!writeKeyValue', 'Variables', 'ActiveRGB', table.concat(rgb, ','), SaveSettings)
-	SKIN:Bang('!writeKeyValue', 'Variables', 'Hue', Hue, SaveSettings)
-	SKIN:Bang('!writeKeyValue', 'Variables', 'Sat', Sat, SaveSettings)
-	SKIN:Bang('!writeKeyValue', 'Variables', 'Val', Val, SaveSettings)
+	SKIN:Bang('!writeKeyValue', 'Variables', 'ActiveRGB', table.concat(rgb, ','), ColorPickerCommon)
+	SKIN:Bang('!writeKeyValue', 'Variables', 'Hue', Hue, ColorPickerCommon)
+	SKIN:Bang('!writeKeyValue', 'Variables', 'Sat', Sat, ColorPickerCommon)
+	SKIN:Bang('!writeKeyValue', 'Variables', 'Val', Val, ColorPickerCommon)
 end
 
 function HSVtoRGB()
@@ -217,18 +217,21 @@ function RGBtoHSV(color)
 	SKIN:Bang('!SetVariable', 'Hue', Hue)
 	SKIN:Bang('!SetVariable', 'Sat', Sat)
 	SKIN:Bang('!SetVariable', 'Val', Val)
-	SKIN:Bang('!writeKeyValue', 'Variables', 'Hue', Hue, SaveSettings)
-	SKIN:Bang('!writeKeyValue', 'Variables', 'Sat', Sat, SaveSettings)
-	SKIN:Bang('!writeKeyValue', 'Variables', 'Val', Val, SaveSettings)
+	SKIN:Bang('!writeKeyValue', 'Variables', 'Hue', Hue, ColorPickerCommon)
+	SKIN:Bang('!writeKeyValue', 'Variables', 'Sat', Sat, ColorPickerCommon)
+	SKIN:Bang('!writeKeyValue', 'Variables', 'Val', Val, ColorPickerCommon)
 	HSVtoRGB()
 end
 
+function Initialize()
+	ColorPickerCommon = SKIN:MakePathAbsolute(SKIN:GetVariable('@')..'ColorPickerCommon.inc')
+end
+
 function Update()
-	SaveSettings = SKIN:MakePathAbsolute(SKIN:GetVariable('@')..'SettingsMethods.inc')
 	--hue, saturation, annd value must be a percentage in range 0.0 - 1.0
 	Hue = tonumber(SKIN:GetVariable('Hue'))
 	Sat = tonumber(SKIN:GetVariable('Sat'))
 	Val = tonumber(SKIN:GetVariable('Val'))
-
+	-- getHueColor() also write variable HueColor to ColorPickerCommon.inc file
 	return table.concat(getHueColor(), ',')
 end

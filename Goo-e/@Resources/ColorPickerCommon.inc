@@ -114,7 +114,7 @@ dynamicvariables=1
 rainbow=-90 | ff0000 ; 0 | ffff00 ; 0.1667 | 00ff00 ; 0.3333 | 00ffff ; 0.5 | 0000ff ; 0.6667 | ff00ff ; 0.8333 | ff0000 ; 1
 shape=rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | strokewidth 0 | fill LinearGradient rainbow
 shape2=Line 0,(#Hue#*[#CurrentSection#:H]),[#CurrentSection#:W],(#Hue#*[#CurrentSection#:H]) | strokeWidth 3 | strokeColor 000000
-leftmouseupaction=[!setvariable Hue ($MouseY$/[#CurrentSection#:H])][!writeKeyValue variables Hue ($MouseY$/[#CurrentSection#:H]) "#@#SettingsMethods.inc"][!updateMeasure mCalcRGB][!commandMeasure mCalcRGB "HSVtoRGB()"]
+leftmouseupaction=[!setvariable Hue ($MouseY$/[#CurrentSection#:H])][!writeKeyValue variables Hue ($MouseY$/[#CurrentSection#:H]) "#@##CURRENTFILE#"][!updateMeasure mCalcRGB][!commandMeasure mCalcRGB "HSVtoRGB()"]
 
 [SatAndVal]
 meter=shape
@@ -134,4 +134,4 @@ shape5=rectangle 0,0,([#CurrentSection#:W]),([#CurrentSection#:H])
 shape6=Line 0,((1-#Sat#)*[#CurrentSection#:H]),([#CurrentSection#:W]),((1-#Sat#)*[#CurrentSection#:H]) | fill color 00000000 | strokeWidth (([#CurrentSection#:W]+[#CurrentSection#:W])/2*0.0075) | Stroke linearGradient selector
 shape7=Line (#Val#*[#CurrentSection#:W]),0,(#Val#*[#CurrentSection#:W]),([#CurrentSection#:H])
 shape8=Combine shape6 | Union shape7 | Exclude shape4 | union shape4 | Intersect shape5
-LeftMouseUpAction=[!setVariable val ($MouseX$/[#CurrentSection#:W])][!setVariable sat (1-$MouseY$/[#CurrentSection#:H])][!writeKeyValue Variables val ($MouseX$/[#CurrentSection#:W]) "#@#SettingsMethods.inc"][!writeKeyValue Variables sat (1-$MouseY$/[#CurrentSection#:H]) "#@#SettingsMethods.inc"][!updateMeasure mCalcRGB][!commandMeasure mCalcRGB "HSVtoRGB()"]
+LeftMouseUpAction=[!setVariable val ($MouseX$/[#CurrentSection#:W])][!setVariable sat (1-$MouseY$/[#CurrentSection#:H])][!writeKeyValue Variables val ($MouseX$/[#CurrentSection#:W]) "#@##CURRENTFILE#"][!writeKeyValue Variables sat (1-$MouseY$/[#CurrentSection#:H]) "#@##CURRENTFILE#"][!updateMeasure mCalcRGB][!commandMeasure mCalcRGB "HSVtoRGB()"]
