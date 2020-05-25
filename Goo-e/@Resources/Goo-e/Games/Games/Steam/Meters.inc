@@ -129,10 +129,10 @@ text="use Box Art"
 text="use Banners"
 
 [0scrollSettings]
-text="Scroll Horizontally"
+text="scroll horizontally"
 
 [0scrollSettings]
-text="Scroll Vertically"
+text="scroll vertically"
 
 [hiddenFilter]
 text="restore showcase"
@@ -187,7 +187,7 @@ dynamicvariables=1
 h=90
 w=90
 meterStyle=SettingsShape
-ButtAttributes=Strokewidth ([#CurrentSection#:W]*0.05) | StrokeColor #sizeWhite# | Fill Color 0,0,0,1
+ButtAttributes=Strokewidth ([#CurrentSection#:W]*0.05) | StrokeColor #sizeWhite# | Fill Color 0,0,0,1 | scale 0.8,0.8 | offset ([#CurrentSection#:W]*0.01),([#CurrentSection#:H]*0.01)
 BGAttributes=StrokeWidth 0 | Fill Color #sizeBGcolor#,#BgAlpha#
 TopCorner=0,([#CurrentSection#:H]) | LineTo 0,([#CurrentSection#:W]*0.2) | CurveTo ([#CurrentSection#:W]*0.2),0,0,0 | LineTo ([#CurrentSection#:W]),0 | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]) | ClosePath 1
 shape=path TopCorner | Extend BGAttributes

@@ -34,3 +34,4 @@ filter=none
 steamHiddenList=367670, 250820, 2320,  703480,       
 useBoxArt=0
 lastActiveUser=94213030
+OriginDir="C:\Program Files (x86)\Origin\Origin.exe"
