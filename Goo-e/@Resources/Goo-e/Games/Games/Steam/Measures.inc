@@ -59,6 +59,16 @@ ifMatch4=lastPlayed
 ifMatchAction4=[!setOption menu3 prefix "[\xe73a] "]
 ifNotMatchAction4=[!setOption menu3 prefix "[\xe739] "]
 
+[activeFullScreen]
+measure=calc
+dynamicVariables=1
+formula=#Maximize#
+ifEqualValue=1
+ifEqualAction=[!setOption fullScreenSettings prefix "[\xe73a] "]
+ifBelowValue=1
+ifBelowAction=[!setOption fullScreenSettings prefix "[\xe739] "]
+
+
 [dirSizeInfo]
 measure=plugin
 Plugin=folderInfo

@@ -11,7 +11,7 @@ GradientAngle=60
 dynamicvariables=1
 hidden=1
 leftmouseupaction=[steam://rungameid/[mItemID#CurrentSection#]][!deactivateConfig "#CurrentConfig#"]
-rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeId "[mItemID#CurrentSection#]"][!hidemetergroup rightClickMenu][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y]+#CURRENTCONFIGY#))<(#menuItemH#*10)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*10)):($mouseY$+[#CurrentSection#:Y]))][!showmetergroup rightClickMenu]
+rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeId "[mItemID#CurrentSection#]"][!hidemetergroup rightClickMenu][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y]+#CURRENTCONFIGY#))<(#menuItemH#*10)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*10)):($mouseY$+[#CurrentSection#:Y]))][!hideMeterGroup settingsMenu][!hideMeterGroup menuSelect][!showmetergroup rightClickMenu]
 
 [GameBanner]
 imageName="#SteamDir#appcache\librarycache\[mItemID#CurrentSection#][imgOrientAlias].jpg"
@@ -128,11 +128,17 @@ text="use Box Art"
 [1imageDimension]
 text="use Banners"
 
-[hiddenMenu6]
+[0scrollSettings]
+text="Scroll Horizontally"
+
+[0scrollSettings]
+text="Scroll Vertically"
+
+[hiddenFilter]
 text="restore showcase"
 leftmouseupaction=[!setVariable filter "none"][!commandMeasure parseNpose "applyFilter()"][!hidemetergroup menuSelect][!updateMeasure parseNpose]
 
-[noneMenu6]
+[noneFilter]
 text="show hidden"
 leftmouseupaction=[!setVariable filter "hidden"][!commandMeasure parseNpose "applyFilter()"][!hidemetergroup menuSelect][!updateMeasure parseNpose]
 
@@ -175,28 +181,19 @@ MouseOverAction=[!SetVariable DnBGcolor "#HighlightColor#"][!SetVariable DnWhite
 MouseLeaveAction=[!SetVariable DnBGcolor "#BGcolor#"][!SetVariable DnWhite "#FontColor#"][!redraw]
 Leftmouseupaction=[!commandmeasure parseNpose "pageDn()"][!Update]
 
-[MaximizeToggle]
+[Settings]
 meter=shape
 dynamicvariables=1
 h=90
 w=90
-LineAttributes=Strokewidth ([#CurrentSection#:W]*0.05) | Fill Color 0,0,0,1 | StrokeColor #sizeWhite# | StrokeStartCap Round | StrokeEndCap Round
+meterStyle=SettingsShape
+ButtAttributes=Strokewidth ([#CurrentSection#:W]*0.05) | StrokeColor #sizeWhite# | Fill Color 0,0,0,1
 BGAttributes=StrokeWidth 0 | Fill Color #sizeBGcolor#,#BgAlpha#
 TopCorner=0,([#CurrentSection#:H]) | LineTo 0,([#CurrentSection#:W]*0.2) | CurveTo ([#CurrentSection#:W]*0.2),0,0,0 | LineTo ([#CurrentSection#:W]),0 | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]) | ClosePath 1
 shape=path TopCorner | Extend BGAttributes
-shape2=Line ([#CurrentSection#:W]*0.845),([#CurrentSection#:H]*0.15),([#CurrentSection#:W]*0.135),([#CurrentSection#:H]*0.855) | Extend LineAttributes
-shape3=Path ArrowBottom | Extend LineAttributes | StrokeLineJoin Round
-ArrowBottom=([#CurrentSection#:W]*0.095),([#CurrentSection#:H]*0.62) | LineTo ([#CurrentSection#:W]*0.095),([#CurrentSection#:H]*0.895) | LineTo ([#CurrentSection#:W]*0.38),([#CurrentSection#:H]*0.895)
-shape4=path ArrowTop | Extend LineAttributes | StrokeLineJoin Round
-ArrowTop=([#CurrentSection#:W]*0.61),([#CurrentSection#:H]*0.1075) | LineTo ([#CurrentSection#:W]*0.885),([#CurrentSection#:H]*0.1075) | LineTo ([#CurrentSection#:W]*0.885),([#CurrentSection#:H]*0.385)
-shape5=Rectangle -5,-5,90,90 | strokeWidth 0 | fill color 0,0,0,1
-LeftMouseUpAction=[!WriteKeyValue variables Maximize (#Maximize#=0?1:0) "#@##CurrentConfig#\Variables.inc"][!SetVariable Maximize (#Maximize#=0?1:0)][!commandmeasure parseNpose setGrid()]
+LeftMouseUpAction=[!togglemetergroup settingsMenu][!hideMeterGroup menuSelect][!hidemetergroup rightClickMenu]
 MouseOverAction=[!SetVariable sizeBGcolor "#HighlightColor#"][!SetVariable sizeWhite 255,255,255][!redraw]
 MouseLeaveAction=[!SetVariable sizeBGcolor "#BGcolor#"][!SetVariable sizeWhite #FontColor#][!redraw]
-tooltipHidden=0
-tooltipText="Right click to change#CRLF#background Opacity"
-RightMouseUpAction=[!togglemetergroup SelectAlpha]
-RightMouseDoubleClickAction=[!commandMeasure parseNpose switchAxis()]
 
 [Menu]
 Meter=shape
@@ -205,29 +202,25 @@ y=90r
 w=90
 h=90
 dynamicvariables=1
-lineAttributes=strokeWidth ([#CurrentSection#:H]*0.15) | strokeColor #menuWhite# | StrokeStartCap Round | StrokeEndCap Round
-shape=rectangle 0,0,([#CurrentSection#:W]),([#CurrentSection#:H]) | strokewidth 0 | fill color #menuBGcolor#,#BgAlpha#
-shape2=line ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.25),([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.25) | extend lineAttributes
-shape3=line ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.5) | extend lineAttributes
-shape4=line ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.75),([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.75) | extend lineAttributes
-leftmouseupaction=[!togglemetergroup menuSelect][!hidemetergroup rightClickMenu]
+meterStyle=hamberger
+ButtAttributes=strokeWidth ([#CurrentSection#:H]*0.15) | strokeColor #menuWhite# | StrokeStartCap Round | StrokeEndCap Round
+BGAttributes=StrokeWidth 0 | Fill Color #menuBGcolor#,#BgAlpha#
+leftmouseupaction=[!togglemetergroup menuSelect][!hidemetergroup rightClickMenu][!hideMeterGroup settingsMenu]
 MouseOverAction=[!SetVariable menuBGcolor "#HighlightColor#"][!SetVariable menuWhite 255,255,255][!redraw]
 MouseLeaveAction=[!SetVariable menuBGcolor "#BGcolor#"][!SetVariable menuWhite #FontColor#][!redraw]
 
-[Close]
+[CloseSkin]
 meter=Shape
 dynamicVariables=1
 x=r
 y=90r
 w=90
 h=90
-xAttributes=Strokewidth 0 | Fill Color #xWhite#
+meterStyle=Close
+ButtAttributes=Strokewidth 0 | Fill Color #xWhite#
 BGAttributes=StrokeWidth 0 | Fill Color #xBGcolor#,#BgAlpha#
 BottomCorner=0,0 | LineTo 0,([#CurrentSection#:H]-[#CurrentSection#:W]*0.2) | CurveTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]),0,([#CurrentSection#:H]) | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]) | LineTo ([#CurrentSection#:W]),0 | ClosePath 1
 shape=path BottomCorner | Extend BGAttributes
-shape2=Rectangle 0,([#CurrentSection#:H]*0.47),([#CurrentSection#:W]),([#CurrentSection#:W]*0.12),([#CurrentSection#:W]*0.06) | Extend xAttributes | Rotate 45.0
-shape3=Rectangle 0,([#CurrentSection#:H]*0.47),([#CurrentSection#:W]),([#CurrentSection#:W]*0.12),([#CurrentSection#:W]*0.06) | Extend xAttributes | Rotate -45.0
-shape4=Combine Shape2 | Union Shape3
 MouseOverAction=[!SetVariable xBGcolor "#HighlightColor#"][!SetVariable xWhite 255,255,255][!redraw]
 MouseLeaveAction=[!SetVariable xBGcolor "#BGcolor#"][!SetVariable xWhite #FontColor#][!redraw]
 LeftMouseUpAction=[!DeactivateConfig "#CurrentConfig#"]
@@ -236,8 +229,8 @@ LeftMouseUpAction=[!DeactivateConfig "#CurrentConfig#"]
 meter=string
 meterStyle=menuStyle
 text="Loading data#CRLF#Please Wait"
-x=([MaximizeToggle:X]+90+180)
-y=([MaximizeToggle:Y]+135)
+x=([Settings:X]+270)
+y=([Settings:Y]+135)
 h=270
 w=360
 solidColor=#highlightColor#,#BgAlpha#
@@ -250,7 +243,7 @@ group=none
 [menu0]
 Meter=string
 x=90
-y=([MaximizeToggle:Y]+23)
+y=([Settings:Y]+23)
 text="sort by name"
 meterStyle=menuStyle
 leftmouseupaction=[!WriteKeyValue variables sort "name" "#@##CurrentConfig#\Variables.inc"][!setVariable sort "name"][!commandMeasure parseNpose "applySort()"][!hidemetergroup menuSelect][!updateMeasure parseNpose]
@@ -277,15 +270,6 @@ leftmouseupaction=[!WriteKeyValue variables sort "lastPlayed" "#@##CurrentConfig
 Meter=string
 meterStyle=menuStyle | #revOrder#revOrder
 leftmouseupaction=[!WriteKeyValue variables revOrder (#revOrder#=1?0:1) "#@##CurrentConfig#\Variables.inc"][!setVariable revOrder (#revOrder#=1?0:1)][!commandMeasure parseNpose "applySort()"][!hidemetergroup menuSelect][!updateMeasure parseNpose]
-
-[menu5]
-Meter=string
-meterStyle=menuStyle | #useBoxArt#imageDimension
-leftmouseupaction=[!WriteKeyValue variables useBoxArt (#useBoxArt#=1?0:1) "#@##CurrentConfig#\Variables.inc"][!SetVariable useBoxArt (#useBoxArt#=1?0:1)][!hidemetergroup menuSelect][!updateMeasure parseNpose]
-
-[menu6]
-Meter=string
-meterStyle=menuStyle | #filter##currentSection#
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Right Click Menu~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -356,28 +340,32 @@ text="Uninstall Game"
 group=rightClickMenu
 leftMouseUpAction=[!deactivateConfig "#CurrentConfig#"][steam://uninstall/#activeID#]
 
-[AlphaBG]
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;Settings Menu
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[bgAlphaSettings]
 meter=Shape
 dynamicVariables=1
-x=([MaximizeToggle:X]+[MaximizeToggle:W])
-y=([MaximizeToggle:Y])
+x=([Settings:X]+[Settings:W])
+y=([Settings:Y])
 w=300
 h=90
 AlphaGrad=180 | #HighlightColor# ; 0 | #HighlightColor# ; (#BgAlpha#/255) | #fontColor# ; (#BgAlpha#/255) | #fontColor# ; 1.0
 shape=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | StrokeWidth 0 | Fill Color #BgColor#
 shape2=Rectangle ([#CurrentSection#:W]*0.05),([#CurrentSection#:H]*0.35),([#CurrentSection#:W]*0.9),([#CurrentSection#:H]*0.3),([#CurrentSection#:H]*0.15) | StrokeWidth 0 | Fill LinearGradient AlphaGrad
-group=SelectAlpha
+group=settingsMenu
 hidden=1
 leftmouseupaction=[!setvariable BgAlpha ($MouseX$>[#CurrentSection#:W]*0.95?255:($MouseX$<[#CurrentSection#:W]*0.05?0:round(($MouseX$-[#CurrentSection#:W]*0.05)/([#CurrentSection#:W]*0.9)*255)))][!writeKeyValue variables BgAlpha ($MouseX$>[#CurrentSection#:W]*0.95?255:($MouseX$<[#CurrentSection#:W]*0.05?0:round(($MouseX$-[#CurrentSection#:W]*0.05)/([#CurrentSection#:W]*0.9)*255))) "#@##CurrentConfig#\Variables.inc"][!redraw]
 
-[AlphaBGLabel]
+[bgAlphaSettingsLabel]
 meter=String
 measureName=mAlphaBg
 text=%1%
 dynamicVariables=1
 x=50R
-y=([AlphaBG:H]/2)r
-h=([AlphaBG:H])
+y=([bgAlphaSettings:H]/2)r
+h=([bgAlphaSettings:H])
 w=100
 solidColor=#BGcolor#
 clipstring=1
@@ -385,6 +373,36 @@ fontface=#fontface#
 fontsize=(#fontsize#+8)
 stringalign=CenterCenter
 fontColor=#fontColor#
-group=SelectAlpha
+group=settingsMenu
 hidden=1
 leftmouseupaction=[!setvariable BgAlpha 255][!writeKeyValue variables BgAlpha 255 "#@##CurrentConfig#\Variables.inc"][!redraw]
+
+[fullScreenSettings]
+meter=String
+meterStyle=menuStyle
+x=([bgAlphaSettings:X])
+y=([bgAlphaSettings:Y]+[bgAlphaSettings:H]+22)
+w=400
+text="Use Full Screen"
+group=settingsMenu
+leftMouseUpAction=[!WriteKeyValue variables Maximize (#Maximize#=0?1:0) "#@##CurrentConfig#\Variables.inc"][!SetVariable Maximize (#Maximize#=0?1:0)][!commandmeasure parseNpose setGrid()]
+
+[scrollSettings]
+meter=String
+meterStyle=menuStyle | #orientation##CurrentSection#
+w=400
+group=settingsMenu
+leftMouseUpAction=[!commandMeasure parseNpose switchAxis()]
+
+[imageDimension]
+Meter=string
+meterStyle=menuStyle | #useBoxArt##CurrentSection#
+w=400
+group=settingsMenu
+leftmouseupaction=[!WriteKeyValue variables useBoxArt (#useBoxArt#=1?0:1) "#@##CurrentConfig#\Variables.inc"][!SetVariable useBoxArt (#useBoxArt#=1?0:1)][!hidemetergroup menuSelect][!updateMeasure parseNpose]
+
+[filter]
+Meter=string
+meterStyle=menuStyle | #filter##currentSection#
+w=400
+group=settingsMenu
