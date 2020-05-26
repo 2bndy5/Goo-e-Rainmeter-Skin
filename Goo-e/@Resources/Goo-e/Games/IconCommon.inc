@@ -8,7 +8,7 @@ SizeAlpha=0
 controllerAlpha=0
 playerAlpha=0
 InvertLoop=0
-@includeVars="#@##CurrentConfig#\Games\Variables.inc"
+@includeVars="#@##CurrentConfig#\List\Variables.inc"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;~~~~~~~~~~~~Measures~~~~~~~~~~~~~~~;
@@ -31,7 +31,7 @@ DynamicVariables=1
 focusdismiss=1
 DefaultValue="#IconSize#"
 InputNumber=1
-Command1=[!writekeyvalue variables IconSize "$UserInput$" "#@##CurrentConfig#\Games\Variables.inc"][!setVariable IconSize [#CurrentSection#]][!redraw]
+Command1=[!writekeyvalue variables IconSize "$UserInput$" "#@##CurrentConfig#\List\Variables.inc"][!setVariable IconSize [#CurrentSection#]][!redraw]
 
 [mSteamPath]
 Measure=Registry
@@ -50,7 +50,7 @@ RegKey=SOFTWARE\Classes\origin2\shell\open\command
 UpdateDivider=-1
 RegExpSubstitute=1
 Substitute='(?siU)(.*)\s+"\%1"$':"\1"
-onUpdateAction=[!setVariable OriginDir [#CurrentSection#]][!writekeyvalue Variables OriginDir [#CurrentSection#] "#@##CurrentConfig#\Games\Variables.inc"]
+onUpdateAction=[!setVariable OriginDir [#CurrentSection#]][!writekeyvalue Variables OriginDir [#CurrentSection#] "#@##CurrentConfig#\List\Variables.inc"]
 
 [currAppId]
 Measure=Registry
@@ -71,7 +71,7 @@ RegKey=Software\Valve\Steam\ActiveProcess
 RegValue=ActiveUser
 dynamicVariables=1
 ifCondition=[#CurrentSection#] <> 0
-ifTrueAction=[!writekeyvalue variables lastActiveUser [#CurrentSection#] "#@##CurrentConfig#\Games\Variables.inc"]
+ifTrueAction=[!writekeyvalue variables lastActiveUser [#CurrentSection#] "#@##CurrentConfig#\List\Variables.inc"]
 
 [ParseSteamLibs]
 measure=script

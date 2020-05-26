@@ -154,12 +154,10 @@ imagetint=#fontColor#
 dynamicvariables=1
 w=80
 h=70
-ArrowAttributes=Strokewidth 0 | Fill Color #UpWhite# | rotate (-90*#orientation#)
+ButtAttributes=Strokewidth 0 | Fill Color #UpWhite# | rotate (-90*#scrollPlane#)
 BGAttributes=StrokeWidth 0 | Fill Color #UpBGcolor#,#BgAlpha#
-Arrow=([#CurrentSection#:W]*0.28),([#CurrentSection#:H]*0.475) | ArcTo ([#CurrentSection#:W]*0.19),([#CurrentSection#:H]*0.39) |  LineTo ([#CurrentSection#:W]*0.44),([#CurrentSection#:H]*0.14) | CurveTo ([#CurrentSection#:W]*0.56),([#CurrentSection#:H]*0.14),([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.06) | LineTo ([#CurrentSection#:W]*0.81),([#CurrentSection#:H]*0.39) | ArcTo ([#CurrentSection#:W]*0.72),([#CurrentSection#:H]*0.475) | LineTo ([#CurrentSection#:W]*0.56),([#CurrentSection#:H]*0.315) | LineTo ([#CurrentSection#:W]*0.56),([#CurrentSection#:H]*0.83) | ArcTo ([#CurrentSection#:W]*0.44),([#CurrentSection#:H]*0.83) | LineTo ([#CurrentSection#:W]*0.44),([#CurrentSection#:H]*0.315) | ClosePath 1
 BG=([#CurrentSection#:W]*0.5),0 | LineTo ([#CurrentSection#:W]),0 | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]) | ArcTo ([#CurrentSection#:W]*0.5),0 | ClosePath 1
 shape=Path BG | Extend BGAttributes
-shape2=Path Arrow | Extend ArrowAttributes
 group=scrollPages
 MouseOverAction=[!SetVariable UpBGcolor "#HighlightColor#"][!SetVariable UpWhite "255,255,255"][!redraw]
 MouseLeaveAction=[!SetVariable UpBGcolor "#BGcolor#"][!SetVariable UpWhite "#fontColor#"][!redraw]
@@ -170,12 +168,12 @@ meter=shape
 dynamicVariables=1
 w=80
 h=70
-ArrowAttributes=Strokewidth 0 | Fill Color #DnWhite# | Scale 1.0,-1.0 | rotate (90*#orientation#)
+ButtAttributes=Strokewidth 0 | Fill Color #DnWhite# | Scale 1.0,-1.0 | rotate (90*#scrollPlane#)
 BGAttributes=StrokeWidth 0 | Fill Color #DnBGcolor#,#BgAlpha#
 Arrow=([#CurrentSection#:W]*0.28),([#CurrentSection#:H]*0.475) | ArcTo ([#CurrentSection#:W]*0.19),([#CurrentSection#:H]*0.39) |  LineTo ([#CurrentSection#:W]*0.44),([#CurrentSection#:H]*0.14) | CurveTo ([#CurrentSection#:W]*0.56),([#CurrentSection#:H]*0.14),([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.06) | LineTo ([#CurrentSection#:W]*0.81),([#CurrentSection#:H]*0.39) | ArcTo ([#CurrentSection#:W]*0.72),([#CurrentSection#:H]*0.475) | LineTo ([#CurrentSection#:W]*0.56),([#CurrentSection#:H]*0.315) | LineTo ([#CurrentSection#:W]*0.56),([#CurrentSection#:H]*0.83) | ArcTo ([#CurrentSection#:W]*0.44),([#CurrentSection#:H]*0.83) | LineTo ([#CurrentSection#:W]*0.44),([#CurrentSection#:H]*0.315) | ClosePath 1
 BG=([#CurrentSection#:W]*0.5),0 | LineTo ([#CurrentSection#:W]),0 | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]) | ArcTo ([#CurrentSection#:W]*0.5),0 | ClosePath 1
 shape=Path BG | Extend BGAttributes
-shape2=Path Arrow | Extend ArrowAttributes
+shape2=Path Arrow | Extend ButtAttributes
 group=scrollPages
 MouseOverAction=[!SetVariable DnBGcolor "#HighlightColor#"][!SetVariable DnWhite "255,255,255"][!redraw]
 MouseLeaveAction=[!SetVariable DnBGcolor "#BGcolor#"][!SetVariable DnWhite "#FontColor#"][!redraw]
@@ -389,7 +387,7 @@ leftMouseUpAction=[!WriteKeyValue variables Maximize (#Maximize#=0?1:0) "#@##Cur
 
 [scrollSettings]
 meter=String
-meterStyle=menuStyle | #orientation##CurrentSection#
+meterStyle=menuStyle | #scrollPlane##CurrentSection#
 w=400
 group=settingsMenu
 leftMouseUpAction=[!commandMeasure parseNpose switchAxis()]
