@@ -20,25 +20,26 @@ measure=plugin
 Plugin=ActionTimer
 dynamicVariables=1
 ActionList1=wait 250 | startTimer | parseData
-startTimer=[!commandMeasure parseNpose "startTimer()"]
-parseData=[!commandMeasure mListSteamFiles run]
+startTimer=[!commandMeasure mParseApps "startTimer()"]
+parseData=[!commandMeasure mListInfoFiles run]
 
-[mListSteamFiles]
+[mListInfoFiles]
 measure=Plugin
 Plugin=RunCommand
 dynamicVariables=1
 Parameter="dir #libList#"
-finishAction=[!commandMeasure parseNpose "parseApps()"]
+finishAction=[!commandMeasure mParseApps "parseApps()"]
 
-[mIconSearch]
-measure=string
-dynamicVariables=1
-string="[mItemName#activeItem#]"
-substitute=" ":"+"
-
-[parseNpose]
+[mParseApps]
 Measure=Script
-ScriptFile="#@##CurrentConfig#\#Service#\ParseAndPose.lua"
+ScriptFile="#@##CurrentConfig#\#Service#\ParseApps.lua"
+dynamicVariables=1
+updateDivider=-1
+onupdateAction=[!updateMeasure mPoseApps]
+
+[mPoseApps]
+Measure=Script
+ScriptFile="#@##CurrentConfig#\PoseApps.lua"
 dynamicVariables=1
 updateDivider=-1
 
@@ -47,17 +48,17 @@ measure=string
 string=#sort#
 dynamicVariables=1
 ifMatch=name
-ifMatchAction=[!setOption menu0 prefix "[\xe73a] "]
-ifNotMatchAction=[!setOption menu0 prefix "[\xe739] "]
+ifMatchAction=[!setOption sortname prefix "[\xe73a] "]
+ifNotMatchAction=[!setOption sortname prefix "[\xe739] "]
 ifMatch2=playtime
-ifMatchAction2=[!setOption menu1 prefix "[\xe73a] "]
-ifNotMatchAction2=[!setOption menu1 prefix "[\xe739] "]
+ifMatchAction2=[!setOption sortplaytime prefix "[\xe73a] "]
+ifNotMatchAction2=[!setOption sortplaytime prefix "[\xe739] "]
 ifMatch3=size
-ifMatchAction3=[!setOption menu2 prefix "[\xe73a] "]
-ifNotMatchAction3=[!setOption menu2 prefix "[\xe739] "]
+ifMatchAction3=[!setOption sortsize prefix "[\xe73a] "]
+ifNotMatchAction3=[!setOption sortsize prefix "[\xe739] "]
 ifMatch4=lastPlayed
-ifMatchAction4=[!setOption menu3 prefix "[\xe73a] "]
-ifNotMatchAction4=[!setOption menu3 prefix "[\xe739] "]
+ifMatchAction4=[!setOption sortlastPlayed prefix "[\xe73a] "]
+ifNotMatchAction4=[!setOption sortlastPlayed prefix "[\xe739] "]
 
 [activeFullScreen]
 measure=calc
@@ -67,7 +68,6 @@ ifEqualValue=1
 ifEqualAction=[!setOption fullScreenSettings prefix "[\xe73a] "]
 ifBelowValue=1
 ifBelowAction=[!setOption fullScreenSettings prefix "[\xe739] "]
-
 
 [dirSizeInfo]
 measure=plugin

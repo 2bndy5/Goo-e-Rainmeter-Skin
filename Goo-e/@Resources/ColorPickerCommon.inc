@@ -2,9 +2,9 @@
 [Variables]
 ActiveRGB=106,120,255
 ActiveHex=61A2E9
-Hue=0.56791199184174
-sat=0.79
-val=0.98
+Hue=0.07667
+sat=0.97
+val=0.44
 HueColor=
 SettingsFontSize=20
 

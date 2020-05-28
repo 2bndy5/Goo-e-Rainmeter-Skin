@@ -1,0 +1,10 @@
+[variables]
+sort=label
+revOrder=0
+filter=none
+hiddenList=
+DIR="%AppData%\RetroArch\"
+useBoxArt=1
+theme=retrosystem
+console=1
+page=1

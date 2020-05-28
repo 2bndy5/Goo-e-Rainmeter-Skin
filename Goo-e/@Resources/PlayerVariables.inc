@@ -1,8 +1,8 @@
 [Variables]
-IconSize=350
+IconSize=153
 Player=CAD
 HideVolume=10
-WinColors=1
+WinColors=0
 Rank=-1
 CurrentColor=173,94,1
 FontColor=6,47,238

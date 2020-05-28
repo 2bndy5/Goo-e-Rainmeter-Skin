@@ -1,4 +1,3 @@
-
 [mSpeakHour]
 measure=time
 format=%#I

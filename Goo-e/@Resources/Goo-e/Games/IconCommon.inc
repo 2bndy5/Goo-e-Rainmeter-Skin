@@ -8,7 +8,8 @@ SizeAlpha=0
 controllerAlpha=0
 playerAlpha=0
 InvertLoop=0
-@includeVars="#@##CurrentConfig#\Games\Variables.inc"
+@includeVars="#@##CurrentConfig#\List\Variables.inc"
+@includeSpecVars="#@##CurrentConfig#\List\#service#\SpecificVars.inc"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;~~~~~~~~~~~~Measures~~~~~~~~~~~~~~~;
@@ -31,7 +32,7 @@ DynamicVariables=1
 focusdismiss=1
 DefaultValue="#IconSize#"
 InputNumber=1
-Command1=[!writekeyvalue variables IconSize "$UserInput$" "#@##CurrentConfig#\Games\Variables.inc"][!setVariable IconSize [#CurrentSection#]][!redraw]
+Command1=[!writekeyvalue variables IconSize "$UserInput$" "#@##CurrentConfig#\List\Variables.inc"][!setVariable IconSize [#CurrentSection#]][!redraw]
 
 [mSteamPath]
 Measure=Registry
@@ -50,7 +51,7 @@ RegKey=SOFTWARE\Classes\origin2\shell\open\command
 UpdateDivider=-1
 RegExpSubstitute=1
 Substitute='(?siU)(.*)\s+"\%1"$':"\1"
-onUpdateAction=[!setVariable OriginDir [#CurrentSection#]][!writekeyvalue Variables OriginDir [#CurrentSection#] "#@##CurrentConfig#\Games\Variables.inc"]
+onUpdateAction=[!setVariable OriginDir [#CurrentSection#]][!writekeyvalue Variables OriginDir [#CurrentSection#] "#@##CurrentConfig#\List\Variables.inc"]
 
 [currAppId]
 Measure=Registry
@@ -71,7 +72,7 @@ RegKey=Software\Valve\Steam\ActiveProcess
 RegValue=ActiveUser
 dynamicVariables=1
 ifCondition=[#CurrentSection#] <> 0
-ifTrueAction=[!writekeyvalue variables lastActiveUser [#CurrentSection#] "#@##CurrentConfig#\Games\Variables.inc"]
+ifTrueAction=[!writekeyvalue variables lastActiveUser [#CurrentSection#] "#@##CurrentConfig#\List\Variables.inc"]
 
 [ParseSteamLibs]
 measure=script
@@ -162,7 +163,7 @@ PointDown=([#CurrentSection#:W]*0.48),([#CurrentSection#:H]*0.75) | CurveTo ([#C
 shape=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.5) | StrokeWidth 0 | Fill Color 0,0,0,1
 shape2=Path PointUp
 shape3=Path PointDown
-shape4=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.367) | StrokeWidth ([#CurrentSection#:W]*0.015) | stroke RadialGradient RadGrad | fill color 0,0,0,([calcBodyAlpha:]*255)
+shape4=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.367) | StrokeWidth ([#CurrentSection#:W]*0.015) | stroke RadialGradient RadGrad | fill color 112,53,3,([calcBodyAlpha:]*255)
 ; | strokeDashes ([#CurrentSection#:W]*0.015*5.9),([#CurrentSection#:W]*0.015*5.9) | strokeDashOffset ([#CurrentSection#:W]*0.015*11.6*[mAnimLoop:/100])
 shape5=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.15)
 shape6=Combine Shape4 | Exclude shape5 | Union shape2 | Union shape3 | offset ([#CurrentSection#:W]*0.005),([#CurrentSection#:H]*0.005) | rotate (-3.6*[mAnimLoop:]),([#CurrentSection#:W]*0.3745),([#CurrentSection#:H]*0.53) | scale 0.9,0.9
@@ -216,21 +217,3 @@ shape=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | StrokeWidth 0 | 
 shape2=Line ([#CurrentSection#:W]*0.835),([#CurrentSection#:H]*0.16),([#CurrentSection#:W]*0.15),([#CurrentSection#:H]*0.845) | Extend ButtAttributes | StrokeStartCap Triangle | StrokeEndCap Triangle
 shape3=Path ArrowBottom | Extend ButtAttributes
 shape4=path ArrowTop | Extend ButtAttributes
-
-; this shape is archived until emulationStation gets updated (development has been stale for years)
-[emulationStationIconShape]
-bgBlue=0,([#CurrentSection#:H]/4) | LineTo ([#CurrentSection#:W]*0.1),([#CurrentSection#:H]*0.15) | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]*0.15) | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.9),([#CurrentSection#:H]*0.85) | LineTo 0,([#CurrentSection#:H]*0.85) | ClosePath 1
-E=([#CurrentSection#:W]*0.1),([#CurrentSection#:H]*0.35) | SetRoundJoin 1 | LineTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.25) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.25) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.65) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.65) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.1),([#CurrentSection#:H]*0.65) | closepath 1
-S=([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.35) | SetRoundJoin 1 | LineTo ([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.25) | LineTo ([#CurrentSection#:W]*0.9),([#CurrentSection#:H]*0.25) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.9),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.9),([#CurrentSection#:H]*0.65) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.65) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.65) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.45) | closepath 1
-shadeE=0,([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.1),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.3),([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.3),([#CurrentSection#:H]*0.65) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.85) | LineTo 0,([#CurrentSection#:H]*0.85) | closepath 1
-shadeS=0,([#CurrentSection#:H]*0.85) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.7),([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.7),([#CurrentSection#:H]*0.85) | closepath 1
-shape=path bgBlue | StrokeWidth 0 | Fill Color 0,78,115
-shape2=path shadeE | StrokeWidth 0 | Fill Color 0,0,0,85
-shape3=path shadeS | StrokeWidth 0 | Fill Color 0,0,0,85
-shape4=path E | StrokeColor 255,255,255 | StrokeWidth ([#CurrentSection#:H]*0.005) | Fill Color 255,255,255
-shape5=path S | StrokeColor 255,255,255 | StrokeWidth ([#CurrentSection#:H]*0.005) | Fill Color 255,255,255
-; blue=0,78,115
-; letterH=([#CurrentSection#:H]/2)
-; letterW=([#CurrentSection#:H]*0.8)
-; bgH=([#CurrentSection#:H]*0.7)
-; RounedJoints=([#CurrentSection#:H]*0.025)

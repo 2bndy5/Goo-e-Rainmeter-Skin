@@ -15,7 +15,7 @@ function Update()
 		end
 		parselibrary(SKIN:MakePathAbsolute(Path2exe .. 'SteamApps\\libraryFolders.vdf'))
     end
-    SKIN:Bang('!writeKeyValue',  'Variables', 'SteamDir', '\"' .. Path2exe .. '\"', Path2Var .. CurrentConfig .. '\\Games\\Variables.inc')
+    SKIN:Bang('!writeKeyValue',  'Variables', 'Dir', '\"' .. Path2exe .. '\"', Path2Var .. CurrentConfig .. '\\List\\Steam\\specificVars.inc')
 	return #steamLibs
 end
 
@@ -43,7 +43,7 @@ function parselibrary(str)
             -- print(libList)
         end
         -- print('libList = ' .. libList)
-        SKIN:Bang('!writeKeyValue',  'Variables', 'libList', '\"' .. libList .. '\"', Path2Var .. CurrentConfig .. '\\Games\\Variables.inc')
+        SKIN:Bang('!writeKeyValue',  'Variables', 'libList', '\"' .. libList .. '\"', Path2Var .. CurrentConfig .. '\\List\\steam\\specificVars.inc')
 	end
 	return #steamLibs
 end

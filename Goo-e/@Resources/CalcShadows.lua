@@ -50,7 +50,6 @@ function ParseColor(c)
 end--end parse color
 
 function getHue(rgb)
-	
 	local hue
 --	SKIN:Bang('!Log', table.concat(rgb, ','), 'Debug')
 	if (2*rgb[1]-rgb[2]-rgb[3]) == 0 then
@@ -144,11 +143,23 @@ function Update()
 	local minutes = tostring(SKIN:GetVariable('MinutesColor'))
 	local hours = tostring(SKIN:GetVariable('HoursColor'))
 	local bgColor = tostring(SKIN:GetVariable('BGColor'))
-	SKIN:Bang('!SetVariable', 'Color1Shadow', ShadeColor(color1) )
-	SKIN:Bang('!SetVariable', 'Color2Shadow', ShadeColor(color2) )
-	SKIN:Bang('!SetVariable', 'SecondsColorShadow', ShadeColor(seconds) )
-	SKIN:Bang('!SetVariable', 'MinutesColorShadow', ShadeColor(minutes) )
-	SKIN:Bang('!SetVariable', 'HoursColorShadow', ShadeColor(hours) )
-	SKIN:Bang('!SetVariable', 'ClockColor', InvertColor(bgColor) )
+	if color1 ~= "nil" then
+		SKIN:Bang('!SetVariable', 'Color1Shadow', ShadeColor(color1))
+	end
+	if color2 ~= "nil" then
+		SKIN:Bang('!SetVariable', 'Color2Shadow', ShadeColor(color2))
+	end
+	if seconds ~= "nil" then
+		SKIN:Bang('!SetVariable', 'SecondsColorShadow', ShadeColor(seconds))
+	end
+	if minutes ~= "nil" then
+		SKIN:Bang('!SetVariable', 'MinutesColorShadow', ShadeColor(minutes))
+	end
+	if hours ~= "nil" then
+		SKIN:Bang('!SetVariable', 'HoursColorShadow', ShadeColor(hours))
+	end
+	if bgColor ~= "nil" then
+		SKIN:Bang('!SetVariable', 'ClockColor', InvertColor(bgColor))
+	end
 	return forceRGB(bgColor)
 end

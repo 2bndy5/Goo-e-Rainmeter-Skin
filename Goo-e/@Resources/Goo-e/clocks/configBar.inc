@@ -1,4 +1,3 @@
-
 [configbar]
 Meter=shape
 x=0
@@ -17,13 +16,9 @@ x=(#iconSize#*0.75)
 y=(#IconSize#*0.05)r
 h=(#IconSize#*0.25)
 w=(#IconSize#*0.25)
-ButtAttributes=StrokeWidth ((([#CurrentSection#:W]+[#CurrentSection#:H])/2)*0.065) | StrokeColor #ClockColor# | Fill Color 0,0,0,1
-shape=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.4) | Extend ButtAttributes
-shape2=Path ArrowL | Extend ButtAttributes
-ArrowL=([#CurrentSection#:W]*0.42),([#CurrentSection#:H]*0.3) | LineTo ([#CurrentSection#:W]*0.62),([#CurrentSection#:H]*0.5) | LineTo ([#CurrentSection#:W]*0.42),([#CurrentSection#:H]*0.7)
-shape3=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | StrokeWidth 0 | Fill Color 0,0,0,1
+ButtAttributes=Strokewidth 0 | Fill Color #ClockColor# | rotate 90
+meterStyle=ArrowShape | StyleNext
 Hidden=#hideconfigbar#
-meterStyle=StyleNext
 dynamicvariables=1
 Group=configbar
 
@@ -33,13 +28,9 @@ x=0
 y=r
 h=(#IconSize#*0.25)
 w=(#IconSize#*0.25)
-ButtAttributes=StrokeWidth ((([#CurrentSection#:W]+[#CurrentSection#:H])/2)*0.065) | StrokeColor #ClockColor# | Fill Color 0,0,0,1
-shape=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.4) | Extend ButtAttributes
-shape2=Path ArrowR | Extend ButtAttributes
-ArrowR=([#CurrentSection#:W]*0.58),([#CurrentSection#:H]*0.3) | LineTo ([#CurrentSection#:W]*0.38),([#CurrentSection#:H]*0.5) | LineTo ([#CurrentSection#:W]*0.58),([#CurrentSection#:H]*0.7)
-shape3=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | StrokeWidth 0 | Fill Color 0,0,0,1
+ButtAttributes=Strokewidth 0 | Fill Color #ClockColor# | rotate -90
+meterStyle=ArrowShape | StyleBack
 Hidden=#hideconfigbar#
-meterStyle=StyleBack
 dynamicvariables=1
 Group=configbar
 
@@ -50,12 +41,8 @@ x=(#IconSize#*0.25)
 y=r
 h=(#IconSize#*0.25)
 w=(#IconSize#*0.25)
-ButtAttributes=StrokeWidth ((([#CurrentSection#:W]+[#CurrentSection#:H])/2)*0.065) | StrokeColor #ClockColor# | Fill Color 0,0,0,1
-shape=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.15),([#CurrentSection#:H]*0.15) | Extend ButtAttributes
-shape2=Path Teeth | Extend ButtAttributes
-Teeth=([#CurrentSection#:W]*0.39),([#CurrentSection#:H]*0.05) | LineTo ([#CurrentSection#:W]*0.46),([#CurrentSection#:H]*0.16) | LineTo ([#CurrentSection#:W]*0.54),([#CurrentSection#:H]*0.16) | LineTo ([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.05) | LineTo ([#CurrentSection#:W]*0.75),([#CurrentSection#:H]*0.1) | LineTo ([#CurrentSection#:W]*0.715),([#CurrentSection#:H]*0.24) | LineTo ([#CurrentSection#:W]*0.77),([#CurrentSection#:H]*0.29) | LineTo ([#CurrentSection#:W]*0.9),([#CurrentSection#:H]*0.25) | LineTo ([#CurrentSection#:W]*0.96),([#CurrentSection#:H]*0.4) | LineTo ([#CurrentSection#:W]*0.835),([#CurrentSection#:H]*0.47) | LineTo ([#CurrentSection#:W]*0.835),([#CurrentSection#:H]*0.54) | LineTo ([#CurrentSection#:W]*0.955),([#CurrentSection#:H]*0.615) | LineTo ([#CurrentSection#:W]*0.89),([#CurrentSection#:H]*0.76) | LineTo ([#CurrentSection#:W]*0.76),([#CurrentSection#:H]*0.72) | LineTo ([#CurrentSection#:W]*0.715),([#CurrentSection#:H]*0.77) | LineTo ([#CurrentSection#:W]*0.745),([#CurrentSection#:H]*0.91) | LineTo ([#CurrentSection#:W]*0.61),([#CurrentSection#:H]*0.96) | LineTo ([#CurrentSection#:W]*0.53),([#CurrentSection#:H]*0.85) | LineTo ([#CurrentSection#:W]*0.46),([#CurrentSection#:H]*0.85) | LineTo ([#CurrentSection#:W]*0.39),([#CurrentSection#:H]*0.96) | LineTo ([#CurrentSection#:W]*0.25),([#CurrentSection#:H]*0.91) | LineTo ([#CurrentSection#:W]*0.28),([#CurrentSection#:H]*0.77) | LineTo ([#CurrentSection#:W]*0.24),([#CurrentSection#:H]*0.725) | LineTo ([#CurrentSection#:W]*0.1),([#CurrentSection#:H]*0.755) | LineTo ([#CurrentSection#:W]*0.04),([#CurrentSection#:H]*0.615) | LineTo ([#CurrentSection#:W]*0.16),([#CurrentSection#:H]*0.535) | LineTo ([#CurrentSection#:W]*0.16),([#CurrentSection#:H]*0.48) | LineTo ([#CurrentSection#:W]*0.04),([#CurrentSection#:H]*0.4) | LineTo ([#CurrentSection#:W]*0.1),([#CurrentSection#:H]*0.26) | LineTo ([#CurrentSection#:W]*0.23),([#CurrentSection#:H]*0.28) | LineTo ([#CurrentSection#:W]*0.28),([#CurrentSection#:H]*0.24) | LineTo ([#CurrentSection#:W]*0.25),([#CurrentSection#:H]*0.105) | ClosePath 1
-shape3=Combine Shape2 | Exclude shape
-shape4=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | StrokeWidth 0 | Fill Color 0,0,0,1
+ButtAttributes=StrokeWidth ([#CurrentSection#:W]*0.065) | StrokeColor #ClockColor# | Fill Color 0,0,0,1
+meterStyle=SettingsShape
 Hidden=#hideconfigbar#
 group=configbar
 leftMouseUpAction=[!toggleConfig  "#RootConfig#\Clock\Settings" "#CURRENTFILE#"][!move "(#WorkAreaWidth#-(#CurrentConfigX#+#CurrentConfigWidth#)>=520?(#CurrentConfigX#+#IconSize#):(#CurrentConfigX#-520))" "(#WorkAreaHeight#-#CurrentConfigY#>=404?(#CurrentConfigY#):(#WorkAreaHeight#-404))" "#RootConfig#\Clock\Settings"]
@@ -66,17 +53,13 @@ x=(#IconSize#*0.5)
 y=r
 h=(#IconSize#*0.25)
 w=(#IconSize#*0.25)
-ButtAttributes=StrokeWidth ((([#CurrentSection#:W]+[#CurrentSection#:H])/2)*0.065) | StrokeColor #ClockColor# | Fill Color 0,0,0,1
-shape=Line ([#CurrentSection#:W]*0.835),([#CurrentSection#:H]*0.16),([#CurrentSection#:W]*0.15),([#CurrentSection#:H]*0.845) | Extend ButtAttributes | StrokeStartCap Triangle | StrokeEndCap Triangle
-shape2=Path ArrowBottom | Extend ButtAttributes
-ArrowBottom=([#CurrentSection#:W]*0.095),([#CurrentSection#:H]*0.62) | LineTo ([#CurrentSection#:W]*0.095),([#CurrentSection#:H]*0.895) | LineTo ([#CurrentSection#:W]*0.38),([#CurrentSection#:H]*0.895)
-shape3=path ArrowTop | Extend ButtAttributes
-ArrowTop=([#CurrentSection#:W]*0.61),([#CurrentSection#:H]*0.1075) | LineTo ([#CurrentSection#:W]*0.885),([#CurrentSection#:H]*0.1075) | LineTo ([#CurrentSection#:W]*0.885),([#CurrentSection#:H]*0.385)
-shape4=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | StrokeWidth 0 | Fill Color 0,0,0,1
+ButtAttributes=StrokeWidth ([#CurrentSection#:W]*0.065) | StrokeColor #ClockColor#
+meterStyle=SizeShape
 Hidden=#hideconfigbar#
 dynamicvariables=1
 group=configbar
 LeftMouseUpAction=[!Commandmeasure minputSize "ExecuteBatch 1"]
+;;Deprecated stopwatch & alarm skins for now. Maybe re-implement in future, so save this code for reference.
 ;;StopWatch & Alarm skin is normally always running as Root Config
 ;;For switching to StopWatch & Alarm skin
 ;	[pageclockactiveA]
