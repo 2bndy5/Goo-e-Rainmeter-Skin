@@ -3,11 +3,18 @@ measure=calc
 dynamicVariables=1
 formula=round(#BgAlpha# / 2.55)
 
-[imgOrientAlias]
-measure=calc
-dynamicVariables=1
-formula=#useBoxArt#
-substitute="0":"_header","1":"_library_600x900"
+[mChangePath]
+Measure=Plugin
+Plugin=InputText
+SolidColor=#BgColor#
+FontColor=#FontColor#
+FontSize=#FontSize#
+X=([changeDir:X])
+Y=([changeDir:Y])
+H=([changeDir:H])
+W=([changeDir:W]*2)
+DefaultValue="#DIR#"
+Command1=[!WriteKeyValue Variables DIR "$userInput$" "#@##CurrentConfig#\#Service#\SpecificVars.inc"][!refresh]
 
 [mListInfoFiles]
 measure=Plugin
@@ -77,6 +84,12 @@ ifEqualAction=[!setOption fullScreenSettings prefix "[\xe73a] "]
 ifBelowValue=1
 ifBelowAction=[!setOption fullScreenSettings prefix "[\xe739] "]
 
+[activeTheme]
+measure=string
+dynamicVariables=1
+string=#theme#
+onUpdateAction=[!setOptiongroup SelectThemes prefix "[\xe739] "][!setOption #theme# prefix "[\xe73a] "]
+
 [activeArtwork]
 measure=calc
 dynamicVariables=1
@@ -95,5 +108,18 @@ ifFalseAction3=[!setOption titleScreensImages prefix "[\xe739] "]
 measure=string
 dynamicVariables=1
 string=#activeFile#
-; regexpsubstitute=1
 substitute="'":"\'"
+
+[activePath]
+measure=string
+string=[mItemDIR#activeItem#]
+dynamicVariables=1
+regexpsubstitute=1
+substitute="(.*\\).*\.\w+":"\1"
+
+[activeCore]
+measure=string
+string=[mItemCore#activeItem#]
+dynamicVariables=1
+regexpsubstitute=1
+substitute="(.*\\).*\.\w+":"\1"
