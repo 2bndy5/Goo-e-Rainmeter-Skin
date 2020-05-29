@@ -3,6 +3,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [IconBG]
+imageName="#Dir#appcache\librarycache\[mItemID#CurrentSection#][imgOrientAlias].jpg"
+PreserveAspectRatio=(#Maximize#)
 h=#IconH#
 w=#IconW#
 solidColor=#highlightColor#,#BgAlpha#
@@ -10,18 +12,22 @@ solidColor2=#BGcolor#,#BgAlpha#
 GradientAngle=60
 dynamicvariables=1
 hidden=1
+MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #CurrentSection# MeterStyle "IconBG | GameBanner"]
+MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #CurrentSection# MeterStyle "IconBG"]
 leftmouseupaction=[steam://rungameid/[mItemID#CurrentSection#]][!deactivateConfig "#CurrentConfig#"]
 rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeId "[mItemID#CurrentSection#]"][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y]+#CURRENTCONFIGY#))<(#menuItemH#*10)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*10)):($mouseY$+[#CurrentSection#:Y]))][!hideMeterGroup menus][!showmetergroup rightClickMenu]
 
 [GameBanner]
-imageName="#Dir#appcache\librarycache\[mItemID#CurrentSection#][imgOrientAlias].jpg"
-PreserveAspectRatio=(#Maximize#)
+imageName="#Dir#appcache\librarycache\[mItemID#CurrentSection#]_library_hero_blur.jpg"
+PreserveAspectRatio=2
 
 [InfoBG]
 x=r
 y=r
 h=#IconH#
 w=#IconW#
+imagetint=#highlightColor#
+PreserveAspectRatio=2
 solidColor=#highlightColor#,#BgAlpha#
 solidColor2=#BGcolor#,#BgAlpha#
 GradientAngle=60
@@ -159,7 +165,7 @@ meter=shape
 greyscale=#greyscale#
 imagetint=#fontColor#
 ButtAttributes=Strokewidth 0 | Fill Color #UpWhite# | rotate (-90*#scrollPlane#)
-BGAttributes=StrokeWidth 0 | Fill Color #UpBGcolor#,#BgAlpha#
+BGAttributes=StrokeWidth 0 | Fill Color #UpBGcolor#
 shape=Path BG | Extend BGAttributes
 meterStyle=ArrowShape | scrollPagesBG
 MouseOverAction=[!SetVariable UpBGcolor "#HighlightColor#"][!SetVariable UpWhite "255,255,255"][!redraw]
@@ -170,7 +176,7 @@ leftmouseupaction=[!commandmeasure mParseApps "pageUp()"][!redraw]
 meter=shape
 meterStyle=ArrowShape | scrollPagesBG
 ButtAttributes=Strokewidth 0 | Fill Color #DnWhite# | Scale 1.0,-1.0 | rotate (90*#scrollPlane#)
-BGAttributes=StrokeWidth 0 | Fill Color #DnBGcolor#,#BgAlpha#
+BGAttributes=StrokeWidth 0 | Fill Color #DnBGcolor#
 MouseOverAction=[!SetVariable DnBGcolor "#HighlightColor#"][!SetVariable DnWhite "255,255,255"][!redraw]
 MouseLeaveAction=[!SetVariable DnBGcolor "#BGcolor#"][!SetVariable DnWhite "#FontColor#"][!redraw]
 Leftmouseupaction=[!commandmeasure mParseApps "pageDn()"][!redraw]
@@ -182,7 +188,7 @@ h=90
 w=90
 meterStyle=SettingsShape
 ButtAttributes=Strokewidth ([#CurrentSection#:W]*0.05) | StrokeColor #sizeWhite# | Fill Color 0,0,0,1 | scale 0.8,0.8 | offset ([#CurrentSection#:W]*0.01),([#CurrentSection#:H]*0.01)
-BGAttributes=StrokeWidth 0 | Fill Color #sizeBGcolor#,#BgAlpha#
+BGAttributes=StrokeWidth 0 | Fill Color #sizeBGcolor#
 TopCorner=0,([#CurrentSection#:H]) | LineTo 0,([#CurrentSection#:W]*0.2) | CurveTo ([#CurrentSection#:W]*0.2),0,0,0 | LineTo ([#CurrentSection#:W]),0 | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]) | ClosePath 1
 shape=path TopCorner | Extend BGAttributes
 LeftMouseUpAction=[!hideMeterGroup menus][!showmetergroup settingsMenu]
@@ -198,7 +204,7 @@ h=90
 dynamicvariables=1
 meterStyle=hamberger
 ButtAttributes=strokeWidth ([#CurrentSection#:H]*0.15) | strokeColor #menuWhite# | StrokeStartCap Round | StrokeEndCap Round
-BGAttributes=StrokeWidth 0 | Fill Color #menuBGcolor#,#BgAlpha#
+BGAttributes=StrokeWidth 0 | Fill Color #menuBGcolor#
 leftmouseupaction=[!hidemetergroup menus][!showmetergroup menuSelect]
 MouseOverAction=[!SetVariable menuBGcolor "#HighlightColor#"][!SetVariable menuWhite 255,255,255][!redraw]
 MouseLeaveAction=[!SetVariable menuBGcolor "#BGcolor#"][!SetVariable menuWhite #FontColor#][!redraw]
@@ -212,7 +218,7 @@ w=90
 h=90
 meterStyle=Close
 ButtAttributes=Strokewidth 0 | Fill Color #xWhite#
-BGAttributes=StrokeWidth 0 | Fill Color #xBGcolor#,#BgAlpha#
+BGAttributes=StrokeWidth 0 | Fill Color #xBGcolor#
 BottomCorner=0,0 | LineTo 0,([#CurrentSection#:H]-[#CurrentSection#:W]*0.2) | CurveTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]),0,([#CurrentSection#:H]) | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]) | LineTo ([#CurrentSection#:W]),0 | ClosePath 1
 shape=path BottomCorner | Extend BGAttributes
 MouseOverAction=[!SetVariable xBGcolor "#HighlightColor#"][!SetVariable xWhite 255,255,255][!redraw]
@@ -392,4 +398,4 @@ leftMouseUpAction=[!WriteKeyValue variables scrollPlane (#scrollPlane#=0?1:0) "#
 Meter=string
 meterStyle=menuStyle | #useBoxArt##CurrentSection#
 group=settingsMenu | menus
-leftmouseupaction=[!WriteKeyValue variables useBoxArt (#useBoxArt#=1?0:1) "#@##CurrentConfig#\Variables.inc"][!SetVariable useBoxArt (#useBoxArt#=1?0:1)][!hidemetergroup menuSelect][!updateMeasure mPoseApps]
+leftmouseupaction=[!WriteKeyValue variables useBoxArt (#useBoxArt#=1?0:1) "#@##CurrentConfig#\#service#\SpecificVars.inc"][!SetVariable useBoxArt (#useBoxArt#=1?0:1)][!hidemetergroup menuSelect][!updateMeasure mPoseApps]

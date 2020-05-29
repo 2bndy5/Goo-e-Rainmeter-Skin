@@ -3,11 +3,13 @@ function Update()
 	showcase = tonumber(SKIN:GetMeasure("mParseApps"):GetValue())
 	MAX = 12
 	scrollPlane = tonumber(SKIN:GetVariable("scrollPlane"))
-	currConsole = tonumber(SKIN:GetVariable('console'))
+	currConsole = tonumber(SKIN:GetVariable("console"))
 	local WorkAreaHeight = tonumber(SKIN:GetVariable("WorkAreaHeight"))
-    local WorkAreaWidth = tonumber(SKIN:GetVariable("WorkAreaWidth"))
-    showcase = tonumber(SKIN:GetMeasure("mParseApps"):GetValue())
-	if showcase < MAX then MAX = showcase end
+	local WorkAreaWidth = tonumber(SKIN:GetVariable("WorkAreaWidth"))
+	showcase = tonumber(SKIN:GetMeasure("mParseApps"):GetValue())
+	if showcase < MAX then
+		MAX = showcase
+	end
 	local H = 0
 	local W = 0
 	local X = 0 --Skin center X init to 0
@@ -16,7 +18,10 @@ function Update()
 	local cellH = 0
 	local Maximize = tonumber(SKIN:GetVariable("Maximize"))
 	local useBoxArt = tonumber(SKIN:GetVariable("useBoxArt"))
-	if useBoxArt > 1 then useBoxArt = 0 end-- compensate for title/gameplay screenshots
+	if useBoxArt > 1 then
+		useBoxArt = 0
+	end
+	 -- compensate for title/gameplay screenshots
 	if WorkAreaWidth > WorkAreaHeight then
 		-- print('landscape mode')
 		local capH = 2 + (1 - useBoxArt) * 2
@@ -24,13 +29,19 @@ function Update()
 		H = 0
 		if W == 0 then
 			H = capH
-			while H * W < MAX do W = W + 1 end
+			while H * W < MAX do
+				W = W + 1
+			end
 		elseif W <= capH then
 			H = capH
 			W = 0
-			while H * W < MAX do W = W + 1 end
+			while H * W < MAX do
+				W = W + 1
+			end
 		else
-			while H * W < MAX do H = H + 1 end
+			while H * W < MAX do
+				H = H + 1
+			end
 		end
 		cellH = math.floor((WorkAreaHeight * 3 / 4) / H + 0.5)
 		if useBoxArt == 1 then
@@ -45,13 +56,19 @@ function Update()
 		H = 0
 		if W == 0 then
 			H = capH
-			while H * W < MAX do W = W + 1 end
+			while H * W < MAX do
+				W = W + 1
+			end
 		elseif MAX <= capH then
 			H = MAX
 			W = 0
-			while H * W < MAX do W = W + 1 end
+			while H * W < MAX do
+				W = W + 1
+			end
 		else
-			while H * W < MAX do H = H + 1 end
+			while H * W < MAX do
+				H = H + 1
+			end
 		end
 		cellW = math.floor((WorkAreaWidth * 3 / 4 - 90) / W + 0.5)
 		if useBoxArt == 1 then
@@ -67,11 +84,11 @@ function Update()
 
 	X = math.floor(cellW * W / 2)
 	Y = math.floor(cellH * H / 2)
-	
+
 	-- FOR DEBUGGING
 	-- local layout = { WorkAreaWidth, WorkAreaHeight, cellW, cellH, X, Y, W, H }
 	-- print(table.concat(layout, ', '))
-	
+
 	local offset = 0
 	for i = 1, 12 do
 		if i <= showcase then
@@ -106,13 +123,20 @@ function Update()
 		SKIN:Bang("!MoveMeter", 0, 0, "indexup")
 		SKIN:Bang("!MoveMeter", 0, 0, "indexdown")
 	end
-	local menuCtrl_H = 90 * 2
-	if currConsole == 0 then --concerning consoles
-		SKIN:Bang("!hidemeter", "back2Consoles")
-		SKIN:Bang("!hidemeter", "menu")
+	local menuCtrl_H = 90 * 3
+	if currConsole <= 0 then --concerning consoles
+		if currConsole == 0 then
+			SKIN:Bang("!setoption", "back2Consoles", "meterStyle", "history")
+			SKIN:Bang("!hidemeter", "menu")
+		else -- show history
+			SKIN:Bang("!showmeter", "menu")
+			SKIN:Bang("!setoption", "back2Consoles", "meterStyle", "backButton")
+			menuCtrl_H = menuCtrl_H + 90
+			SKIN:Bang("!setOption", "filter", "group", "none")
+		end
 	else -- concerning games about a console
-		menuCtrl_H = menuCtrl_H * 2
-		SKIN:Bang("!showmeter", "back2Consoles")
+		menuCtrl_H = menuCtrl_H + 90
+		SKIN:Bang("!setoption", "back2Consoles", "meterStyle", "backButton")
 		SKIN:Bang("!showmeter", "menu")
 	end
 	local y0 = Y - menuCtrl_H / 2

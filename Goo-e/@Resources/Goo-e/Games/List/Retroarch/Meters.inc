@@ -15,13 +15,13 @@ rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable act
 
 [ConsoleAction]
 MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!redraw]
-MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!redraw]
+MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!HideMeterGroup gameinfo#CurrentSection#][!redraw]
 leftMouseUpAction=[!writeKeyValue variables console "#CurrentSection#" "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setVariable console "#CurrentSection#"][!updateMeasure mParseApps][!hideMeterGroup menus]
 
 [GameAction]
 MouseOverAction=[!ShowMeterGroup gameinfo#CurrentSection#][!redraw]
 MouseLeaveAction=[!HideMeterGroup gameinfo#CurrentSection#][!redraw]
-leftmouseupaction=["#DIR#retroarch.exe" -L "[mItemCore#CurrentSection#]" "[mItemDIR#CurrentSection#]"][!deactivateConfig "#CurrentConfig#"][!log """"#DIR#retroarch.exe" -L "[mItemCore#CurrentSection#]" "[mItemDIR#CurrentSection#]""""]
+leftmouseupaction=["#DIR#retroarch.exe" -L "[mItemCore#CurrentSection#]" "[mItemDIR#CurrentSection#]"][!deactivateConfig "#CurrentConfig#"]
 
 [InfoBG]
 x=r
@@ -54,6 +54,7 @@ y=(#useBoxArt#=1?5:(#IconH#-(#IconW#/8*3))/2)r
 w=(#useBoxArt#=1?#IconH#/8:#IconW#/8)
 h=(#useBoxArt#=1?#IconH#/8:#IconW#/8)
 hidden=1
+leftMouseUpAction=[!setVariable console "-1"][!updateMeasure mParseApps]
 
 [LastPlayedStyle]
 imageName="#DIR#assets\xmb\#theme#\png\history.png"
@@ -63,6 +64,7 @@ y=(#useBoxArt#=1?-#IconH#/16:#IconW#/16)r
 w=(#useBoxArt#=1?#IconH#/8:#IconW#/8)
 h=(#useBoxArt#=1?#IconH#/8:#IconW#/8)
 hidden=1
+leftMouseUpAction=[!setVariable console "-1"][!updateMeasure mParseApps]
 
 [sizeStyle]
 imageName="#DIR#assets\xmb\#theme#\png\file.png"
@@ -84,7 +86,6 @@ fontsize=#fontsize#
 fontColor=#fontColor#
 dynamicvariables=1
 hidden=1
-; solidColor=0000007f
 
 [RCMenuItem]
 x=#menuX#
@@ -142,6 +143,14 @@ leftmouseupaction=[!setVariable filter "none"][!hidemetergroup menus][!updateMea
 text="show hidden"
 leftmouseupaction=[!setVariable filter "hidden"][!hidemetergroup menus][!updateMeasure mParseApps]
 
+[history]
+imageName="#DIR#assets\xmb\#theme#\png\history.png"
+leftMouseUpAction=[!setvariable console -1][!setVariable filter "none"][!hideMeterGroup menus][!updateMeasure mParseApps]
+
+[backButton]
+imageName="#DIR#assets\xmb\#theme#\png\core.png"
+leftMouseUpAction=[!writeKeyValue variables console 0 "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setvariable console 0][!setVariable filter "none"][!hideMeterGroup menus][!updateMeasure mParseApps]
+
 [scrollPagesBG]
 dynamicvariables=1
 w=80
@@ -159,7 +168,7 @@ meter=shape
 greyscale=#greyscale#
 imagetint=#fontColor#
 ButtAttributes=Strokewidth 0 | Fill Color #UpWhite# | rotate (-90*#scrollPlane#)
-BGAttributes=StrokeWidth 0 | Fill Color #UpBGcolor#,#BgAlpha#
+BGAttributes=StrokeWidth 0 | Fill Color #UpBGcolor#
 shape=Path BG | Extend BGAttributes
 meterStyle=ArrowShape | scrollPagesBG
 MouseOverAction=[!SetVariable UpBGcolor "#HighlightColor#"][!SetVariable UpWhite "255,255,255"][!redraw]
@@ -170,7 +179,7 @@ leftmouseupaction=[!commandmeasure mParseApps "pageUp()"][!redraw]
 meter=shape
 meterStyle=ArrowShape | scrollPagesBG
 ButtAttributes=Strokewidth 0 | Fill Color #DnWhite# | Scale 1.0,-1.0 | rotate (90*#scrollPlane#)
-BGAttributes=StrokeWidth 0 | Fill Color #DnBGcolor#,#BgAlpha#
+BGAttributes=StrokeWidth 0 | Fill Color #DnBGcolor#
 MouseOverAction=[!SetVariable DnBGcolor "#HighlightColor#"][!SetVariable DnWhite "255,255,255"][!redraw]
 MouseLeaveAction=[!SetVariable DnBGcolor "#BGcolor#"][!SetVariable DnWhite "#FontColor#"][!redraw]
 Leftmouseupaction=[!commandmeasure mParseApps "pageDn()"][!redraw]
@@ -182,23 +191,24 @@ h=90
 w=90
 meterStyle=SettingsShape
 ButtAttributes=Strokewidth ([#CurrentSection#:W]*0.05) | StrokeColor #sizeWhite# | Fill Color 0,0,0,1 | scale 0.8,0.8 | offset ([#CurrentSection#:W]*0.01),([#CurrentSection#:H]*0.01)
-BGAttributes=StrokeWidth 0 | Fill Color #sizeBGcolor#,#BgAlpha#
+BGAttributes=StrokeWidth 0 | Fill Color #sizeBGcolor#
 TopCorner=0,([#CurrentSection#:H]) | LineTo 0,([#CurrentSection#:W]*0.2) | CurveTo ([#CurrentSection#:W]*0.2),0,0,0 | LineTo ([#CurrentSection#:W]),0 | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]) | ClosePath 1
 shape=path TopCorner | Extend BGAttributes
 LeftMouseUpAction=[!hideMeterGroup menus][!showmetergroup settingsMenu]
-MouseOverAction=[!SetVariable sizeBGcolor "#HighlightColor#"][!SetVariable sizeWhite 255,255,255][!redraw]
-MouseLeaveAction=[!SetVariable sizeBGcolor "#BGcolor#"][!SetVariable sizeWhite #FontColor#][!redraw]
+MouseOverAction=[!SetVariable sizeBGcolor "#HighlightColor#"][!SetVariable sizeWhite 255,255,255]
+MouseLeaveAction=[!SetVariable sizeBGcolor "#BGcolor#"][!SetVariable sizeWhite #FontColor#]
 
 [back2Consoles]
 meter=image
-imageName="#DIR#assets\xmb\#theme#\png\core.png"
 dynamicvariables=1
+meterStyle=history
+x=r
+y=90r
 h=90
 w=90
-solidColor=#BGcolor#,#BgAlpha#
-MouseOverAction=[!setOption #CurrentSection# solidColor "#HighlightColor#,#BgAlpha#"][!redraw]
-MouseLeaveAction=[!setOption #CurrentSection# solidColor "#BGcolor#,#BgAlpha#"][!redraw]
-leftMouseUpAction=[!writeKeyValue variables console 0 "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setvariable console 0][!setVariable filter "none"][!hideMeterGroup menus][!updateMeasure mParseApps]
+solidColor=#BGcolor#
+MouseOverAction=[!setOption #CurrentSection# solidColor "#HighlightColor#"]
+MouseLeaveAction=[!setOption #CurrentSection# solidColor "#BGcolor#"]
 
 [Menu]
 Meter=shape
@@ -209,7 +219,7 @@ h=90
 dynamicvariables=1
 meterStyle=hamberger
 ButtAttributes=strokeWidth ([#CurrentSection#:H]*0.15) | strokeColor #menuWhite# | StrokeStartCap Round | StrokeEndCap Round
-BGAttributes=StrokeWidth 0 | Fill Color #menuBGcolor#,#BgAlpha#
+BGAttributes=StrokeWidth 0 | Fill Color #menuBGcolor#
 leftmouseupaction=[!hidemetergroup menus][!showmetergroup menuSelect]
 MouseOverAction=[!SetVariable menuBGcolor "#HighlightColor#"][!SetVariable menuWhite 255,255,255][!redraw]
 MouseLeaveAction=[!SetVariable menuBGcolor "#BGcolor#"][!SetVariable menuWhite #FontColor#][!redraw]
@@ -223,7 +233,7 @@ w=90
 h=90
 meterStyle=Close
 ButtAttributes=Strokewidth 0 | Fill Color #xWhite#
-BGAttributes=StrokeWidth 0 | Fill Color #xBGcolor#,#BgAlpha#
+BGAttributes=StrokeWidth 0 | Fill Color #xBGcolor#
 BottomCorner=0,0 | LineTo 0,([#CurrentSection#:H]-[#CurrentSection#:W]*0.2) | CurveTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]),0,([#CurrentSection#:H]) | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]) | LineTo ([#CurrentSection#:W]),0 | ClosePath 1
 shape=path BottomCorner | Extend BGAttributes
 MouseOverAction=[!SetVariable xBGcolor "#HighlightColor#"][!SetVariable xWhite 255,255,255][!redraw]
@@ -293,7 +303,7 @@ meter=string
 meterStyle=RCMenuItem
 y=#menuY#
 text="Browse in Windows"
-leftmouseupaction=[!deactivateConfig "#CurrentConfig#"][explorer.exe "[mItemDIR#ActiveItem#]"]
+leftmouseupaction=[!deactivateConfig "#CurrentConfig#"]["[activePath]"]
 
 [noneRightClickMenu9]
 text="Hide This Item"
@@ -384,6 +394,13 @@ text="select icon theme"
 group=settingsMenu | menus
 leftMouseUpAction=[!ToggleMeterGroup SelectThemes]
 
+[changeDir]
+Meter=string
+meterStyle=menuStyle
+text="change retroarch path to exe"
+group=settingsMenu | menus
+leftMouseUpAction=[!commandMeasure mChangePath "executebatch 1"]
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;~~~~~~~~~Allowed Themes~~~~~~~~~;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -398,10 +415,6 @@ meterStyle=menuStyle | themeSelectStyle
 x=([bgAlphaSettings:X]+#menuW#)
 y=([bgAlphaSettings:Y]+23)
 
-[dot-art]
-meter=string
-meterStyle=menuStyle | themeSelectStyle
-
 [flatui]
 meter=string
 meterStyle=menuStyle | themeSelectStyle
@@ -411,10 +424,6 @@ meter=string
 meterStyle=menuStyle | themeSelectStyle
 
 [neoactive]
-meter=string
-meterStyle=menuStyle | themeSelectStyle
-
-[pixel]
 meter=string
 meterStyle=menuStyle | themeSelectStyle
 

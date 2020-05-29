@@ -74,16 +74,18 @@ function apps.print(self, arg)
 	for i, v in ipairs(self) do
 		if arg == nil then
 			print(
-				"path = " .. path ..
-				"label = " .. label ..
-				"size = " .. size ..
-				"core_name = " .. core_name ..
-				"playtime = " .. playtime ..
-				"lastPlayed = " .. lastPlayed
+				"path = " .. v.path ..
+				" label = " .. v.label ..
+				" size = " .. v.size ..
+				" core_path = " .. v.core_path ..
+				" playtime = " .. v.playtime ..
+				" lastPlayed = " .. v.lastPlayed ..
+				" crc = " .. v.crc ..
+				" db_name = " .. v.db_name
 			)
 		elseif v[arg] ~= nil then
 			if arg ~= "name" then
-				print(v.name .. "[" .. arg .. "] = " .. v[arg])
+				print(v.label .. "[" .. arg .. "] = " .. v[arg])
 			else
 				print(i .. " = " .. arg .. ":" .. v[arg])
 			end
@@ -107,10 +109,12 @@ end
 App.prototype = {
 	path = "",
 	label = "",
-	core_name = "",
+	core_path = "",
 	size = 0,
 	playtime = 0,
-	lastPlayed = "never"
+	lastPlayed = 0,
+	crc = "",
+	db_name = ""
 }
 App.mt.__index = App.prototype
 -- end bueprint for apps{} elements
@@ -142,13 +146,13 @@ end
 
 function applySort()
 	local reverse = tonumber(SKIN:GetVariable("revOrder"))
-	local i = 1
+	local i = 2
 	while i < #consoles do
 		-- only sort consoles by name!!
 		if consoles[i].name > consoles[i + 1].name then
 			local temp = table.remove(consoles, i)
 			table.insert(consoles, i + 1, temp)
-			i = 1
+			i = 2
 		else
 			i = i + 1
 		end
@@ -157,6 +161,9 @@ function applySort()
 	local sort = SKIN:GetVariable("sort")
 	for i = 1, #consoles do
 		consoles[i].games:sort(sort, reverse)
+	end
+	if history ~= nil then
+		history:sort(sort, reverse)
 	end
 end
 
@@ -174,11 +181,12 @@ function Initialize()
 	resources = SKIN:GetVariable("@")
 	currentConfig = SKIN:GetVariable("CURRENTCONFIG")
 	service = SKIN:GetVariable("service")
-	retroarchDIR = SKIN:MakePathAbsolute(SKIN:GetVariable('DIR'))
+	DIR = SKIN:MakePathAbsolute(SKIN:GetVariable('DIR'))
 	page = tonumber(SKIN:GetVariable("page"))
 	scrollPlane = tonumber(SKIN:GetVariable("scrollPlane"))
 	consoles = {} -- stores consoles & games
 	showcase = {} -- used for filtered & sorted list of items to display
+	history = nil
 end
 
 function startTimer()
@@ -186,8 +194,12 @@ function startTimer()
 end
 
 function parseApps()
+	enableAggHist()
+	table.insert(consoles, 1, {})
+	consoles[1].name = "favorites"
+	consoles[1].games = parsePlaylist(DIR .. "content_favorites.lpl")
 	local str = SKIN:GetMeasure("mListInfoFiles"):GetStringValue()
-	for line in str:gmatch "(.-)\n" do
+	for line in str:gmatch("(.-)\n") do
 		-- print(line)
 		local playlist = ""
 		if line:match(".*%.lpl") ~= nil then
@@ -195,11 +207,51 @@ function parseApps()
 			-- print('reading file = ' .. playlist .. ".lpl")
 			table.insert(consoles, {})
 			consoles[#consoles].name = playlist
-			consoles[#consoles].games = parsePlaylist(retroarchDIR .. "playlists\\" .. playlist .. ".lpl")
+			consoles[#consoles].games = parsePlaylist(DIR .. "playlists\\" .. playlist .. ".lpl")
 		end
 	end
 	-- all roms imported via retroarch have been discovered
-	--[[ get history for each game from mListRetroarchHistory measure output ]]
+	history = apps.new()
+	local playtimes = SKIN:GetMeasure("mListRetroarchHistory"):GetStringValue()
+	for line in playtimes:gmatch("(.-)\n") do
+		-- print("reading playtimes for " .. line:sub(1, -6))
+		local file = io.open(DIR .. "playlists\\logs\\" .. line:match(".*"))
+		if file ~= nil then
+			local gametime = {}
+			for l in file:lines() do
+				if l:match("\"runtime\":") ~= nil then
+					local h, m, s = l:match("\"runtime\":%s+\"(%d+):(%d+):(%d+)\",")
+					gametime["ran"] = tonumber(h) * 60 * 60 + tonumber(m) * 60 + tonumber(s)
+				elseif l:match("\"last_played\": ") then
+					local y, mo, d, h, mi, s = l:match("\"last_played\": \"(%d+)%-(%d+)%-(%d+) (%d+):(%d+):(%d+)\"")
+					gametime["last"] = os.time{year=y, month=mo, day=d, hour=h, min=mi, sec=s}
+				end
+			end
+			file:close()
+			line = line:gsub("%-", "%%-") -- make hyphens arbitrary
+			line = line:gsub("%(.-%)", "%%(.-%%)") -- make country code arbitrary
+			line = line:gsub("%[.-%]", "%%[.-%%]") -- make version code arbitrary
+			for i = 1, #consoles do
+				for k = 1, #consoles[i].games do
+					if consoles[i].games[k].path:match(line:sub(1, -6)) then
+						-- print("found " .. line:sub(1, -5) .. ". Inserting playtimes")
+						consoles[i].games[k].playtime = gametime.ran
+						consoles[i].games[k].lastPlayed = gametime.last
+						local isInHistory = false
+						for j = 1, #history do
+							if history[j].path:match(line:sub(1, -6)) ~= nil then
+								isInHistory = true
+								break
+							end
+						end
+						if isInHistory == false then
+							table.insert(history, consoles[i].games[k])
+						end
+					end -- don't break because favorites contains duplicates
+				end
+			end
+		end
+	end
 	if currConsole <=0 or currConsole > #consoles then
 		if #consoles == 0 then
 			SKIN:Bang("!setOption", "loadingScreen", "text", "No console#CRLF#playlists found!")
@@ -217,7 +269,7 @@ end
 function parsePlaylist(filename)
 	local file = io.open(filename, "r")
 	local foundList = false
-	local defaultCore = ""
+	local defaultCore = nil
 	local games = apps.new()
 	if file ~= nil then
 		local result = nil
@@ -233,8 +285,8 @@ function parsePlaylist(filename)
 					result = nil
 					-- print("saving " .. result.label)
 				elseif line:match('\"path\": ') ~= nil then
-					result.path = string.gsub(line:match('\"path\": \"(.*)\"'), "\\\\", "\\")
-					local tempFile
+					result.path = line:match('\"path\": \"(.*)\"'):gsub("\\\\", "\\")
+					local tempFile = nil
 					if result.path:find("%.cue") ~= nil then
 						tempFile = io.open(result.path:gsub("%.cue", ".iso"), "r")
 						if tempFile == nil then
@@ -252,10 +304,14 @@ function parsePlaylist(filename)
 					end
 				elseif line:match('\"label\": ') ~= nil then
 					result.label = line:match('\"label\": \"(.*)\"')
-				elseif line:match('\"core_name\": ') ~= nil then
-					result.core_name = line:match('\"core_name\": \"(.*)\"')
-					if result.core_name == "DETECT" and defaultCore:len() > 0 then
-						result.core_name = defaultCore
+				elseif line:match('\"crc32\": ') ~= nil then
+					result.crc = line:match('\"crc32\": \"(.*)\"')
+				elseif line:match('\"db_name\": ') ~= nil then
+					result.db_name = line:match('\"db_name\": \"(.*)%.lpl\"')
+				elseif line:match('\"core_path\": ') ~= nil then
+					result.core_path = line:match('\"core_path\": \"(.*)\"')
+					if result.core_path == "DETECT" and defaultCore ~= nil then
+						result.core_path = defaultCore
 					end
 				end
 			elseif line:match("default_core_path\": \".+\",") ~= nil then
@@ -264,6 +320,18 @@ function parsePlaylist(filename)
 			end
 		end
 		file:close()
+	end
+	if defaultCore ~= nil then
+		--assign specified core path to favorites
+		-- make hyphens arbitrary
+		local dbPattern = games[1].db_name:gsub("%-", "%%-")
+		for f = 1, #consoles[1].games do
+			if consoles[1].games[f].db_name:match(dbPattern) ~= nil then
+				-- print("assigning core to " .. consoles[1].games[f].label)
+				consoles[1].games[f].core_path = defaultCore
+				break
+			end
+		end
 	end
 	return games
 end
@@ -277,34 +345,18 @@ function printConsoles()
 	print('found '.. sum .. ' games for ' .. #consoles .. ' consoles')
 end
 
-function printGames(c)
-	if c == nil then
-		for i, v in ipairs(consoles) do -- for each console
-			printGames(v.name) -- print every game
-		end
-	else
-		local index = 0
-		for i = 1, #consoles do
-			if c == consoles[i].name then
-				index = i
-				break
-			end
-		end
-		if index == 0 then
-			print(c .. " has no imported games")
-		else
-			for i, v in ipairs(consoles[index].games) do -- for a spcefied console
-				print("(" .. c .. ")[" .. i .. '].label = ' .. v.label)
-			end
-			print(c .. ' console has ' .. #consoles[index].games .. ' games')
-		end
-	end
-end
-
 function Update()
 	currConsole = tonumber(SKIN:GetVariable('console'))
 	applyFilter() -- THIS CREATES THE showcase{} USED ON UpdateMeasure ACTIONS
 	theme = SKIN:GetVariable("theme")
+	if currConsole == -1 then
+		if history == nil or #history == 0 then
+			showcase = consoles
+			currConsole = 0
+		else
+			showcase = history
+		end
+	end
 	if #showcase > 0 then
 		SKIN:Bang("!hidemeter", "loadingScreen")
 	end
@@ -318,50 +370,50 @@ function Update()
 	elseif useBoxArt == 2 then
 		useBoxArt = "Named_Titles"
 	end
-	if currConsole == 0 then --concerning consoles
-		if #showcase - start < MAX then
-			if #showcase < MAX then
-				start = 0
-			else
-				start = #showcase - MAX
-			end
+	if #showcase - start < MAX then
+		if #showcase < MAX then
+			start = 0
+		else
+			start = #showcase - MAX
 		end
+	end
+	if currConsole == 0 then --concerning consoles
 		for i = start + 1, start + MAX do
 			local j = i - start
 			if i <= #showcase then
-				local imageFile = retroarchDIR .. "assets\\xmb\\" .. theme .. "\\png\\" .. showcase[i].name .. ".png"
+				local imageFile = DIR .. "assets\\xmb\\" .. theme .. "\\png\\" .. showcase[i].name .. ".png"
 				SKIN:Bang("!setOption", j, "imagename", imageFile)
 				SKIN:Bang("!setOption", "mItemName" .. j, "string", showcase[i].name)
 				local brand, model = showcase[i].name:match("(.-)%s%-%s(.*)$")
-				SKIN:Bang("!setOption", "mItemDescript" .. j, "string", "Brand: " .. brand .. "#CRLF#Model: " .. model .. "#CRLF#Games: " .. #showcase[i].games .. " in playlist")
+				if model == nil then -- for the favorites
+					SKIN:Bang("!setOption", "mItemDescript" .. j, "string", "Favorites#CRLF#Games: " .. #showcase[i].games .. " in playlist")
+				else
+					SKIN:Bang("!setOption", "mItemDescript" .. j, "string", "Brand: " .. brand .. "#CRLF#Model: " .. model .. "#CRLF#Games: " .. #showcase[i].games .. " in playlist")
+				end
 				SKIN:Bang("!setOption", j, "meterStyle", "IconBG | ConsoleAction")
 			end
 		end
-	elseif consoles[currConsole] ~= nil then -- concerning games about a console
-		SKIN:Bang("!showmeter", "back2Consoles")
-		SKIN:Bang("!setOption", "back2Consoles", "y", "([settings:Y]+90)")
-		if #showcase == #consoles[currConsole].games then
+	elseif currConsole <= #consoles then -- concerning games about a console
+		if currConsole > 0 and #showcase == #consoles[currConsole].games then
 			SKIN:Bang("!setOption", "filter", "group", '""')
 		else
 			SKIN:Bang("!setOption", "filter", "group", "menuSelect | menus")
 		end
-		if #showcase - start < MAX then
-			if #showcase < MAX then
-				start = 0
-			else
-				start = #showcase - MAX
-			end
-		end
 		for i = start + 1, start + MAX do
 			local j = i - start
 			if i <= #showcase then
-				local imageFile = retroarchDIR .. "thumbnails\\" .. consoles[currConsole].name .. "\\" .. useBoxArt .. "\\" .. showcase[i].label:gsub("&", "_") .. ".png"
+				local imageFile = nil
+				if currConsole <= 1 then -- favorites
+					imageFile = DIR .. "thumbnails\\" .. showcase[i].db_name .. "\\" .. useBoxArt .. "\\" .. showcase[i].label:gsub("&", "_") .. ".png"
+				else 
+					imageFile = DIR .. "thumbnails\\" .. showcase[i].db_name .. "\\" .. useBoxArt .. "\\" .. showcase[i].label:gsub("&", "_") .. ".png"
+				end
 				local foundFile = io.open(imageFile)
 				if foundFile ~= nill then
 					foundFile:close()
 				else
 					-- print("couldn't find image for " .. showcase[i].label)
-					imageFile = retroarchDIR .. "assets\\xmb\\" .. theme .. "\\png\\" .. consoles[currConsole].name .. "-content.png"
+					imageFile = DIR .. "assets\\xmb\\" .. theme .. "\\png\\" .. showcase[i].db_name .. "-content.png"
 				end
 				SKIN:Bang("!setOption", j, "imagename", imageFile)
 				-- for specificity, parse title from path's filename instead of label
@@ -369,19 +421,32 @@ function Update()
 				local description = showcase[i].label
 				description = description:gsub("%[.+%]", "") -- lose the version info
 				description = description:gsub("%(.+%)", "") -- lose the country code
-				description = description .. "#CRLF##CRLF#using core: "
-				if showcase[i].core_name ~= "DETECT" then
-					description = description .. showcase[i].core_name:match(".*\\(.*)%....$")
+				description = description .. "#CRLF#"
+				if showcase[i].core_path ~= "DETECT" then
+					description = description .. showcase[i].core_path:match(".*\\(.*)$")
 				else
-					description = description .. showcase[i].core_name
+					description = description .. showcase[i].core_path
 				end
 				SKIN:Bang("!setOption", "mItemDescript" .. j, "string", description)
 				SKIN:Bang("!setOption", "mItemName" .. j, "string", showcase[i].label)
 				SKIN:Bang("!setOption", "mItemDIR" .. j, "string", showcase[i].path)
-				SKIN:Bang("!setOption", "mItemCore" .. j, "string", showcase[i].core_name)
+				SKIN:Bang("!setOption", "mItemCore" .. j, "string", showcase[i].core_path)
 				SKIN:Bang("!setOption", "mItemSize" .. j, "formula", showcase[i].size)
 				SKIN:Bang("!setOption", "mItemPlayTime" .. j, "formula", showcase[i].playtime)
-				SKIN:Bang("!setOption", "mItemLastPlayed" .. j, "string", showcase[i].lastPlayed)
+				if showcase[i].lastPlayed > 0 then
+					local format_t = nil
+					if tonumber(os.date("%Y", os.time())) - tonumber(os.date("%Y", showcase[i].lastPlayed)) > 1 then -- if less than a year ago
+						format_t = os.date('%b %d#CRLF#%I:%M', showcase[i].lastPlayed)
+						format_t = format_t:gsub("#0", "#") .. string.lower(os.date("%p", showcase[i].lastPlayed))
+					else
+						format_t = os.date('%b \'%y#CRLF#%a, %d', showcase[i].lastPlayed)
+					end
+					format_t = format_t:gsub("%s0", "%s")
+					-- print(format_t)
+					SKIN:Bang("!setOption", "mItemLastPlayed" .. j, "string", format_t)
+				else
+					SKIN:Bang("!setOption", "mItemLastPlayed" .. j, "string", "never")
+				end
 				SKIN:Bang("!setOption", j, "meterStyle", "IconBG | GameAction")
 			end
 		end
@@ -393,9 +458,27 @@ function Update()
 		SKIN:Bang("!showmeter", "loadingScreen")
 	end
 	SKIN:Bang("!SetVariable", "page", page)
-	SKIN:Bang("!writeKeyValue", "Variables", "page", page, resources .. currentConfig .. "\\" .. service .. "\\SpecificVars.inc")
+	SKIN:Bang("!writeKeyValue", "Variables", "page", page, 
+		string.format("%s%s\\%s\\SpecificVars.inc", resources, currentConfig, service))
 	SKIN:Bang("!UpdateMeasureGroup", "InfoMeasures")
 	return #showcase
+end
+
+function enableAggHist()
+	local conf = io.open(DIR .. "retroarch.cfg", "r+")
+	if conf ~= nil then
+		local lines = conf:read("*all")
+		conf:seek("set", 0)
+		if lines:match("content_runtime_log_aggregate = \"false\"") ~= nil then
+			-- print("found history option")
+			local newcontent, altered = lines:gsub(
+				"content_runtime_log_aggregate = \"false\"",
+				"content_runtime_log_aggregate = \"true\"")
+			-- print(string.format("altered %d line", altered))
+			conf:write(newcontent)
+		end
+		conf:close()
+	end
 end
 
 function pageUp()

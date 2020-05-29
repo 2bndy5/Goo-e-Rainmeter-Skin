@@ -35,10 +35,12 @@ formula=0
 group=InfoMeasures
 ifConditionMode=1
 ifCondition=#CurrentSection# > 60
-ifTrueAction=!setvariable timecalc1 "/60,1]#CRLF#hr(s)"
-ifFalseAction=!setvariable timecalc1 "/1,0]#CRLF#min(s)"
-ifCondition2=#CurrentSection# > 1440
-ifTrueAction2=!setvariable timecalc1 "/1440,2]#CRLF#day(s)"
+ifTrueAction=!setvariable timecalc1 "/60,0]#CRLF#min"
+ifFalseAction=!setvariable timecalc1 "]#CRLF#sec"
+ifCondition2=#CurrentSection# > 3600
+ifTrueAction2=!setvariable timecalc1 "/3600,1]#CRLF#hr"
+ifCondition3=#CurrentSection# > 86400
+ifTrueAction3=!setvariable timecalc1 "/86400,2]#CRLF#day"
 
 [mItemLastPlayed1]
 measure=string
@@ -93,10 +95,12 @@ formula=0
 group=InfoMeasures
 ifConditionMode=1
 ifCondition=#CurrentSection# > 60
-ifTrueAction=!setvariable timecalc2 "/60,2]#CRLF#hr(s)"
-ifFalseAction=!setvariable timecalc2 "/1,0]#CRLF#min(s)"
-ifCondition2=#CurrentSection# > 1440
-ifTrueAction2=!setvariable timecalc2 "/1440,1]#CRLF#day(s)"
+ifTrueAction=!setvariable timecalc2 "/60,0]#CRLF#min"
+ifFalseAction=!setvariable timecalc2 "]#CRLF#sec"
+ifCondition2=#CurrentSection# > 3600
+ifTrueAction2=!setvariable timecalc2 "/3600,1]#CRLF#hr"
+ifCondition3=#CurrentSection# > 86400
+ifTrueAction3=!setvariable timecalc2 "/86400,2]#CRLF#day"
 
 [mItemLastPlayed2]
 measure=String
@@ -151,10 +155,12 @@ formula=0
 group=InfoMeasures
 ifConditionMode=1
 ifCondition=#CurrentSection# > 60
-ifTrueAction=!setvariable timecalc3 "/60,2]#CRLF#hr(s)"
-ifFalseAction=!setvariable timecalc3 "/1,0]#CRLF#min(s)"
-ifCondition2=#CurrentSection# > 1440
-ifTrueAction2=!setvariable timecalc3 "/1440,1]#CRLF#day(s)"
+ifTrueAction=!setvariable timecalc3 "/60,0]#CRLF#min"
+ifFalseAction=!setvariable timecalc3 "]#CRLF#sec"
+ifCondition2=#CurrentSection# > 3600
+ifTrueAction2=!setvariable timecalc3 "/3600,1]#CRLF#hr"
+ifCondition3=#CurrentSection# > 86400
+ifTrueAction3=!setvariable timecalc3 "/86400,2]#CRLF#day"
 
 [mItemLastPlayed3]
 measure=String
@@ -209,10 +215,12 @@ formula=0
 group=InfoMeasures
 ifConditionMode=1
 ifCondition=#CurrentSection# > 60
-ifTrueAction=!setvariable timecalc4 "/60,2]#CRLF#hr(s)"
-ifFalseAction=!setvariable timecalc4 "/1,0]#CRLF#min(s)"
-ifCondition2=#CurrentSection# > 1440
-ifTrueAction2=!setvariable timecalc4 "/1440,1]#CRLF#day(s)"
+ifTrueAction=!setvariable timecalc4 "/60,0]#CRLF#min"
+ifFalseAction=!setvariable timecalc4 "]#CRLF#sec"
+ifCondition2=#CurrentSection# > 3600
+ifTrueAction2=!setvariable timecalc4 "/3600,1]#CRLF#hr"
+ifCondition3=#CurrentSection# > 86400
+ifTrueAction3=!setvariable timecalc4 "/86400,2]#CRLF#day"
 
 [mItemLastPlayed4]
 measure=String
@@ -267,10 +275,12 @@ formula=0
 group=InfoMeasures
 ifConditionMode=1
 ifCondition=#CurrentSection# > 60
-ifTrueAction=!setvariable timecalc5 "/60,2]#CRLF#hr(s)"
-ifFalseAction=!setvariable timecalc5 "/1,0]#CRLF#min(s)"
-ifCondition2=#CurrentSection# > 1440
-ifTrueAction2=!setvariable timecalc5 "/1440,1]#CRLF#day(s)"
+ifTrueAction=!setvariable timecalc5 "/60,0]#CRLF#min"
+ifFalseAction=!setvariable timecalc5 "]#CRLF#sec"
+ifCondition2=#CurrentSection# > 3600
+ifTrueAction2=!setvariable timecalc5 "/3600,1]#CRLF#hr"
+ifCondition3=#CurrentSection# > 86400
+ifTrueAction3=!setvariable timecalc5 "/86400,2]#CRLF#day"
 
 [mItemLastPlayed5]
 measure=String
@@ -325,10 +335,12 @@ formula=0
 group=InfoMeasures
 ifConditionMode=1
 ifCondition=#CurrentSection# > 60
-ifTrueAction=!setvariable timecalc6 "/60,2]#CRLF#hr(s)"
-ifFalseAction=!setvariable timecalc6 "/1,0]#CRLF#min(s)"
-ifCondition2=#CurrentSection# > 1440
-ifTrueAction2=!setvariable timecalc6 "/1440,1]#CRLF#day(s)"
+ifTrueAction=!setvariable timecalc6 "/60,0]#CRLF#min"
+ifFalseAction=!setvariable timecalc6 "]#CRLF#sec"
+ifCondition2=#CurrentSection# > 3600
+ifTrueAction2=!setvariable timecalc6 "/3600,1]#CRLF#hr"
+ifCondition3=#CurrentSection# > 86400
+ifTrueAction3=!setvariable timecalc6 "/86400,2]#CRLF#day"
 
 [mItemLastPlayed6]
 measure=String
@@ -383,10 +395,12 @@ formula=0
 group=InfoMeasures
 ifConditionMode=1
 ifCondition=#CurrentSection# > 60
-ifTrueAction=!setvariable timecalc7 "/60,2]#CRLF#hr(s)"
-ifFalseAction=!setvariable timecalc7 "/1,0]#CRLF#min(s)"
-ifCondition2=#CurrentSection# > 1440
-ifTrueAction2=!setvariable timecalc7 "/1440,1]#CRLF#day(s)"
+ifTrueAction=!setvariable timecalc7 "/60,0]#CRLF#min"
+ifFalseAction=!setvariable timecalc7 "]#CRLF#sec"
+ifCondition2=#CurrentSection# > 3600
+ifTrueAction2=!setvariable timecalc7 "/3600,1]#CRLF#hr"
+ifCondition3=#CurrentSection# > 86400
+ifTrueAction3=!setvariable timecalc7 "/86400,2]#CRLF#day"
 
 [mItemLastPlayed7]
 measure=String
@@ -442,10 +456,12 @@ formula=0
 group=InfoMeasures
 ifConditionMode=1
 ifCondition=#CurrentSection# > 60
-ifTrueAction=!setvariable timecalc8 "/60,2]#CRLF#hr(s)"
-ifFalseAction=!setvariable timecalc8 "/1,0]#CRLF#min(s)"
-ifCondition2=#CurrentSection# > 1440
-ifTrueAction2=!setvariable timecalc8 "/1440,1]#CRLF#day(s)"
+ifTrueAction=!setvariable timecalc8 "/60,0]#CRLF#min"
+ifFalseAction=!setvariable timecalc8 "]#CRLF#sec"
+ifCondition2=#CurrentSection# > 3600
+ifTrueAction2=!setvariable timecalc8 "/3600,1]#CRLF#hr"
+ifCondition3=#CurrentSection# > 86400
+ifTrueAction3=!setvariable timecalc8 "/86400,2]#CRLF#day"
 
 [mItemLastPlayed8]
 measure=String
@@ -500,10 +516,12 @@ formula=0
 group=InfoMeasures
 ifConditionMode=1
 ifCondition=#CurrentSection# > 60
-ifTrueAction=!setvariable timecalc9 "/60,2]#CRLF#hr(s)"
-ifFalseAction=!setvariable timecalc9 "/1,0]#CRLF#min(s)"
-ifCondition2=#CurrentSection# > 1440
-ifTrueAction2=!setvariable timecalc9 "/1440,1]#CRLF#day(s)"
+ifTrueAction=!setvariable timecalc9 "/60,0]#CRLF#min"
+ifFalseAction=!setvariable timecalc9 "]#CRLF#sec"
+ifCondition2=#CurrentSection# > 3600
+ifTrueAction2=!setvariable timecalc9 "/3600,1]#CRLF#hr"
+ifCondition3=#CurrentSection# > 86400
+ifTrueAction3=!setvariable timecalc9 "/86400,2]#CRLF#day"
 
 [mItemLastPlayed9]
 measure=String
@@ -558,10 +576,12 @@ formula=0
 group=InfoMeasures
 ifConditionMode=1
 ifCondition=#CurrentSection# > 60
-ifTrueAction=!setvariable timecalc10 "/60,2]#CRLF#hr(s)"
-ifFalseAction=!setvariable timecalc10 "/1,0]#CRLF#min(s)"
-ifCondition2=#CurrentSection# > 1440
-ifTrueAction2=!setvariable timecalc10 "/1440,1]#CRLF#day(s)"
+ifTrueAction=!setvariable timecalc10 "/60,0]#CRLF#min"
+ifFalseAction=!setvariable timecalc10 "]#CRLF#sec"
+ifCondition2=#CurrentSection# > 3600
+ifTrueAction2=!setvariable timecalc10 "/3600,1]#CRLF#hr"
+ifCondition3=#CurrentSection# > 86400
+ifTrueAction3=!setvariable timecalc10 "/86400,2]#CRLF#day"
 
 [mItemLastPlayed10]
 measure=String
@@ -616,10 +636,13 @@ formula=0
 group=InfoMeasures
 ifConditionMode=1
 ifCondition=#CurrentSection# > 60
-ifTrueAction=!setvariable timecalc11 "/60,2]#CRLF#hr(s)"
-ifFalseAction=!setvariable timecalc11 "/1,0]#CRLF#min(s)"
-ifCondition2=#CurrentSection# > 1440
-ifTrueAction2=!setvariable timecalc11 "/1440,1]#CRLF#day(s)"
+ifCondition=#CurrentSection# > 60
+ifTrueAction=!setvariable timecalc11 "/60,0]#CRLF#min"
+ifFalseAction=!setvariable timecalc11 "]#CRLF#sec"
+ifCondition2=#CurrentSection# > 3600
+ifTrueAction2=!setvariable timecalc11 "/3600,1]#CRLF#hr"
+ifCondition3=#CurrentSection# > 86400
+ifTrueAction3=!setvariable timecalc11 "/86400,2]#CRLF#day"
 
 [mItemLastPlayed11]
 measure=String
@@ -674,10 +697,12 @@ formula=0
 group=InfoMeasures
 ifConditionMode=1
 ifCondition=#CurrentSection# > 60
-ifTrueAction=!setvariable timecalc12 "/60,2]#CRLF#hr(s)"
-ifFalseAction=!setvariable timecalc12 "/1,0]#CRLF#min(s)"
-ifCondition2=#CurrentSection# > 1440
-ifTrueAction2=!setvariable timecalc12 "/1440,1]#CRLF#day(s)"
+ifTrueAction=!setvariable timecalc12 "/60,0]#CRLF#min"
+ifFalseAction=!setvariable timecalc12 "]#CRLF#sec"
+ifCondition2=#CurrentSection# > 3600
+ifTrueAction2=!setvariable timecalc12 "/3600,1]#CRLF#hr"
+ifCondition3=#CurrentSection# > 86400
+ifTrueAction3=!setvariable timecalc12 "/86400,2]#CRLF#day"
 
 [mItemLastPlayed12]
 measure=String

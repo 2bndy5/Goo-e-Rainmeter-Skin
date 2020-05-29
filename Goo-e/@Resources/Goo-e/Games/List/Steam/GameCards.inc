@@ -661,8 +661,6 @@ MeterStyle=IconBG
 x=90
 y=74
 group=item12 | item11 | item10 | item9 | item8 | item7 | item6 | item5 | item4 | item3 | item2 | item1
-MouseOverAction=[!ShowMeterGroup info1][!redraw]
-MouseLeaveAction=[!HideMeterGroup info1][!redraw]
 
 [infoBG1]
 meter=image
@@ -712,8 +710,6 @@ group=info1
 meter=image
 MeterStyle=IconBG
 group=item12 | item11 | item10 | item9 | item8 | item7 | item6 | item5 | item4 | item3 | item2
-MouseOverAction=[!ShowMeterGroup info2][!redraw]
-MouseLeaveAction=[!HideMeterGroup info2][!redraw]
 
 [infoBG2]
 meter=image
@@ -763,8 +759,6 @@ group=info2
 meter=image
 MeterStyle=IconBG
 group=item12 | item11 | item10 | item9 | item8 | item7 | item6 | item5 | item4 | item3
-MouseOverAction=[!ShowMeterGroup info3][!redraw]
-MouseLeaveAction=[!HideMeterGroup info3][!redraw]
 
 [infoBG3]
 meter=image
@@ -814,8 +808,6 @@ group=info3
 meter=image
 MeterStyle=IconBG
 group=item12 | item11 | item10 | item9 | item8 | item7 | item6 | item5 | item4
-MouseOverAction=[!ShowMeterGroup info4][!redraw]
-MouseLeaveAction=[!HideMeterGroup info4][!redraw]
 
 [infoBG4]
 meter=image
@@ -865,8 +857,6 @@ group=info4
 meter=image
 MeterStyle=IconBG
 group=item12 | item11 | item10 | item9 | item8 | item7 | item6 | item5
-MouseOverAction=[!ShowMeterGroup info5][!redraw]
-MouseLeaveAction=[!HideMeterGroup info5][!redraw]
 
 [infoBG5]
 meter=image
@@ -916,8 +906,6 @@ group=info5
 meter=image
 MeterStyle=IconBG
 group=item12 | item11 | item10 | item9 | item8 | item7 | item6
-MouseOverAction=[!ShowMeterGroup info6][!redraw]
-MouseLeaveAction=[!HideMeterGroup info6][!redraw]
 
 [infoBG6]
 meter=image
@@ -967,8 +955,6 @@ group=info6
 meter=image
 MeterStyle=IconBG
 group=item12 | item11 | item10 | item9 | item8 | item7
-MouseOverAction=[!ShowMeterGroup info7][!redraw]
-MouseLeaveAction=[!HideMeterGroup info7][!redraw]
 
 [infoBG7]
 meter=image
@@ -1018,8 +1004,6 @@ group=info7
 meter=image
 MeterStyle=IconBG
 group=item12 | item11 | item10 | item9 | item8
-MouseOverAction=[!ShowMeterGroup info8][!redraw]
-MouseLeaveAction=[!HideMeterGroup info8][!redraw]
 
 [infoBG8]
 meter=image
@@ -1069,8 +1053,6 @@ group=info8
 meter=image
 MeterStyle=IconBG
 group=item12 | item11 | item10 | item9
-MouseOverAction=[!ShowMeterGroup info9][!redraw]
-MouseLeaveAction=[!HideMeterGroup info9][!redraw]
 
 [infoBG9]
 meter=image
@@ -1120,8 +1102,6 @@ group=info9
 meter=image
 MeterStyle=IconBG
 group=item12 | item11 | item10
-MouseOverAction=[!ShowMeterGroup info10][!redraw]
-MouseLeaveAction=[!HideMeterGroup info10][!redraw]
 
 [infoBG10]
 meter=image
@@ -1171,8 +1151,6 @@ group=info10
 meter=image
 MeterStyle=IconBG
 group=item12 | item11
-MouseOverAction=[!ShowMeterGroup info11][!redraw]
-MouseLeaveAction=[!HideMeterGroup info11][!redraw]
 
 [infoBG11]
 meter=image
@@ -1222,8 +1200,6 @@ group=info11
 meter=image
 MeterStyle=IconBG
 group=item12
-MouseOverAction=[!ShowMeterGroup info12][!redraw]
-MouseLeaveAction=[!HideMeterGroup info12][!redraw]
 
 [infoBG12]
 meter=image
