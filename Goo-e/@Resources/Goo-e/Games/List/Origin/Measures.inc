@@ -3,40 +3,6 @@ measure=calc
 dynamicVariables=1
 formula=round(#BgAlpha# / 2.55)
 
-[mLibFolder]
-Measure=Plugin
-Plugin=InputText
-dynamicvariables=1
-SolidColor=255,255,255
-FontColor=0,0,0
-FontFace=Arial
-FontSize=(#IconSize#*16/256)
-StringAlign=left
-x=([menu0:X])
-y=([menu0:Y])
-w=([menu0:W])
-h=([menu0:H])
-DynamicVariables=1
-DefaultValue="#OriginDir0#"
-Command1=[!SetVariable OriginDir "$userinput$"][!writekeyvalue Variables OriginDir0 "[#CURRENTSECTION#]" "#@##CurrentConfig#\Variables.inc"]
-
-[mLibFolder0]
-Measure=Plugin
-Plugin=InputText
-dynamicvariables=1
-SolidColor=255,255,255
-FontColor=0,0,0
-FontFace=Arial
-FontSize=(#IconSize#*16/256)
-StringAlign=left
-x=([menu0:X])
-y=([menu0:Y])
-w=([menu0:W])
-h=([menu0:H])
-DynamicVariables=1
-DefaultValue="#OriginDir0#"
-Command1=[!SetVariable OriginDir0 "$userinput$"][!writekeyvalue Variables OriginDir0 "[#CURRENTSECTION#]" "#@##CurrentConfig#\Variables.inc"]
-
 [mLibFolder1]
 Measure=Plugin
 Plugin=InputText
@@ -53,7 +19,7 @@ h=([menu1:H])
 DynamicVariables=1
 focusdismiss=1
 DefaultValue="#OriginDir1#"
-Command1=[!SetVariable OriginDir1 "$userinput$"][!writekeyvalue Variables OriginDir1 "[#CURRENTSECTION#]" "#@##CurrentConfig#\Variables.inc"]
+Command1=[!SetVariable OriginDir1 "$userinput$"][!writekeyvalue Variables OriginDir1 "[#CURRENTSECTION#]" "#@##CurrentConfig#\#Service#\SpecificVars.inc"]
 
 [mLibFolder2]
 Measure=Plugin
@@ -71,7 +37,7 @@ h=([menu2:H])
 DynamicVariables=1
 focusdismiss=1
 DefaultValue="#OriginDir2#"
-Command1=[!SetVariable OriginDir2 "$userinput$"][!writekeyvalue Variables OriginDir2 "[#CURRENTSECTION#]" "#@##CurrentConfig#\Variables.inc"]
+Command1=[!SetVariable OriginDir2 "$userinput$"][!writekeyvalue Variables OriginDir2 "[#CURRENTSECTION#]" "#@##CurrentConfig#\#Service#\SpecificVars.inc"]
 
 [mLibFolder3]
 Measure=Plugin
@@ -89,7 +55,7 @@ h=([menu3:H])
 DynamicVariables=1
 focusdismiss=1
 DefaultValue="#OriginDir3#"
-Command1=[!SetVariable OriginDir3 "$userinput$"][!writekeyvalue Variables OriginDir3 "[#CURRENTSECTION#]" "#@##CurrentConfig#\Variables.inc"]
+Command1=[!SetVariable OriginDir3 "$userinput$"][!writekeyvalue Variables OriginDir3 "[#CURRENTSECTION#]" "#@##CurrentConfig#\#Service#\SpecificVars.inc"]
 
 [mLibFolder4]
 Measure=Plugin
@@ -107,33 +73,81 @@ h=([menu4:H])
 DynamicVariables=1
 focusdismiss=1
 DefaultValue="#OriginDir4#"
-Command1=[!SetVariable OriginDir4 "$userinput$"][!writekeyvalue Variables OriginDir4 "[#CURRENTSECTION#]" "#@##CurrentConfig#\Variables.inc"]
+Command1=[!SetVariable OriginDir4 "$userinput$"][!writekeyvalue Variables OriginDir4 "[#CURRENTSECTION#]" "#@##CurrentConfig#\#Service#\SpecificVars.inc"]
 
-[mListFolders]
+[mLibList]
+measure=string
+dynamicVariables=1
+string=""#OriginDir1#\InstallLog.txt", "#OriginDir2#\InstallLog.txt", "#OriginDir3#\InstallLog.txt", "#OriginDir4#\InstallLog.txt""
+; regexpSubstitute=1
+substitute=', "\InstallLog.txt"':""
+
+[dirSizeInfo]
+measure=plugin
+Plugin=folderInfo
+dynamicVariables=1
+updateDivider=-1
+folder=#testDir#
+infotype=FolderSize
+IncludeSubFolders=1
+
+[convert2utf8]
 measure=Plugin
 Plugin=RunCommand
 dynamicVariables=1
-Parameter="dir #libList# /A:D "
-finishAction=[!commandMeasure parseNpose "parseApps()"]
-
-[mItemSize]
-measure=Plugin
-Plugin=RunCommand
-dynamicVariables=1
-Parameter="dir #temp# /s"
-regexpsubstitute=1
-substitute="(?siU).*Total Files Listed.*File\(s\)\s*(.*) bytes.*$":"\1"
-finishAction=[!commandMeasure parseNpose "parseApps()"]
-onupdateAction=[!CommandMeasure parseNpose takeSize([#currentSection#])]
+output=ANSI
+Parameter="#PSCMD#"
 
 [mIconSearch]
 measure=string
 dynamicVariables=1
-string="[mItemID#activeItem#]"
+string="[&mItemName#activeItem#]"
 substitute=" ":"+"
 
-[parseNpose]
+[mListInfoFiles]
+measure=Plugin
+Plugin=RunCommand
+dynamicVariables=1
+Parameter="dir [&mLibList] /S /B"
+finishAction=[!commandMeasure mParseApps "parseApps()"]
+
+[displayLoading]
+measure=plugin
+Plugin=ActionTimer
+dynamicVariables=1
+ActionList1=wait 250 | startTimer | parseData
+startTimer=[!commandMeasure mParseApps "startTimer()"]
+parseData=[!commandMeasure mListInfoFiles run]
+
+[mParseApps]
 Measure=Script
-ScriptFile="#@##CurrentConfig#\#Service#\ParseAndPose.lua"
+ScriptFile="#@##CurrentConfig#\#Service#\ParseApps.lua"
 dynamicVariables=1
 updateDivider=-1
+onUpdateAction=[!updateMeasure mPoseApps]
+
+[mPoseApps]
+Measure=Script
+ScriptFile="#@##CurrentConfig#\PoseApps.lua"
+dynamicVariables=1
+updateDivider=-1
+
+[activeSort]
+measure=string
+string=#sort#
+dynamicVariables=1
+ifMatch=name
+ifMatchAction=[!setOption sortname prefix "[\xe73a] "]
+ifNotMatchAction=[!setOption sortname prefix "[\xe739] "]
+ifMatch2=size
+ifMatchAction2=[!setOption sortsize prefix "[\xe73a] "]
+ifNotMatchAction2=[!setOption sortsize prefix "[\xe739] "]
+
+[activeFullScreen]
+measure=calc
+dynamicVariables=1
+formula=#Maximize#
+ifEqualValue=1
+ifEqualAction=[!setOption fullScreenSettings prefix "[\xe73a] "]
+ifBelowValue=1
+ifBelowAction=[!setOption fullScreenSettings prefix "[\xe739] "]

@@ -7,8 +7,8 @@ imageName="#Dir#appcache\librarycache\[mItemID#CurrentSection#][imgOrientAlias].
 PreserveAspectRatio=(#Maximize#)
 h=#IconH#
 w=#IconW#
-solidColor=#highlightColor#,#BgAlpha#
-solidColor2=#BGcolor#,#BgAlpha#
+solidColor=#highlightColor#,(#maximize#=1?#BgAlpha#:255)
+solidColor2=#BGcolor#,(#maximize#=1?#BgAlpha#:255)
 GradientAngle=60
 dynamicvariables=1
 hidden=1
@@ -19,14 +19,15 @@ rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable act
 
 [GameBanner]
 imageName="#Dir#appcache\librarycache\[mItemID#CurrentSection#]_library_hero_blur.jpg"
-PreserveAspectRatio=2
+PreserveAspectRatio=((1-#maximize#)*2)
 
 [InfoBG]
 x=r
 y=r
 h=#IconH#
 w=#IconW#
-imagetint=#highlightColor#
+; imagetint=#highlightColor#
+imagealpha=(255-#BgAlpha#)
 PreserveAspectRatio=2
 solidColor=#highlightColor#,#BgAlpha#
 solidColor2=#BGcolor#,#BgAlpha#
@@ -84,7 +85,6 @@ fontsize=#fontsize#
 fontColor=#fontColor#
 dynamicvariables=1
 hidden=1
-; solidColor=0000007f
 
 [RCMenuItem]
 x=#menuX#
@@ -128,10 +128,10 @@ text="descending order"
 [0revOrder]
 text="ascending order"
 
-[0imageDimension]
+[0boxartOrBannerImages]
 text="use Box Art"
 
-[1imageDimension]
+[1boxartOrBannerImages]
 text="use Banners"
 
 [0scrollSettings]
@@ -191,7 +191,7 @@ ButtAttributes=Strokewidth ([#CurrentSection#:W]*0.05) | StrokeColor #sizeWhite#
 BGAttributes=StrokeWidth 0 | Fill Color #sizeBGcolor#
 TopCorner=0,([#CurrentSection#:H]) | LineTo 0,([#CurrentSection#:W]*0.2) | CurveTo ([#CurrentSection#:W]*0.2),0,0,0 | LineTo ([#CurrentSection#:W]),0 | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]) | ClosePath 1
 shape=path TopCorner | Extend BGAttributes
-LeftMouseUpAction=[!hideMeterGroup menus][!showmetergroup settingsMenu]
+LeftMouseUpAction=[!hideMeterGroup menuSelect][!hidemetergroup rightClickMenu][!togglemetergroup settingsMenu]
 MouseOverAction=[!SetVariable sizeBGcolor "#HighlightColor#"][!SetVariable sizeWhite 255,255,255][!redraw]
 MouseLeaveAction=[!SetVariable sizeBGcolor "#BGcolor#"][!SetVariable sizeWhite #FontColor#][!redraw]
 
@@ -205,7 +205,7 @@ dynamicvariables=1
 meterStyle=hamberger
 ButtAttributes=strokeWidth ([#CurrentSection#:H]*0.15) | strokeColor #menuWhite# | StrokeStartCap Round | StrokeEndCap Round
 BGAttributes=StrokeWidth 0 | Fill Color #menuBGcolor#
-leftmouseupaction=[!hidemetergroup menus][!showmetergroup menuSelect]
+leftmouseupaction=[!togglemetergroup menuSelect][!hidemetergroup rightClickMenu][!hideMeterGroup settingsMenu]
 MouseOverAction=[!SetVariable menuBGcolor "#HighlightColor#"][!SetVariable menuWhite 255,255,255][!redraw]
 MouseLeaveAction=[!SetVariable menuBGcolor "#BGcolor#"][!SetVariable menuWhite #FontColor#][!redraw]
 
@@ -362,7 +362,7 @@ shape=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | StrokeWidth 0 | 
 shape2=Rectangle ([#CurrentSection#:W]*0.05),([#CurrentSection#:H]*0.35),([#CurrentSection#:W]*0.9),([#CurrentSection#:H]*0.3),([#CurrentSection#:H]*0.15) | StrokeWidth 0 | Fill LinearGradient AlphaGrad
 group=settingsMenu | menus
 hidden=1
-leftmouseupaction=[!setvariable BgAlpha ($MouseX$>[#CurrentSection#:W]*0.95?255:($MouseX$<[#CurrentSection#:W]*0.05?0:round(($MouseX$-[#CurrentSection#:W]*0.05)/([#CurrentSection#:W]*0.9)*255)))][!writeKeyValue variables BgAlpha ($MouseX$>[#CurrentSection#:W]*0.95?255:($MouseX$<[#CurrentSection#:W]*0.05?0:round(($MouseX$-[#CurrentSection#:W]*0.05)/([#CurrentSection#:W]*0.9)*255))) "#@##CurrentConfig#\Variables.inc"][!redraw]
+leftmouseupaction=[!setvariable BgAlpha ($MouseX$>[#CurrentSection#:W]*0.95?255:($MouseX$<[#CurrentSection#:W]*0.05?0:round(($MouseX$-[#CurrentSection#:W]*0.05)/([#CurrentSection#:W]*0.9)*255)))][!writeKeyValue variables BgAlpha ($MouseX$>[#CurrentSection#:W]*0.95?255:($MouseX$<[#CurrentSection#:W]*0.05?0:round(($MouseX$-[#CurrentSection#:W]*0.05)/([#CurrentSection#:W]*0.9)*255))) "#@##CurrentConfig#\#service#\SpecificVars.inc"][!redraw]
 
 [bgAlphaSettingsLabel]
 meter=String
@@ -377,7 +377,7 @@ fontSize=(#fontSize#-1)
 stringalign=CenterCenter
 group=settingsMenu | menus
 hidden=1
-leftmouseupaction=[!setvariable BgAlpha 255][!writeKeyValue variables BgAlpha 255 "#@##CurrentConfig#\Variables.inc"][!redraw]
+leftmouseupaction=[!setvariable BgAlpha 255][!writeKeyValue variables BgAlpha 255 "#@##CurrentConfig#\#service#\SpecificVars.inc"][!redraw]
 
 [fullScreenSettings]
 meter=String
@@ -392,9 +392,9 @@ leftMouseUpAction=[!WriteKeyValue variables Maximize (#Maximize#=0?1:0) "#@##Cur
 meter=String
 meterStyle=menuStyle | #scrollPlane##CurrentSection#
 group=settingsMenu | menus
-leftMouseUpAction=[!WriteKeyValue variables scrollPlane (#scrollPlane#=0?1:0) "#@##CurrentConfig#\Variables.inc"][!SetVariable scrollPlane (#scrollPlane#=0?1:0)][!updateMeasure mPoseApps]
+leftMouseUpAction=[!WriteKeyValue variables scrollPlane (#scrollPlane#=0?1:0) "#@##CurrentConfig#\#service#\SpecificVars.inc"][!SetVariable scrollPlane (#scrollPlane#=0?1:0)][!updateMeasure mPoseApps]
 
-[imageDimension]
+[boxartOrBannerImages]
 Meter=string
 meterStyle=menuStyle | #useBoxArt##CurrentSection#
 group=settingsMenu | menus

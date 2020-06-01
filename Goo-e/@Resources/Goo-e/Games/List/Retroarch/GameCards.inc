@@ -739,46 +739,46 @@ group=item12 | item11 | item10 | item9 | item8 | item7 | item6 | item5 | item4 |
 [infoBG1]
 meter=image
 meterStyle=infoBG
-group=info1 | gameinfo1
+group=info1
 
 [itemPlaytime1Icon]
 meter=image
 meterStyle=playtimeStyle
-group=gameinfo1
+group=info1
 
 [itemPlayTime1]
 meter=string
 text="[m#CurrentSection#:#timecalc1#"
 meterStyle=InfoStyle
-group=gameinfo1
+group=info1
 
 [itemLastPlayed1Icon]
 meter=image
 meterStyle=LastPlayedStyle
-group=gameinfo1
+group=info1
 
 [itemLastPlayed1]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=InfoStyle
-group=gameinfo1
+group=info1
 
 [itemSize1Icon]
 meter=image
 meterStyle=sizeStyle
-group=gameinfo1
+group=info1
 
 [itemSize1]
 meter=string
 text="[m#CurrentSection#:#sizecalc1#"
 MeterStyle=InfoStyle
-group=gameinfo1
+group=info1
 
 [itemDescript1]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=descriptStyle
-group=info1 | gameinfo1
+group=info1
 
 [2]
 meter=image
@@ -788,46 +788,46 @@ group=item12 | item11 | item10 | item9 | item8 | item7 | item6 | item5 | item4 |
 [infoBG2]
 meter=image
 meterStyle=infoBG
-group=info2 | gameinfo2
+group=info2
 
 [itemPlaytime2Icon]
 meter=image
 meterStyle=playtimeStyle
-group=gameinfo2
+group=info2
 
 [itemPlayTime2]
 meter=string
 text="[m#CurrentSection#:#timecalc2#"
 meterStyle=InfoStyle
-group=gameinfo2
+group=info2
 
 [itemLastPlayed2Icon]
 meter=image
 meterStyle=LastPlayedStyle
-group=gameinfo2
+group=info2
 
 [itemLastPlayed2]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=InfoStyle
-group=gameinfo2
+group=info2
 
 [itemSize2Icon]
 meter=image
 meterStyle=sizeStyle
-group=gameinfo2
+group=info2
 
 [itemSize2]
 meter=string
 text="[mItemSize2:#sizecalc2#"
 MeterStyle=InfoStyle
-group=gameinfo2
+group=info2
 
 [itemDescript2]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=descriptStyle
-group=info2 | gameinfo2
+group=info2
 
 [3]
 meter=image
@@ -837,46 +837,46 @@ group=item12 | item11 | item10 | item9 | item8 | item7 | item6 | item5 | item4 |
 [infoBG3]
 meter=image
 meterStyle=infoBG
-group=info3 | gameinfo3
+group=info3
 
 [itemPlaytime3Icon]
 meter=image
 meterStyle=playtimeStyle
-group=gameinfo3
+group=info3
 
 [itemPlayTime3]
 meter=string
 text="[m#CurrentSection#:#timecalc3#"
 meterStyle=InfoStyle
-group=gameinfo3
+group=info3
 
 [itemLastPlayed3Icon]
 meter=image
 meterStyle=LastPlayedStyle
-group=gameinfo3
+group=info3
 
 [itemLastPlayed3]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=InfoStyle
-group=gameinfo3
+group=info3
 
 [itemSize3Icon]
 meter=image
 meterStyle=sizeStyle
-group=gameinfo3
+group=info3
 
 [itemSize3]
 meter=string
 text="[mItemSize3:#sizecalc3#"
 MeterStyle=InfoStyle
-group=gameinfo3
+group=info3
 
 [itemDescript3]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=descriptStyle
-group=info3 | gameinfo3
+group=info3
 
 [4]
 meter=image
@@ -886,46 +886,46 @@ group=item12 | item11 | item10 | item9 | item8 | item7 | item6 | item5 | item4
 [infoBG4]
 meter=image
 meterStyle=infoBG
-group=info4 | gameinfo4
+group=info4
 
 [itemPlaytime4Icon]
 meter=image
 meterStyle=playtimeStyle
-group=gameinfo4
+group=info4
 
 [itemPlayTime4]
 meter=string
 text="[m#CurrentSection#:#timecalc4#"
 meterStyle=InfoStyle
-group=gameinfo4
+group=info4
 
 [itemLastPlayed4Icon]
 meter=image
 meterStyle=LastPlayedStyle
-group=gameinfo4
+group=info4
 
 [itemLastPlayed4]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=InfoStyle
-group=gameinfo4
+group=info4
 
 [itemSize4Icon]
 meter=image
 meterStyle=sizeStyle
-group=gameinfo4
+group=info4
 
 [itemSize4]
 meter=string
 text="[mItemSize4:#sizecalc4#"
 MeterStyle=InfoStyle
-group=gameinfo4
+group=info4
 
 [itemDescript4]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=descriptStyle
-group=info4 | gameinfo4
+group=info4
 
 [5]
 meter=image
@@ -935,46 +935,46 @@ group=item12 | item11 | item10 | item9 | item8 | item7 | item6 | item5
 [infoBG5]
 meter=image
 meterStyle=infoBG
-group=info5 | gameinfo5
+group=info5
 
 [itemPlaytime5Icon]
 meter=image
 meterStyle=playtimeStyle
-group=gameinfo5
+group=info5
 
 [itemPlayTime5]
 meter=string
 text="[m#CurrentSection#:#timecalc5#"
 meterStyle=InfoStyle
-group=gameinfo5
+group=info5
 
 [itemLastPlayed5Icon]
 meter=image
 meterStyle=LastPlayedStyle
-group=gameinfo5
+group=info5
 
 [itemLastPlayed5]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=InfoStyle
-group=gameinfo5
+group=info5
 
 [itemSize5Icon]
 meter=image
 meterStyle=sizeStyle
-group=gameinfo5
+group=info5
 
 [itemSize5]
 meter=string
 text="[mItemSize5:#sizecalc5#"
 MeterStyle=InfoStyle
-group=gameinfo5
+group=info5
 
 [itemDescript5]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=descriptStyle
-group=info5 | gameinfo5
+group=info5
 
 [6]
 meter=image
@@ -984,46 +984,46 @@ group=item12 | item11 | item10 | item9 | item8 | item7 | item6
 [infoBG6]
 meter=image
 meterStyle=infoBG
-group=info6 | gameinfo6
+group=info6
 
 [itemPlaytime6Icon]
 meter=image
 meterStyle=playtimeStyle
-group=gameinfo6
+group=info6
 
 [itemPlayTime6]
 meter=string
 text="[m#CurrentSection#:#timecalc6#"
 meterStyle=InfoStyle
-group=gameinfo6
+group=info6
 
 [itemLastPlayed6Icon]
 meter=image
 meterStyle=LastPlayedStyle
-group=gameinfo6
+group=info6
 
 [itemLastPlayed6]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=InfoStyle
-group=gameinfo6
+group=info6
 
 [itemSize6Icon]
 meter=image
 meterStyle=sizeStyle
-group=gameinfo6
+group=info6
 
 [itemSize6]
 meter=string
 text="[mItemSize6:#sizecalc6#"
 MeterStyle=InfoStyle
-group=gameinfo6
+group=info6
 
 [itemDescript6]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=descriptStyle
-group=info6 | gameinfo6
+group=info6
 
 [7]
 meter=image
@@ -1033,46 +1033,46 @@ group=item12 | item11 | item10 | item9 | item8 | item7
 [infoBG7]
 meter=image
 meterStyle=infoBG
-group=info7 | gameinfo7
+group=info7
 
 [itemPlaytime7Icon]
 meter=image
 meterStyle=playtimeStyle
-group=gameinfo7
+group=info7
 
 [itemPlayTime7]
 meter=string
 text="[m#CurrentSection#:#timecalc7#"
 meterStyle=InfoStyle
-group=gameinfo7
+group=info7
 
 [itemLastPlayed7Icon]
 meter=image
 meterStyle=LastPlayedStyle
-group=gameinfo7
+group=info7
 
 [itemLastPlayed7]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=InfoStyle
-group=gameinfo7
+group=info7
 
 [itemSize7Icon]
 meter=image
 meterStyle=sizeStyle
-group=gameinfo7
+group=info7
 
 [itemSize7]
 meter=string
 text="[mItemSize7:#sizecalc7#"
 MeterStyle=InfoStyle
-group=gameinfo7
+group=info7
 
 [itemDescript7]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=descriptStyle
-group=info7 | gameinfo7
+group=info7
 
 [8]
 meter=image
@@ -1082,46 +1082,46 @@ group=item12 | item11 | item10 | item9 | item8
 [infoBG8]
 meter=image
 meterStyle=infoBG
-group=info8 | gameinfo8
+group=info8
 
 [itemPlaytime8Icon]
 meter=image
 meterStyle=playtimeStyle
-group=gameinfo8
+group=info8
 
 [itemPlayTime8]
 meter=string
 text="[m#CurrentSection#:#timecalc8#"
 meterStyle=InfoStyle
-group=gameinfo8
+group=info8
 
 [itemLastPlayed8Icon]
 meter=image
 meterStyle=LastPlayedStyle
-group=gameinfo8
+group=info8
 
 [itemLastPlayed8]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=InfoStyle
-group=gameinfo8
+group=info8
 
 [itemSize8Icon]
 meter=image
 meterStyle=sizeStyle
-group=gameinfo8
+group=info8
 
 [itemSize8]
 meter=string
 text="[mItemSize8:#sizecalc8#"
 MeterStyle=InfoStyle
-group=gameinfo8
+group=info8
 
 [itemDescript8]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=descriptStyle
-group=info8 | gameinfo8
+group=info8
 
 [9]
 meter=image
@@ -1131,46 +1131,46 @@ group=item12 | item11 | item10 | item9
 [infoBG9]
 meter=image
 meterStyle=infoBG
-group=info9 | gameinfo9
+group=info9
 
 [itemPlaytime9Icon]
 meter=image
 meterStyle=playtimeStyle
-group=gameinfo9
+group=info9
 
 [itemPlayTime9]
 meter=string
 text="[m#CurrentSection#:#timecalc9#"
 meterStyle=InfoStyle
-group=gameinfo9
+group=info9
 
 [itemLastPlayed9Icon]
 meter=image
 meterStyle=LastPlayedStyle
-group=gameinfo9
+group=info9
 
 [itemLastPlayed9]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=InfoStyle
-group=gameinfo9
+group=info9
 
 [itemSize9Icon]
 meter=image
 meterStyle=sizeStyle
-group=gameinfo9
+group=info9
 
 [itemSize9]
 meter=string
 text="[mItemSize9:#sizecalc9#"
 MeterStyle=InfoStyle
-group=gameinfo9
+group=info9
 
 [itemDescript9]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=descriptStyle
-group=info9 | gameinfo9
+group=info9
 
 [10]
 meter=image
@@ -1185,35 +1185,35 @@ group=info10 | gameinfo10
 [itemPlaytime10Icon]
 meter=image
 meterStyle=playtimeStyle
-group=gameinfo10
+group=info10
 
 [itemPlayTime10]
 meter=string
 text="[m#CurrentSection#:#timecalc10#"
 meterStyle=InfoStyle
-group=gameinfo10
+group=info10
 
 [itemLastPlayed10Icon]
 meter=image
 meterStyle=LastPlayedStyle
-group=gameinfo10
+group=info10
 
 [itemLastPlayed10]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=InfoStyle
-group=gameinfo10
+group=info10
 
 [itemSize10Icon]
 meter=image
 meterStyle=sizeStyle
-group=gameinfo10
+group=info10
 
 [itemSize10]
 meter=string
 text="[mItemSize10:#sizecalc10#"
 MeterStyle=InfoStyle
-group=gameinfo10
+group=info10
 
 [itemDescript10]
 meter=string
@@ -1234,35 +1234,35 @@ group=info11 | gameinfo11
 [itemPlaytime11Icon]
 meter=image
 meterStyle=playtimeStyle
-group=gameinfo11
+group=info11
 
 [itemPlayTime11]
 meter=string
 text="[m#CurrentSection#:#timecalc11#"
 meterStyle=InfoStyle
-group=gameinfo11
+group=info11
 
 [itemLastPlayed11Icon]
 meter=image
 meterStyle=LastPlayedStyle
-group=gameinfo11
+group=info11
 
 [itemLastPlayed11]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=InfoStyle
-group=gameinfo11
+group=info11
 
 [itemSize11Icon]
 meter=image
 meterStyle=sizeStyle
-group=gameinfo11
+group=info11
 
 [itemSize11]
 meter=string
 text="[mItemSize11:#sizecalc11#"
 MeterStyle=InfoStyle
-group=gameinfo11
+group=info11
 
 [itemDescript11]
 meter=string
@@ -1283,35 +1283,35 @@ group=info12 | gameinfo12
 [itemPlaytime12Icon]
 meter=image
 meterStyle=playtimeStyle
-group=gameinfo12
+group=info12
 
 [itemPlayTime12]
 meter=string
 text="[m#CurrentSection#:#timecalc12#"
 meterStyle=InfoStyle
-group=gameinfo12
+group=info12
 
 [itemLastPlayed12Icon]
 meter=image
 meterStyle=LastPlayedStyle
-group=gameinfo12
+group=info12
 
 [itemLastPlayed12]
 meter=string
 MeasureName=m#CurrentSection#
 MeterStyle=InfoStyle
-group=gameinfo12
+group=info12
 
 [itemSize12Icon]
 meter=image
 meterStyle=sizeStyle
-group=gameinfo12
+group=info12
 
 [itemSize12]
 meter=string
 text="[mItemSize12:#sizecalc12#"
 MeterStyle=InfoStyle
-group=gameinfo12
+group=info12
 
 [itemDescript12]
 meter=string

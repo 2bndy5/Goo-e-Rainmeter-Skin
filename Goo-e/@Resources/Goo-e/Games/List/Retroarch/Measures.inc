@@ -14,27 +14,29 @@ Y=([changeDir:Y])
 H=([changeDir:H])
 W=([changeDir:W]*2)
 DefaultValue="#DIR#"
+regexpsubstitute=1
+substitute="^(.*)\\":"\1"
 Command1=[!WriteKeyValue Variables DIR "$userInput$" "#@##CurrentConfig#\#Service#\SpecificVars.inc"][!refresh]
 
 [mListInfoFiles]
 measure=Plugin
 Plugin=RunCommand
 dynamicVariables=1
-Parameter="dir #Dir#playlists /B"
+Parameter="dir #Dir#\playlists /B"
 finishaction=[!commandMeasure mListCoreFiles "run"]
 
 [mListCoreFiles]
 measure=Plugin
 Plugin=RunCommand
 dynamicVariables=1
-Parameter="dir #Dir#cores /B"
+Parameter="dir #Dir#\cores /B"
 finishaction=[!commandMeasure mListRetroarchHistory "run"]
 
 [mListRetroarchHistory]
 measure=Plugin
 Plugin=RunCommand
 dynamicVariables=1
-Parameter="dir #Dir#playlists\logs\*.lrtl /B"
+Parameter="dir #Dir#\playlists\logs\*.lrtl /B"
 finishAction=[!commandMeasure mParseApps "parseApps()"]
 
 [displayLoading]
@@ -54,7 +56,7 @@ onUpdateAction=[!updateMeasure mPoseApps]
 
 [mPoseApps]
 Measure=Script
-ScriptFile="#@##CurrentConfig#\#Service#\PoseApps.lua"
+ScriptFile="#@##CurrentConfig#\PoseApps.lua"
 dynamicVariables=1
 updateDivider=-1
 
@@ -100,7 +102,7 @@ ifFalseAction=[!setOption boxartImages prefix "[\xe739] "]
 ifCondition2=#useBoxart# = 0
 ifTrueAction2=[!setOption screenshotImages prefix "[\xe73a] "]
 ifFalseAction2=[!setOption screenshotImages prefix "[\xe739] "]
-ifCondition3=#useBoxart# = 2
+ifCondition3=#useBoxart# = -1
 ifTrueAction3=[!setOption titleScreensImages prefix "[\xe73a] "]
 ifFalseAction3=[!setOption titleScreensImages prefix "[\xe739] "]
 

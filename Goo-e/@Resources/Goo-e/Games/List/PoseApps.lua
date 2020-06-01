@@ -14,7 +14,7 @@ function Update()
 	local cellW = 0
 	local cellH = 0
 	local Maximize = tonumber(SKIN:GetVariable("Maximize"))
-	local useBoxArt = tonumber(SKIN:GetVariable("useBoxArt"))
+	local useBoxArt = math.max(tonumber(SKIN:GetVariable("useBoxArt")), 0)
 	if WorkAreaWidth > WorkAreaHeight then
 		-- print('landscape mode')
 		local capH = 2 + (1 - useBoxArt) * 2
@@ -104,7 +104,9 @@ function Update()
 		SKIN:Bang("!MoveMeter", 0, 0, "indexup")
 		SKIN:Bang("!MoveMeter", 0, 0, "indexdown")
 	end
-	local y0 = Y - 135
+	local closeButt = SKIN:GetMeter("CloseSkin")
+	local settingsButt = SKIN:GetMeter("Settings")
+	local y0 = Y - (closeButt:GetY() - settingsButt:GetY() + closeButt:GetH()) / 2
 	if y0 < 0 then
 		y0 = 0
 	end -- don't clip the controls

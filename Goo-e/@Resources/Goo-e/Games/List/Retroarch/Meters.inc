@@ -11,17 +11,16 @@ GradientAngle=60
 dynamicvariables=1
 PreserveAspectRatio=1
 hidden=1
-rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeFile "[mItemDIR#CurrentSection#:EscapeRegExp]"][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y]+#CURRENTCONFIGY#))<(#menuItemH#*10)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*10)):($mouseY$+[#CurrentSection#:Y]))][!hideMeterGroup menus][!showmetergroup rightClickMenu]
+MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!redraw]
+MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!redraw]
 
 [ConsoleAction]
-MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!redraw]
-MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!HideMeterGroup gameinfo#CurrentSection#][!redraw]
-leftMouseUpAction=[!writeKeyValue variables console "#CurrentSection#" "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setVariable console "#CurrentSection#"][!updateMeasure mParseApps][!hideMeterGroup menus]
+leftMouseUpAction=[!writeKeyValue variables filter "db_name" "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setVariable filter "db_name"][!writeKeyValue variables console "[&mItemName#CurrentSection#]" "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setVariable console "[&mItemName#CurrentSection#]"][!updateMeasure mParseApps][!hideMeterGroup menus]
+rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeFile "[mItemDIR#CurrentSection#:EscapeRegExp]"][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y]+#CURRENTCONFIGY#))<(#menuItemH#*1)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*1)):($mouseY$+[#CurrentSection#:Y]))][!hideMeterGroup menus][!showmetergroup rightClickConsoleMenu]
 
 [GameAction]
-MouseOverAction=[!ShowMeterGroup gameinfo#CurrentSection#][!redraw]
-MouseLeaveAction=[!HideMeterGroup gameinfo#CurrentSection#][!redraw]
-leftmouseupaction=["#DIR#retroarch.exe" -L "[mItemCore#CurrentSection#]" "[mItemDIR#CurrentSection#]"][!deactivateConfig "#CurrentConfig#"]
+leftmouseupaction=["#DIR#\retroarch.exe" -L "[mItemCore#CurrentSection#]" "[mItemDIR#CurrentSection#]"][!deactivateConfig "#CurrentConfig#"]
+rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeFile "[mItemDIR#CurrentSection#:EscapeRegExp]"][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y]+#CURRENTCONFIGY#))<(#menuItemH#*1)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*1)):($mouseY$+[#CurrentSection#:Y]))][!hideMeterGroup menus][!showmetergroup rightClickGameMenu]
 
 [InfoBG]
 x=r
@@ -47,27 +46,27 @@ stringalign=leftCenter
 hidden=1
 
 [playtimeStyle]
-imageName="#DIR#assets\xmb\#theme#\png\menu_hourglass.png"
+imageName="#DIR#\assets\xmb\#theme#\png\menu_hourglass.png"
 dynamicvariables=1
 x=(#useBoxArt#=1?(#IconW#-(#IconH#/8*4))/2-2.5:0)r
 y=(#useBoxArt#=1?5:(#IconH#-(#IconW#/8*3))/2)r
 w=(#useBoxArt#=1?#IconH#/8:#IconW#/8)
 h=(#useBoxArt#=1?#IconH#/8:#IconW#/8)
 hidden=1
-leftMouseUpAction=[!setVariable console "-1"][!updateMeasure mParseApps]
+leftMouseUpAction=[!writeKeyValue variables filter "history" "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setVariable filter "history"][!updateMeasure mParseApps]
 
 [LastPlayedStyle]
-imageName="#DIR#assets\xmb\#theme#\png\history.png"
+imageName="#DIR#\assets\xmb\#theme#\png\history.png"
 dynamicvariables=1
 x=(#useBoxArt#=1?#IconH#/8+5:#IconW#/-8)r
 y=(#useBoxArt#=1?-#IconH#/16:#IconW#/16)r
 w=(#useBoxArt#=1?#IconH#/8:#IconW#/8)
 h=(#useBoxArt#=1?#IconH#/8:#IconW#/8)
 hidden=1
-leftMouseUpAction=[!setVariable console "-1"][!updateMeasure mParseApps]
+leftMouseUpAction=[!writeKeyValue variables filter "history" "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setVariable filter "history"][!updateMeasure mParseApps]
 
 [sizeStyle]
-imageName="#DIR#assets\xmb\#theme#\png\file.png"
+imageName="#DIR#\assets\xmb\#theme#\png\file.png"
 dynamicvariables=1
 x=(#useBoxArt#=1?#IconH#/-8-#IconH#/8:#IconW#/-8)r
 y=(#useBoxArt#=1?#IconH#/16+5:#IconW#/16)r
@@ -79,7 +78,7 @@ hidden=1
 x=(#useBoxArt#=1?-1*(#IconH#/4+(#IconW#-(#IconH#/8*4))/2):#IconW#/8+5)r
 y=(#useBoxArt#=1?#IconH#/16+5:#IconW#/8*-2.5-(#IconH#-(#IconW#/8*3))/2)r
 w=(#useBoxArt#=1?#IconW#:#IconW#*3/4-10)
-h=(#useBoxArt#=0?#IconH#:#IconH#*3/4-15)
+h=(#useBoxArt#=1?#IconH#*3/4-15:#IconH#)
 clipstring=2
 fontface=#fontface#
 fontsize=#fontsize#
@@ -135,21 +134,13 @@ text="scroll horizontally"
 [1scrollSettings]
 text="scroll vertically"
 
-[hiddenFilter]
-text="restore showcase"
-leftmouseupaction=[!setVariable filter "none"][!hidemetergroup menus][!updateMeasure mParseApps]
-
-[noneFilter]
-text="show hidden"
-leftmouseupaction=[!setVariable filter "hidden"][!hidemetergroup menus][!updateMeasure mParseApps]
-
 [history]
-imageName="#DIR#assets\xmb\#theme#\png\history.png"
-leftMouseUpAction=[!setvariable console -1][!setVariable filter "none"][!hideMeterGroup menus][!updateMeasure mParseApps]
+imageName="#DIR#\assets\xmb\#theme#\png\history.png"
+leftMouseUpAction=[!writeKeyValue variables filter "history" "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setVariable filter "history"][!hideMeterGroup menus][!updateMeasure mParseApps]
 
 [backButton]
-imageName="#DIR#assets\xmb\#theme#\png\core.png"
-leftMouseUpAction=[!writeKeyValue variables console 0 "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setvariable console 0][!setVariable filter "none"][!hideMeterGroup menus][!updateMeasure mParseApps]
+imageName="#DIR#\assets\xmb\#theme#\png\core.png"
+leftMouseUpAction=[!writeKeyValue variables filter "none" "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setVariable filter "none"][!hideMeterGroup menus][!updateMeasure mParseApps]
 
 [scrollPagesBG]
 dynamicvariables=1
@@ -194,7 +185,7 @@ ButtAttributes=Strokewidth ([#CurrentSection#:W]*0.05) | StrokeColor #sizeWhite#
 BGAttributes=StrokeWidth 0 | Fill Color #sizeBGcolor#
 TopCorner=0,([#CurrentSection#:H]) | LineTo 0,([#CurrentSection#:W]*0.2) | CurveTo ([#CurrentSection#:W]*0.2),0,0,0 | LineTo ([#CurrentSection#:W]),0 | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]) | ClosePath 1
 shape=path TopCorner | Extend BGAttributes
-LeftMouseUpAction=[!hideMeterGroup menus][!showmetergroup settingsMenu]
+LeftMouseUpAction=[!togglemetergroup settingsMenu][!hideMeterGroup menuSelect][!hideMeterGroup rightClickGameMenu][!hideMeterGroup rightClickConsoleMenu]
 MouseOverAction=[!SetVariable sizeBGcolor "#HighlightColor#"][!SetVariable sizeWhite 255,255,255]
 MouseLeaveAction=[!SetVariable sizeBGcolor "#BGcolor#"][!SetVariable sizeWhite #FontColor#]
 
@@ -220,7 +211,7 @@ dynamicvariables=1
 meterStyle=hamberger
 ButtAttributes=strokeWidth ([#CurrentSection#:H]*0.15) | strokeColor #menuWhite# | StrokeStartCap Round | StrokeEndCap Round
 BGAttributes=StrokeWidth 0 | Fill Color #menuBGcolor#
-leftmouseupaction=[!hidemetergroup menus][!showmetergroup menuSelect]
+leftmouseupaction=[!togglemetergroup menuSelect][!hideMeterGroup settingsMenu][!hideMeterGroup rightClickGameMenu][!hideMeterGroup rightClickConsoleMenu]
 MouseOverAction=[!SetVariable menuBGcolor "#HighlightColor#"][!SetVariable menuWhite 255,255,255][!redraw]
 MouseLeaveAction=[!SetVariable menuBGcolor "#BGcolor#"][!SetVariable menuWhite #FontColor#][!redraw]
 
@@ -290,32 +281,25 @@ Meter=string
 meterStyle=menuStyle | #revOrder##CurrentSection#
 leftmouseupaction=[!WriteKeyValue variables revOrder (#revOrder#=1?0:1) "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setVariable revOrder (#revOrder#=1?0:1)][!commandMeasure mParseApps "applySort()"][!hidemetergroup menuSelect][!updateMeasure mParseApps]
 
-[filter]
-Meter=string
-meterStyle=menuStyle | #filter##currentSection#
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;~~~~~~~~~~~Right Click Menu~~~~~~~~~~~~~;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[RightClickMenu1]
+[RightClickBrowse]
 meter=string
 meterStyle=RCMenuItem
 y=#menuY#
 text="Browse in Windows"
-leftmouseupaction=[!deactivateConfig "#CurrentConfig#"]["[activePath]"]
+group=rightClickGameMenu | menus
+leftmouseupaction=[!deactivateConfig "#CurrentConfig#"]["[&activePath]"]
 
-[noneRightClickMenu9]
-text="Hide This Item"
-leftMouseUpAction=[!commandMeasure mParseApps "addHidden('[&scriptedActiveFile]')"][!hideMeterGroup rightClickMenu]
-
-[hiddenRightClickMenu9]
-text="Show This Item"
-leftMouseUpAction=[!commandMeasure mParseApps "subHidden('[&scriptedActiveFile]')"][!hideMeterGroup rightClickMenu]
-
-[RightClickMenu9]
+[RightClickChangeEmu]
 meter=string
-meterStyle=RCMenuItem | #filter##currentSection#
+meterStyle=RCMenuItem
+y=#menuY#
+text="change Emulator"
+group=rightClickConsoleMenu | menus
+leftmouseupaction=[!deactivateConfig "#CurrentConfig#"]["[&activePath]"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;~~~~~~~~~Settings Menu~~~~~~~~~~~~~;
@@ -333,7 +317,7 @@ shape=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | StrokeWidth 0 | 
 shape2=Rectangle ([#CurrentSection#:W]*0.05),([#CurrentSection#:H]*0.35),([#CurrentSection#:W]*0.9),([#CurrentSection#:H]*0.3),([#CurrentSection#:H]*0.15) | StrokeWidth 0 | Fill LinearGradient AlphaGrad
 group=settingsMenu | menus
 hidden=1
-leftmouseupaction=[!setvariable BgAlpha ($MouseX$>[#CurrentSection#:W]*0.95?255:($MouseX$<[#CurrentSection#:W]*0.05?0:round(($MouseX$-[#CurrentSection#:W]*0.05)/([#CurrentSection#:W]*0.9)*255)))][!writeKeyValue variables BgAlpha ($MouseX$>[#CurrentSection#:W]*0.95?255:($MouseX$<[#CurrentSection#:W]*0.05?0:round(($MouseX$-[#CurrentSection#:W]*0.05)/([#CurrentSection#:W]*0.9)*255))) "#@##CurrentConfig#\Variables.inc"][!redraw]
+leftmouseupaction=[!setvariable BgAlpha ($MouseX$>[#CurrentSection#:W]*0.95?255:($MouseX$<[#CurrentSection#:W]*0.05?0:round(($MouseX$-[#CurrentSection#:W]*0.05)/([#CurrentSection#:W]*0.9)*255)))][!writeKeyValue variables BgAlpha ($MouseX$>[#CurrentSection#:W]*0.95?255:($MouseX$<[#CurrentSection#:W]*0.05?0:round(($MouseX$-[#CurrentSection#:W]*0.05)/([#CurrentSection#:W]*0.9)*255))) "#@##CurrentConfig#\#service#\SpecificVars.inc"][!redraw]
 
 [bgAlphaSettingsLabel]
 meter=String
@@ -349,7 +333,7 @@ clipstring=1
 meterStyle=menuStyle
 group=settingsMenu | menus
 hidden=1
-leftmouseupaction=[!setvariable BgAlpha 255][!writeKeyValue variables BgAlpha 255 "#@##CurrentConfig#\Variables.inc"][!redraw]
+leftmouseupaction=[!setvariable BgAlpha 255][!writeKeyValue variables BgAlpha 255 "#@##CurrentConfig#\#service#\SpecificVars.inc"][!redraw]
 
 [fullScreenSettings]
 meter=String
@@ -364,7 +348,7 @@ leftMouseUpAction=[!WriteKeyValue variables Maximize (#Maximize#=0?1:0) "#@##Cur
 meter=String
 meterStyle=menuStyle | #scrollPlane##CurrentSection#
 group=settingsMenu | menus
-leftMouseUpAction=[!WriteKeyValue variables scrollPlane (#scrollPlane#=0?1:0) "#@##CurrentConfig#\Variables.inc"][!SetVariable scrollPlane (#scrollPlane#=0?1:0)][!updateMeasure mPoseApps]
+leftMouseUpAction=[!WriteKeyValue variables scrollPlane (#scrollPlane#=0?1:0) "#@##CurrentConfig#\#service#\SpecificVars.inc"][!SetVariable scrollPlane (#scrollPlane#=0?1:0)][!updateMeasure mPoseApps]
 
 [boxartImages]
 Meter=string
@@ -385,7 +369,7 @@ Meter=string
 meterStyle=menuStyle
 text="use Title Screens"
 group=settingsMenu | menus
-leftmouseupaction=[!WriteKeyValue variables useBoxArt 2 "#@##CurrentConfig#\#service#\SpecificVars.inc"][!SetVariable useBoxArt 2][!hidemetergroup menuSelect][!updateMeasure mParseApps]
+leftmouseupaction=[!WriteKeyValue variables useBoxArt -1 "#@##CurrentConfig#\#service#\SpecificVars.inc"][!SetVariable useBoxArt -1][!hidemetergroup menuSelect][!updateMeasure mParseApps]
 
 [themes]
 Meter=string

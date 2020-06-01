@@ -9,11 +9,16 @@ controllerAlpha=0
 playerAlpha=0
 InvertLoop=0
 @includeVars="#@##CurrentConfig#\List\Variables.inc"
-@includeSpecVars="#@##CurrentConfig#\List\#service#\SpecificVars.inc"
+@includeRetroarchVars="#@##CurrentConfig#\list\retroarch\specificVars.inc"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;~~~~~~~~~~~~Measures~~~~~~~~~~~~~~~;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[retroCFG]
+measure=script
+scriptFile="#@##CurrentConfig#\retrocfg.lua"
+updateDivider=-1
 
 [mInputSize]
 Measure=Plugin
@@ -51,7 +56,7 @@ RegKey=SOFTWARE\Classes\origin2\shell\open\command
 UpdateDivider=-1
 RegExpSubstitute=1
 Substitute='(?siU)(.*)\s+"\%1"$':"\1"
-onUpdateAction=[!setVariable OriginDir [#CurrentSection#]][!writekeyvalue Variables OriginDir [#CurrentSection#] "#@##CurrentConfig#\List\Variables.inc"]
+onUpdateAction=[!setVariable OriginPath [#CurrentSection#]][!writekeyvalue Variables OriginPath [#CurrentSection#] "#@##CurrentConfig#\List\Origin\SpecificVars.inc"]
 
 [currAppId]
 Measure=Registry
@@ -217,3 +222,23 @@ shape=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | StrokeWidth 0 | 
 shape2=Line ([#CurrentSection#:W]*0.835),([#CurrentSection#:H]*0.16),([#CurrentSection#:W]*0.15),([#CurrentSection#:H]*0.845) | Extend ButtAttributes | StrokeStartCap Triangle | StrokeEndCap Triangle
 shape3=Path ArrowBottom | Extend ButtAttributes
 shape4=path ArrowTop | Extend ButtAttributes
+
+[emulationStationIconShape]
+bgBlue=0,([#CurrentSection#:H]/4) | LineTo ([#CurrentSection#:W]*0.1),([#CurrentSection#:H]*0.15) | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]*0.15) | LineTo ([#CurrentSection#:W]),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.9),([#CurrentSection#:H]*0.85) | LineTo 0,([#CurrentSection#:H]*0.85) | ClosePath 1
+E=([#CurrentSection#:W]*0.1),([#CurrentSection#:H]*0.35) | SetRoundJoin 1 | LineTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.25) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.25) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.65) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.65) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.2),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.1),([#CurrentSection#:H]*0.65) | closepath 1
+S=([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.35) | SetRoundJoin 1 | LineTo ([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.25) | LineTo ([#CurrentSection#:W]*0.9),([#CurrentSection#:H]*0.25) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.9),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.9),([#CurrentSection#:H]*0.65) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.65) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.65) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.6),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.45) | closepath 1
+shadeE=0,([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.1),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.3),([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.3),([#CurrentSection#:H]*0.65) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.4),([#CurrentSection#:H]*0.85) | LineTo 0,([#CurrentSection#:H]*0.85) | closepath 1
+shadeS=0,([#CurrentSection#:H]*0.85) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.7),([#CurrentSection#:H]*0.45) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.55) | LineTo ([#CurrentSection#:W]*0.8),([#CurrentSection#:H]*0.75) | LineTo ([#CurrentSection#:W]*0.7),([#CurrentSection#:H]*0.85) | closepath 1
+shape=path bgBlue | StrokeWidth 0 | Fill Color 0,78,115
+shape2=path E | extend shadow
+shape3=path S | extend shadow
+shape4=path E | StrokeColor 255,255,255 | StrokeWidth ([#CurrentSection#:H]*0.005) | Fill Color 255,255,255
+shape5=path S | StrokeColor 255,255,255 | StrokeWidth ([#CurrentSection#:H]*0.005) | Fill Color 255,255,255
+; shape6=path shadeE | StrokeWidth 0 | Fill Color 0,0,0,85
+; shape7=path shadeS | StrokeWidth 0 | Fill Color 0,0,0,85
+shadow=StrokeWidth 0 | Fill Color 0,0,0,85 | offset ([#CurrentSection#:H]*-0.05),([#CurrentSection#:H]*0.0625)
+; blue=0,78,115
+; letterH=([#CurrentSection#:H]/2)
+; letterW=([#CurrentSection#:H]*0.8)
+; bgH=([#CurrentSection#:H]*0.7)
+; RounedJoints=([#CurrentSection#:H]*0.025)
