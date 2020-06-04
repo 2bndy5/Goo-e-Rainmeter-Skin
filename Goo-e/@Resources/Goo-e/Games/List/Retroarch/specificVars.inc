@@ -1,11 +1,11 @@
 [variables]
 sort=label
 revOrder=0
-filter=db_name
+filter=none
 DIR=%AppData%\Retroarch
-useBoxArt=0
+useBoxArt=1
 theme=retrosystem
-console=Sega - Mega-CD - Sega CD
+console=Sony - PlayStation Portable
 page=1
 BgAlpha=216
 scrollPlane=1

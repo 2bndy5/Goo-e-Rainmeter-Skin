@@ -78,9 +78,9 @@ Command1=[!SetVariable OriginDir4 "$userinput$"][!writekeyvalue Variables Origin
 [mLibList]
 measure=string
 dynamicVariables=1
-string=""#OriginDir1#\InstallLog.txt", "#OriginDir2#\InstallLog.txt", "#OriginDir3#\InstallLog.txt", "#OriginDir4#\InstallLog.txt""
+string=""#OriginDir1#\__Installer", "#OriginDir2#\__Installer", "#OriginDir3#\__Installer", "#OriginDir4#\__Installer""
 ; regexpSubstitute=1
-substitute=', "\InstallLog.txt"':""
+substitute=', "\__Installer"':""
 
 [dirSizeInfo]
 measure=plugin
@@ -95,7 +95,7 @@ IncludeSubFolders=1
 measure=Plugin
 Plugin=RunCommand
 dynamicVariables=1
-output=ANSI
+OutputType=ANSI
 Parameter="#PSCMD#"
 
 [mIconSearch]
@@ -109,6 +109,8 @@ measure=Plugin
 Plugin=RunCommand
 dynamicVariables=1
 Parameter="dir [&mLibList] /S /B"
+regexpSubstitute=1
+substitute="(?sU)Directory of (.*)\n.*bytes\n":"\1\\_Installer"
 finishAction=[!commandMeasure mParseApps "parseApps()"]
 
 [displayLoading]

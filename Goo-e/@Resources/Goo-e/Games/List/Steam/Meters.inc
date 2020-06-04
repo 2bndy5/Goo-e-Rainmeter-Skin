@@ -3,8 +3,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [IconBG]
-imageName="#Dir#appcache\librarycache\[mItemID#CurrentSection#][imgOrientAlias].jpg"
-PreserveAspectRatio=(#Maximize#)
+imageName="#Dir#appcache\librarycache\[&mItemID#CurrentSection#][&activeArtwork]"
+PreserveAspectRatio==((1-#maximize#)*2)
 h=#IconH#
 w=#IconW#
 solidColor=#highlightColor#,(#maximize#=1?#BgAlpha#:255)
@@ -12,14 +12,28 @@ solidColor2=#BGcolor#,(#maximize#=1?#BgAlpha#:255)
 GradientAngle=60
 dynamicvariables=1
 hidden=1
-MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #CurrentSection# MeterStyle "IconBG | GameBanner"]
-MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #CurrentSection# MeterStyle "IconBG"]
 leftmouseupaction=[steam://rungameid/[mItemID#CurrentSection#]][!deactivateConfig "#CurrentConfig#"]
 rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeId "[mItemID#CurrentSection#]"][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y]+#CURRENTCONFIGY#))<(#menuItemH#*10)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*10)):($mouseY$+[#CurrentSection#:Y]))][!hideMeterGroup menus][!showmetergroup rightClickMenu]
 
-[GameBanner]
-imageName="#Dir#appcache\librarycache\[mItemID#CurrentSection#]_library_hero_blur.jpg"
-PreserveAspectRatio=((1-#maximize#)*2)
+[mouseOverIconNoBlurBg]
+imageName="#Dir#appcache\librarycache\[&mItemID#CurrentSection#][&activeArtwork]"
+MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_library_hero.jpg"][!setOption #currentSection# PreserveAspectRatio 0]
+MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #currentSection# imagename ""][!setOption #currentSection# PreserveAspectRatio 0]
+
+[mouseOverIconNoBlurBgDefault]
+imageName="#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_header.jpg"
+MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_library_hero.jpg"][!setOption #currentSection# PreserveAspectRatio 0]
+MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_header.jpg"][!setOption #currentSection# PreserveAspectRatio 0]
+
+[MouseOverIcon]
+imageName="#Dir#appcache\librarycache\[&mItemID#CurrentSection#][&activeArtwork]"
+MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_library_hero_blur.jpg"][!setOption #currentSection# PreserveAspectRatio 2]
+MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#][&activeArtwork]"][!setOption #currentSection# PreserveAspectRatio 0]
+
+[MouseOverIconDefault]
+imageName="#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_header.jpg"
+MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_library_hero_blur.jpg"][!setOption #currentSection# PreserveAspectRatio 2]
+MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_header.jpg"][!setOption #currentSection# PreserveAspectRatio 0]
 
 [InfoBG]
 x=r
@@ -51,7 +65,7 @@ hidden=1
 imageName="#@#images\Games\time.png"
 dynamicvariables=1
 x=(#useBoxArt#=1?(#IconW#-(#IconH#/8*4))/2-2.5:0)r
-y=(#useBoxArt#=0?(#IconH#-(#IconW#/8*3))/2:5)r
+y=(#useBoxArt#=1?5:(#IconH#-(#IconW#/8*3))/2)r
 w=(#useBoxArt#=1?#IconH#/8:#IconW#/8)
 h=(#useBoxArt#=1?#IconH#/8:#IconW#/8)
 hidden=1
@@ -394,8 +408,23 @@ meterStyle=menuStyle | #scrollPlane##CurrentSection#
 group=settingsMenu | menus
 leftMouseUpAction=[!WriteKeyValue variables scrollPlane (#scrollPlane#=0?1:0) "#@##CurrentConfig#\#service#\SpecificVars.inc"][!SetVariable scrollPlane (#scrollPlane#=0?1:0)][!updateMeasure mPoseApps]
 
-[boxartOrBannerImages]
+[boxartImages]
 Meter=string
-meterStyle=menuStyle | #useBoxArt##CurrentSection#
+meterStyle=menuStyle
+text="use Boxart"
 group=settingsMenu | menus
-leftmouseupaction=[!WriteKeyValue variables useBoxArt (#useBoxArt#=1?0:1) "#@##CurrentConfig#\#service#\SpecificVars.inc"][!SetVariable useBoxArt (#useBoxArt#=1?0:1)][!hidemetergroup menuSelect][!updateMeasure mPoseApps]
+leftmouseupaction=[!WriteKeyValue variables useBoxArt 1 "#@##CurrentConfig#\#service#\SpecificVars.inc"][!SetVariable useBoxArt 1][!hidemetergroup menuSelect][!updateMeasure mParseApps]
+
+[BannerImages]
+Meter=string
+meterStyle=menuStyle
+text="use Banners"
+group=settingsMenu | menus
+leftmouseupaction=[!WriteKeyValue variables useBoxArt 0 "#@##CurrentConfig#\#service#\SpecificVars.inc"][!SetVariable useBoxArt 0][!hidemetergroup menuSelect][!updateMeasure mParseApps]
+
+[LogoImages]
+Meter=string
+meterStyle=menuStyle
+text="use Logo"
+group=settingsMenu | menus
+leftmouseupaction=[!WriteKeyValue variables useBoxArt -1 "#@##CurrentConfig#\#service#\SpecificVars.inc"][!SetVariable useBoxArt -1][!hidemetergroup menuSelect][!updateMeasure mParseApps]

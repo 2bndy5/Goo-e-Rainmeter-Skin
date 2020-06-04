@@ -3,12 +3,6 @@ measure=calc
 dynamicVariables=1
 formula=round(#BgAlpha# / 2.55)
 
-[imgOrientAlias]
-measure=calc
-dynamicVariables=1
-formula=#useBoxArt#
-substitute="0":"_header","1":"_library_600x900"
-
 [currAppId]
 Measure=Registry
 RegHKey=HKEY_CURRENT_USER
@@ -77,3 +71,18 @@ updateDivider=-1
 folder=#testDir#
 infotype=FolderSize
 IncludeSubFolders=1
+
+[activeArtwork]
+measure=calc
+dynamicVariables=1
+formula=#useBoxart#
+substitute="0":"_header.jpg","-1":"_logo.png","1":"_library_600x900.jpg"
+ifCondition=#useBoxart# = 1
+ifTrueAction=[!setOption boxartImages prefix "[\xe73a] "]
+ifFalseAction=[!setOption boxartImages prefix "[\xe739] "]
+ifCondition2=#useBoxart# = 0
+ifTrueAction2=[!setOption BannerImages prefix "[\xe73a] "]
+ifFalseAction2=[!setOption BannerImages prefix "[\xe739] "]
+ifCondition3=#useBoxart# = -1
+ifTrueAction3=[!setOption LogoImages prefix "[\xe73a] "]
+ifFalseAction3=[!setOption LogoImages prefix "[\xe739] "]

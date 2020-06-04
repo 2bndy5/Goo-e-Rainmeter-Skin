@@ -153,32 +153,21 @@ function parseApps()
         if line:match('\\__Installer') ~= nil then
             path = line:match('(.*)\\__Installer')
 			-- convert Origin's install log to utf-8 & output to a temp file
-			local tempOutput = resources .. currentConfig .. '\\Origin\\UTF8.txt'
-			local psCmd = 'powershell "Get-Content \'' .. line .. '\' | Set-Content -Encoding utf8 \'' .. tempOutput .. '\'"'
-			SKIN:Bang("!SetVariable", "PSCMD", psCmd)
-			SKIN:Bang("!commandMeasure", "convert2utf8", "run")
-			SKIN:Bang("!UpdateMeasure", "convert2utf8")
-			while SKIN:GetMeasure("convert2utf8"):GetValue() < 1 do
-				SKIN:Bang("!UpdateMeasure", "convert2utf8")
-			end
+			local tempOutput = convert2UTF8(line .. "\\InstallLog.txt")
 			local app = parseLog(tempOutput)
-			--now get the "content ID" from intalldata.xml
-			psCmd = 'powershell "Get-Content \'' .. line:gsub("InstallLog.txt", "installerdata.xml") .. '\' | Set-Content -Encoding utf8 \'' .. tempOutput .. '\'"'
-			SKIN:Bang("!SetVariable", "PSCMD", psCmd)
-			SKIN:Bang("!commandMeasure", "convert2utf8", "run")
-			SKIN:Bang("!UpdateMeasure", "convert2utf8")
-			while SKIN:GetMeasure("convert2utf8"):GetValue() < 1 do
-				SKIN:Bang("!UpdateMeasure", "convert2utf8")
-			end
-			local file = io.open(tempOutput, "r")
-			if file ~= nil then
-				contentID = file:read("*all"):match(".-<contentID>(%d-)</contentID>")
-				file:close()
-				app.id = tonumber(contentID)
-			end
-			-- Ilost an unrelated file with this implemented; use at your own risk!
-			-- os.remove(tempOutput) -- delete temp file converted to utf-8
 			app.path = path
+			--now get the "content ID" & Title from intalldata.xml
+			tempOutput = convert2UTF8(line .. "\\installerdata.xml")
+			if tempOutput ~= nil then
+				file = io.open(tempOutput)
+				contentID = file:read("*all"):match(".-<contentID>(%d-)</contentID>")
+				title = file:read("*all"):match(".-<title>(.-)</title>")
+				file:close()
+				if contentID ~= nil then app.id = tonumber(contentID)end
+				if title ~= nil then app.name = title end
+			end
+			-- I lost an unrelated file with this implemented; use at your own risk!
+			-- os.remove(tempOutput) -- delete temp file converted to utf-8
 			SKIN:Bang("!setVariable", "testDir", path)
 			SKIN:Bang("!updateMeasure", "dirSizeInfo")
 			local actualSize = tonumber(SKIN:GetMeasure("dirSizeInfo"):GetValue())
@@ -199,6 +188,7 @@ end
 function parseLog(fileStr)
 	-- print('reading file = ' .. fileStr)
 	local result = App.new()
+	if fileStr == nil then return result end
 	local hasShortcut = false
 	local foundShortcut = false
 	local file = io.open(fileStr, 'r')
@@ -234,6 +224,35 @@ function parseLog(fileStr)
 		print(fileStr .. ' is inaccessible!')
 	end
 	return result
+end
+
+function convert2UTF8(filename)
+	local temp = io.open(filename)
+	if temp ~= nil then
+		-- print(filename .. " found")
+		local line = temp:read("*line")
+		-- print(line)
+		if line:match("%<%?(%w-)%s") ~= nil -- check xml header
+			or line:match("(%{-%[-)") ~= nil -- check json object or array
+			or line:match("(%*+%*+%*+)") ~= nil then -- check .txt section header
+				temp:close()
+				-- print(filename .. " is in UTF-8")
+			return filename
+		else
+			temp:close()
+			local tempOutput = resources .. currentConfig .. '\\Origin\\UTF8.txt'
+			local psCmd = 'powershell "Get-Content \'' .. filename .. '\' | Set-Content -Encoding utf8 \'' .. tempOutput .. '\'"'
+			SKIN:Bang("!SetVariable", "PSCMD", psCmd)
+			SKIN:Bang("!commandMeasure", "convert2utf8", "run")
+			SKIN:Bang("!UpdateMeasure", "convert2utf8")
+			while SKIN:GetMeasure("convert2utf8"):GetValue() < 1 do
+				SKIN:Bang("!UpdateMeasure", "convert2utf8")
+			end
+			return tempOutput
+		end
+	else
+		return nil
+	end
 end
 
 function Update()

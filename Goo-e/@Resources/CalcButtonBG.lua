@@ -1,6 +1,6 @@
 function ShadeColor(c)
 	local rgb = { ParseColor(c) }
---	SKIN:Bang('!Log', table.concat(rgb, ','), 'Debug')
+	-- SKIN:Bang('!Log', table.concat(rgb, ','), 'Debug')
 	local hsv = { tonumber(getHue(rgb) * 6), tonumber(getSat(rgb)), tonumber(getVal(rgb)) }
 	if (hsv[3] < 0.45 and percent < 0.55) or percent > 0.5 then
 		hsv[3] = hsv[3] + percent
@@ -8,11 +8,11 @@ function ShadeColor(c)
 		hsv[3] = hsv[3] - percent
 	end
 	return HSVtoRGB(hsv)
-end--apply shaded 
+end--apply shade 
 
 function InvertColor(c)
-		local rgb = { ParseColor(c) }
---	SKIN:Bang('!Log', table.concat(rgb, ','), 'Debug')
+	local rgb = { ParseColor(c) }
+	--	SKIN:Bang('!Log', table.concat(rgb, ','), 'Debug')
 	local hsv = { tonumber(getHue(rgb) * 6), tonumber(getSat(rgb)), tonumber(getVal(rgb)) }
 	if hsv[3] > 0.25 and hsv[3] < 0.75 then
 		if hsv[3] > 0.5 then
@@ -28,7 +28,7 @@ end
 
 function ParseColor(c)
 --parse color segments from string 'c' then return table of 3 numbers (base 10)
---	SKIN:Bang('!Log', c, 'Debug')
+	-- SKIN:Bang('!Log', c, 'Debug')
 	local rgb = {}
 	if string.find(c, ',') == nil then
 		--assumes a 6 digit hex code
@@ -50,20 +50,16 @@ function ParseColor(c)
 end--end parse color
 
 function getHue(rgb)
-	
 	local hue
 	if (2*rgb[1]-rgb[2]-rgb[3]) == 0 then
 		hue = 0
 	else
 		hue = math.atan2((math.sqrt(3)*(rgb[2]-rgb[3])), (2*rgb[1]-rgb[2]-rgb[3]))
 	end
-
 	if hue < 0.0 then
 		hue = hue + 6
 	end
-
 	return hue / 6
-	
 end
 
 function getSat(rgb)
@@ -128,17 +124,17 @@ end
 
 function Update()
 	percent = tonumber(SELF:GetOption('Percent'))
-	local Color1 = SELF:GetOption('Color1')
-	local Color2 = SELF:GetOption('Color2')
-	local Color3 = SELF:GetOption('Color3')
-	local Color4 = SELF:GetOption('Color4')
-	local Color5 = SELF:GetOption('Color5')
-	local Color6 = SELF:GetOption('Color6')
-	SKIN:Bang('!SetVariable', 'ShadedColor1', ShadeColor(Color1) )
-	SKIN:Bang('!SetVariable', 'ShadedColor2', ShadeColor(Color2) )
-	SKIN:Bang('!SetVariable', 'ShadedColor3', ShadeColor(Color3) )
-	SKIN:Bang('!SetVariable', 'ShadedColor4', InvertColor(Color4) )
-	SKIN:Bang('!SetVariable', 'ShadedColor5', ShadeColor(Color5) )
-	SKIN:Bang('!SetVariable', 'ShadedColor6', ShadeColor(Color6) )
-	
+	local Colors = {
+		tostring(SELF:GetOption('Color1')),
+		tostring(SELF:GetOption('Color2')),
+		tostring(SELF:GetOption('Color3')),
+		tostring(SELF:GetOption('Color4')),
+		tostring(SELF:GetOption('Color5')),
+		tostring(SELF:GetOption('Color6'))
+	}
+	for i, c in ipairs(Colors) do
+		if c:match("%d-,%d+,%d+") ~= nil then
+			SKIN:Bang('!SetVariable', 'ShadedColor' .. i, ShadeColor(Colors[i]))
+		end
+	end
 end

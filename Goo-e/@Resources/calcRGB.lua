@@ -39,29 +39,27 @@ end
 
 function ParseColor(c)
 --parse color segments from string 'c' then return table of 3 numbers (base 10)
-	local rgb = {}
---	SKIN:Bang('!Log', c, 'Debug')
-	if string.find(c, ',') == nil then
+	local rgb = { nil, nil, nil }
+	-- print("recv-ing: " .. c)
+	-- print("hexMatch: " .. c:match('(%x+)$S'))
+	-- print("rgbMatch: " .. c:match('(%d+)'))
+	if c:match('^(%x+)$') ~= nil then
+		-- print(c .. " is a hex color code")
 		--assumes a 6 digit hex code
 		rgb[1] = tonumber(string.sub(c, 1, 2), 16)
 		rgb[2] = tonumber(string.sub(c, 3, 4), 16)
 		rgb[3] = tonumber(string.sub(c, 5, 6), 16)
-	else
-		--find comma & extract substring
-		local comma = string.find(c, ",")
-		rgb[1] = tonumber(string.sub(c, 1, (comma-1)), 10)
-		--find 2nd comma & extract substring
-		comma = string.find(c, ",", comma)
-		rgb[2] = tonumber(string.sub(c, comma+1, string.find(c, ",", comma+1)-1), 10)
-		--extract substring from last comma to string.len(c)
-		comma = string.find(c, ",", comma+1)
-		rgb[3] = tonumber(string.sub(c, comma+1, -1), 10)
+	elseif c:match("(%d+)") ~= nil then
+		-- print(c .. " is a rgb color code")
+		rgb[1] = tonumber(c:match("^(%d-),%d+,%d+$"))
+		rgb[2] = tonumber(c:match("^%d-,(%d+),%d+$"))
+		rgb[3] = tonumber(c:match("^%d-,%d+,(%d+)$"))
 	end--end make table of {red, green, blue}
+	-- print(table.concat(rgb,  ","))
 	return rgb[1], rgb[2], rgb[3]
 end--end parse color
 
 function getHue(rgb)
-	
 	local hue
 	if (2*rgb[1]-rgb[2]-rgb[3]) == 0 then
 		hue = 0
@@ -72,9 +70,7 @@ function getHue(rgb)
 	if hue < 0.0 then
 		hue = hue + 6
 	end
-
 	return hue / 6
-	
 end
 
 function getSat(rgb)
@@ -209,8 +205,8 @@ end--apply shaded
 
 function RGBtoHSV(color)
 	local rgb = { ParseColor(color) }
---SKIN:Bang('!Log', color, 'Debug')
---SKIN:Bang('!Log', table.concat(rgb, ','), 'Debug')
+	-- SKIN:Bang('!Log', color, 'Debug')
+	-- SKIN:Bang('!Log', table.concat(rgb, ','), 'Debug')
 	Hue = getHue(rgb)
 	Sat = getSat(rgb)
 	Val = getVal(rgb)

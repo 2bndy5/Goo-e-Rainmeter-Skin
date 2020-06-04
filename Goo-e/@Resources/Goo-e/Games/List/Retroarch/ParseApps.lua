@@ -361,15 +361,15 @@ function Update()
 					SKIN:Bang("!setOption", j, "meterStyle", "IconBG | ConsoleAction")
 					SKIN:Bang("!setoption", "back2Consoles", "meterStyle", "history")
 				else -- concerning games about a console
-					imageFile = DIR .. "thumbnails\\" .. showcase[i].db_name .. "\\" .. useBoxArt .. "\\" .. showcase[i].label:gsub("&", "_") .. ".png"
-					local foundFile = io.open(imageFile)
-					if foundFile ~= nill then
-						foundFile:close()
+					imageFile = DIR .. "thumbnails\\" .. showcase[i].db_name .. "\\" .. useBoxArt .. "\\" .. showcase[i].label:gsub("&", "_")
+					if doesImageExist(imageFile .. ".png") then
+						SKIN:Bang("!setOption", j, "imagename", imageFile .. ".png")
+					elseif doesImageExist(imageFile .. ".jpg") then
+						SKIN:Bang("!setOption", j, "imagename", imageFile .. ".jpg")
 					else
 						-- print("couldn't find image for " .. showcase[i].label)
 						imageFile = DIR .. "assets\\xmb\\" .. theme .. "\\png\\" .. showcase[i].db_name .. "-content.png"
 					end
-					SKIN:Bang("!setOption", j, "imagename", imageFile)
 					-- for specificity, parse title from path's filename instead of label
 					-- local description = showcase[i].path:match(".*\\(.*)%..+$")
 					local description = showcase[i].label
@@ -401,6 +401,18 @@ function Update()
 		string.format("%s%s\\%s\\SpecificVars.inc", resources, currentConfig, service))
 	SKIN:Bang("!UpdateMeasureGroup", "InfoMeasures")
 	return #showcase
+end
+
+function doesImageExist(game_name)
+	local FoundFile = io.open(game_name,'r')
+	if not FoundFile then
+	-- print(game_name .. ' not found')
+	return false
+	else
+	-- print(game_name .. ' found for item# ' .. i - start)
+	io.close(FoundFile)
+	return true
+	end
 end
 
 function pageUp()
