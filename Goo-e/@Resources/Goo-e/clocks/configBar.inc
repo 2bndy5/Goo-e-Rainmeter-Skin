@@ -45,7 +45,7 @@ ButtAttributes=StrokeWidth ([#CurrentSection#:W]*0.065) | StrokeColor #ClockColo
 meterStyle=SettingsShape
 Hidden=#hideconfigbar#
 group=configbar
-leftMouseUpAction=[!toggleConfig  "#RootConfig#\Clock\Settings" "#CURRENTFILE#"][!move "(#WorkAreaWidth#-(#CurrentConfigX#+#CurrentConfigWidth#)>=520?(#CurrentConfigX#+#IconSize#):(#CurrentConfigX#-520))" "(#WorkAreaHeight#-#CurrentConfigY#>=404?(#CurrentConfigY#):(#WorkAreaHeight#-404))" "#RootConfig#\Clock\Settings"]
+leftMouseUpAction=[!toggleConfig  "#RootConfig#\Clock\Settings" "#CURRENTFILE#"][!move "(#WorkAreaWidth#-(#CurrentConfigX#+#CurrentConfigWidth#)>=725?(#CurrentConfigX#+#IconSize#):(#CurrentConfigX#-725))" "(#WorkAreaHeight#-#CurrentConfigY#>=404?(#CurrentConfigY#):(#WorkAreaHeight#-404))" "#RootConfig#\Clock\Settings"]
 
 [setSize]
 meter=shape
@@ -60,7 +60,6 @@ dynamicvariables=1
 group=configbar
 LeftMouseUpAction=[!Commandmeasure minputSize "ExecuteBatch 1"]
 ;;Deprecated stopwatch & alarm skins for now. Maybe re-implement in future, so save this code for reference.
-;;StopWatch & Alarm skin is normally always running as Root Config
 ;;For switching to StopWatch & Alarm skin
 ;	[pageclockactiveA]
 ;	meter=image

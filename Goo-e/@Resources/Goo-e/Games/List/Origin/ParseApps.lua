@@ -160,11 +160,12 @@ function parseApps()
 			tempOutput = convert2UTF8(line .. "\\installerdata.xml")
 			if tempOutput ~= nil then
 				file = io.open(tempOutput)
-				contentID = file:read("*all"):match(".-<contentID>(%d-)</contentID>")
-				title = file:read("*all"):match(".-<title>(.-)</title>")
+				local fileContents = file:read("*all")
+				local contentID = fileContents:match(".-<contentID>(%d-)</contentID>")
+				-- local title = fileContents:match(".-<title>(.-)</title>")
 				file:close()
 				if contentID ~= nil then app.id = tonumber(contentID)end
-				if title ~= nil then app.name = title end
+				-- if title ~= nil then app.name = title end
 			end
 			-- I lost an unrelated file with this implemented; use at your own risk!
 			-- os.remove(tempOutput) -- delete temp file converted to utf-8
@@ -215,9 +216,9 @@ function parseLog(fileStr)
 					hasShortcut = false
 				end
 			end
-			if line:match("%(Config%)Game Name: ") ~= nil then
-				result.name = line:match("%(Config%)Game Name: (.*)")
-			end
+			-- if line:match("%(Config%)Game Name: ") ~= nil then
+			-- 	result.name = line:match("%(Config%)Game Name: (.*)")
+			-- end
 		end
 		file:close()
 	else
@@ -233,8 +234,8 @@ function convert2UTF8(filename)
 		local line = temp:read("*line")
 		-- print(line)
 		if line:match("%<%?(%w-)%s") ~= nil -- check xml header
-			or line:match("(%{-%[-)") ~= nil -- check json object or array
 			or line:match("(%*+%*+%*+)") ~= nil then -- check .txt section header
+			-- or line:match("(%{-%[-)") ~= nil -- check json object or array
 				temp:close()
 				-- print(filename .. " is in UTF-8")
 			return filename

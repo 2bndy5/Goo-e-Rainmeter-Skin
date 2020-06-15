@@ -78,7 +78,7 @@ function apps.filter(self, arg)
 				result[1].games = result[1].games + 1
 				result[1].playtime = result[1].playtime + self[i].playtime
 				if self[i].lastPlayed > result[1].lastPlayed then
-					result[1].lastPlayed = self[1].lastPlayed
+					result[1].lastPlayed = self[i].lastPlayed
 				end
 				result[1].size = result[1].size + self[i].size
 			end
@@ -336,13 +336,13 @@ function Update()
 				SKIN:Bang("!setOption", "mItemPlayTime" .. j, "formula", showcase[i].playtime)
 				if showcase[i].lastPlayed > 0 then
 					local format_t = nil
-					if tonumber(os.date("%Y", os.time())) - tonumber(os.date("%Y", showcase[i].lastPlayed)) > 1 then -- if less than a year ago
+					if tonumber(os.date("%Y", os.time())) - tonumber(os.date("%Y", showcase[i].lastPlayed)) < 1 then -- if less than a year ago
 						format_t = os.date('%b %d#CRLF#%I:%M', showcase[i].lastPlayed)
 						format_t = format_t:gsub("#0", "#") .. string.lower(os.date("%p", showcase[i].lastPlayed))
 					else
 						format_t = os.date('%b \'%y#CRLF#%a, %d', showcase[i].lastPlayed)
 					end
-					format_t = format_t:gsub("%s0", "%s")
+					format_t = format_t:gsub("%s0", " ")
 					SKIN:Bang("!setOption", "mItemLastPlayed" .. j, "string", format_t)
 				else
 					SKIN:Bang("!setOption", "mItemLastPlayed" .. j, "string", "never")
@@ -369,6 +369,7 @@ function Update()
 					else
 						-- print("couldn't find image for " .. showcase[i].label)
 						imageFile = DIR .. "assets\\xmb\\" .. theme .. "\\png\\" .. showcase[i].db_name .. "-content.png"
+						SKIN:Bang("!setOption", j, "imagename", imageFile)
 					end
 					-- for specificity, parse title from path's filename instead of label
 					-- local description = showcase[i].path:match(".*\\(.*)%..+$")

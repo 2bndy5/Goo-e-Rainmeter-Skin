@@ -113,4 +113,5 @@ function Update()
 	SKIN:Bang("!MoveMeter", 0, y0, "Settings")
 	SKIN:Bang("!setVariable", "iconW", cellW)
 	SKIN:Bang("!setVariable", "iconH", cellH)
+	SKIN:Bang("!redraw")
 end

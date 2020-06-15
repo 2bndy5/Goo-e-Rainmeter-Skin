@@ -253,7 +253,7 @@ meter=string
 meterStyle=RCMenuItem
 y=#menuY#
 text="Search for Image"
-leftMouseUpAction=[ "http:////www.google.com/imghp?hl=en&tab=wi&q=[mIconSearch]+boxart+jpg" ][!setClip "[mItemName#ActiveItem#]"][!deactivateConfig "#CurrentConfig#"]
+leftMouseUpAction=[ "http:////www.google.com/imghp?hl=en&tab=wi&q=[mIconSearch]+boxart" ][!setClip "[mItemName#ActiveItem#]"][!deactivateConfig "#CurrentConfig#"]
 
 [RightClickMenu2]
 meter=string

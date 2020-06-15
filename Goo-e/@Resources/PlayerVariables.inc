@@ -1,11 +1,11 @@
 [Variables]
-IconSize=153
+IconSize=256
 Player=CAD
 HideVolume=10
-WinColors=0
+WinColors=1
 Rank=-1
 CurrentColor=173,94,1
-FontColor=6,47,238
+FontColor=145,238,6
 BGcolor=7,210,212
-Alpha=49
+Alpha=102
 BevelType=0

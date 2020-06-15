@@ -98,3 +98,11 @@ shape4=Combine Shape2 | Union Shape3
 ; BGAttributes=StrokeWidth 0 | Fill Color 0,0,0,1
 ; shape=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | extend BGAttributes
 ; shape2=Path Star | Extend ButtAttributes
+
+[progressBarStyle]
+shape=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | strokeWidth 0 | fill Color 0,0,0,1
+shape2=Line ([#CurrentSection#:H]/2),([#CurrentSection#:H]/2),([#CurrentSection#:W]-[#CurrentSection#:H]/2),([#CurrentSection#:H]/2) | strokeWidth ([#CurrentSection#:H]*0.75) | Stroke LinearGradient usedGrad | StrokeStartCap Round | StrokeEndCap Round
+buttonGlare=0,([#CurrentSection#:H]*0.145),*,*,([#CurrentSection#:H]*0.6),([#CurrentSection#:H]*0.425) | 0,0,0,0;0 | 0,0,0,0;1 | 255,255,255,60;1
+shape3=Ellipse ([#CurrentSection#:H]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:H]*0.5) | Fill Color #CurrentColor# | Extend ButtAttributes
+shape4=Ellipse ([#CurrentSection#:H]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:H]*0.5) | Fill RadialGradient buttonGlare | Rotate -36.5 | Extend ButtAttributes
+dynamicVariables=1

@@ -13,27 +13,27 @@ GradientAngle=60
 dynamicvariables=1
 hidden=1
 leftmouseupaction=[steam://rungameid/[mItemID#CurrentSection#]][!deactivateConfig "#CurrentConfig#"]
-rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeId "[mItemID#CurrentSection#]"][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y]+#CURRENTCONFIGY#))<(#menuItemH#*10)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*10)):($mouseY$+[#CurrentSection#:Y]))][!hideMeterGroup menus][!showmetergroup rightClickMenu]
+rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeId "[&mItemID#CurrentSection#]"][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y]+#CURRENTCONFIGY#))<(#menuItemH#*10)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*10)):($mouseY$+[#CurrentSection#:Y]))][!hideMeterGroup menus][!showmetergroup rightClickMenu]
 
 [mouseOverIconNoBlurBg]
 imageName="#Dir#appcache\librarycache\[&mItemID#CurrentSection#][&activeArtwork]"
-MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_library_hero.jpg"][!setOption #currentSection# PreserveAspectRatio 0]
+MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&*mItemID#CurrentSection#*]_library_hero.jpg"][!setOption #currentSection# PreserveAspectRatio 0]
 MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #currentSection# imagename ""][!setOption #currentSection# PreserveAspectRatio 0]
 
 [mouseOverIconNoBlurBgDefault]
 imageName="#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_header.jpg"
-MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_library_hero.jpg"][!setOption #currentSection# PreserveAspectRatio 0]
-MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_header.jpg"][!setOption #currentSection# PreserveAspectRatio 0]
+MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&*mItemID#CurrentSection#*]_library_hero.jpg"][!setOption #currentSection# PreserveAspectRatio 0]
+MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&*mItemID#CurrentSection#*]_header.jpg"][!setOption #currentSection# PreserveAspectRatio 0]
 
 [MouseOverIcon]
 imageName="#Dir#appcache\librarycache\[&mItemID#CurrentSection#][&activeArtwork]"
-MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_library_hero_blur.jpg"][!setOption #currentSection# PreserveAspectRatio 2]
-MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#][&activeArtwork]"][!setOption #currentSection# PreserveAspectRatio 0]
+MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&*mItemID#CurrentSection#*]_library_hero_blur.jpg"][!setOption #currentSection# PreserveAspectRatio 2]
+MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&*mItemID#CurrentSection#*][&activeArtwork]"][!setOption #currentSection# PreserveAspectRatio 0]
 
 [MouseOverIconDefault]
 imageName="#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_header.jpg"
-MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_library_hero_blur.jpg"][!setOption #currentSection# PreserveAspectRatio 2]
-MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&mItemID#CurrentSection#]_header.jpg"][!setOption #currentSection# PreserveAspectRatio 0]
+MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&*mItemID#CurrentSection#*]_library_hero_blur.jpg"][!setOption #currentSection# PreserveAspectRatio 2]
+MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!setOption #currentSection# imagename "#Dir#appcache\librarycache\[&*mItemID#CurrentSection#*]_header.jpg"][!setOption #currentSection# PreserveAspectRatio 0]
 
 [InfoBG]
 x=r

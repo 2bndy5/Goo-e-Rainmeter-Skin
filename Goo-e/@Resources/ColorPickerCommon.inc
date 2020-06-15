@@ -1,9 +1,9 @@
 
 [Variables]
 ActiveRGB=97,162,233
-ActiveHex=703503
-Hue=0.16333
-sat=0.93
+ActiveHex=F05822
+Hue=0.75333
+sat=0.98667
 val=0.98
 HueColor=
 SettingsFontSize=20
@@ -135,3 +135,5 @@ shape6=Line 0,((1-#Sat#)*[#CurrentSection#:H]),([#CurrentSection#:W]),((1-#Sat#)
 shape7=Line (#Val#*[#CurrentSection#:W]),0,(#Val#*[#CurrentSection#:W]),([#CurrentSection#:H])
 shape8=Combine shape6 | Union shape7 | Exclude shape4 | union shape4 | Intersect shape5
 LeftMouseUpAction=[!setVariable val ($MouseX$/[#CurrentSection#:W])][!setVariable sat (1-$MouseY$/[#CurrentSection#:H])][!writeKeyValue Variables val ($MouseX$/[#CurrentSection#:W]) "#@#ColorPickerCommon.inc"][!writeKeyValue Variables sat (1-$MouseY$/[#CurrentSection#:H]) "#@#ColorPickerCommon.inc"][!updateMeasure mCalcRGB][!commandMeasure mCalcRGB "HSVtoRGB()"]
+
+@includeMenuUI="#@#SettingsTable.inc"

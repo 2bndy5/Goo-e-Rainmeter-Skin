@@ -1,4 +1,4 @@
 [Variables]
 IconSize=153
-MouseX=44
-MouseY=169
+MouseX=30
+MouseY=53
