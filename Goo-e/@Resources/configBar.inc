@@ -1,3 +1,11 @@
+[Rainmeter]
+dynamicwindowsize=1
+MouseLeaveAction=[!setvariable hideconfigbar 1][!writekeyvalue variables hideconfigbar 1 "#@##CurrentConfig#\Variables.inc"][!update]
+ContextTitle="Color Settings"
+ContextAction=[!ToggleConfig "#CurrentConfig#\Settings" "#CURRENTFILE#"][!move "(#WorkAreaWidth#-(#CurrentConfigX#+#CurrentConfigWidth#)>=725?(#CurrentConfigX#+#IconSize#):(#CurrentConfigX#-725))" "(#WorkAreaHeight#-#CurrentConfigY#>=404?(#CurrentConfigY#):(#WorkAreaHeight#-404))" "#CurrentConfig#\Settings"]
+ContextTitle2="Set Icon Size"
+ContextAction2=[!commandmeasure mInputSize "executebatch 1"]
+
 [configbar]
 Meter=shape
 x=0
@@ -10,26 +18,25 @@ Hidden=#hideconfigbar#
 dynamicvariables=1
 Group=configbar
 
-[confignext]
+[configNext]
 meter=shape
-x=(#iconSize#*0.75)
-y=(#IconSize#*0.05)r
+x=(#IconSize#*0.75)
+y=([configbar:Y]+#IconSize#*0.05)
 h=(#IconSize#*0.25)
 w=(#IconSize#*0.25)
 ButtAttributes=Strokewidth 0 | Fill Color #ClockColor# | rotate 90
-meterStyle=ArrowShape | StyleNext
+meterStyle=ArrowShape
 Hidden=#hideconfigbar#
 dynamicvariables=1
 Group=configbar
 
-[configback]
+[configBack]
 meter=Shape
-x=0
-y=r
+y=([configbar:Y]+#IconSize#*0.05)
 h=(#IconSize#*0.25)
 w=(#IconSize#*0.25)
 ButtAttributes=Strokewidth 0 | Fill Color #ClockColor# | rotate -90
-meterStyle=ArrowShape | StyleBack
+meterStyle=ArrowShape
 Hidden=#hideconfigbar#
 dynamicvariables=1
 Group=configbar
@@ -38,19 +45,18 @@ Group=configbar
 meter=shape
 DynamicVariables=1
 x=(#IconSize#*0.25)
-y=r
+y=([configbar:Y]+#IconSize#*0.05)
 h=(#IconSize#*0.25)
 w=(#IconSize#*0.25)
 ButtAttributes=StrokeWidth ([#CurrentSection#:W]*0.065) | StrokeColor #ClockColor# | Fill Color 0,0,0,1
 meterStyle=SettingsShape
 Hidden=#hideconfigbar#
 group=configbar
-leftMouseUpAction=[!toggleConfig  "#RootConfig#\Clock\Settings" "#CURRENTFILE#"][!move "(#WorkAreaWidth#-(#CurrentConfigX#+#CurrentConfigWidth#)>=725?(#CurrentConfigX#+#IconSize#):(#CurrentConfigX#-725))" "(#WorkAreaHeight#-#CurrentConfigY#>=404?(#CurrentConfigY#):(#WorkAreaHeight#-404))" "#RootConfig#\Clock\Settings"]
 
 [setSize]
 meter=shape
 x=(#IconSize#*0.5)
-y=r
+y=([configbar:Y]+#IconSize#*0.05)
 h=(#IconSize#*0.25)
 w=(#IconSize#*0.25)
 ButtAttributes=StrokeWidth ([#CurrentSection#:W]*0.065) | StrokeColor #ClockColor#
@@ -58,7 +64,7 @@ meterStyle=SizeShape
 Hidden=#hideconfigbar#
 dynamicvariables=1
 group=configbar
-LeftMouseUpAction=[!Commandmeasure minputSize "ExecuteBatch 1"]
+leftmouseupaction=[!commandmeasure mInputSize "executebatch 1"]
 ;;Deprecated stopwatch & alarm skins for now. Maybe re-implement in future, so save this code for reference.
 ;;For switching to StopWatch & Alarm skin
 ;	[pageclockactiveA]

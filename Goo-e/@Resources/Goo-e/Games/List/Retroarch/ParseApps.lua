@@ -36,9 +36,11 @@ function apps.sort(self, arg, reverse)
 	end
 	-- move favorites to index 1
 	for i = 1, #self do
+		print(self[i].label)
 		if self[i].label == "Favorites" then
 			local temp = table.remove(self, i)
 			table.insert(self, 1, temp)
+			print("found Favoritres; self[1].label = " .. self[1].label)
 			break
 		end
 	end
@@ -48,6 +50,7 @@ function apps.filter(self, arg)
 	local result = apps.new()
 	currConsole = SKIN:GetVariable("console")
 	filter = SKIN:GetVariable("filter")
+	if arg ~= nil then filter = arg end
 	if currConsole == "Favorites" and filter == "db_name" then
 		filter = "favorites"
 	end
@@ -106,7 +109,7 @@ function apps.filter(self, arg)
 		end
 	end
 	if #result == 0 and filter ~= "none" then
-		SKIN:Bang("!setVariable", "filter", "none")
+		-- SKIN:Bang("!setVariable", "filter", "none")
 		-- print("showcase has no games in it; switching to consoles")
 		return self:filter("none")
 	else
@@ -123,10 +126,10 @@ function apps.print(self, arg)
 			end
 			print(output)
 		elseif v[arg] ~= nil then
-			if arg ~= "name" then
-				print(v.label .. "[" .. arg .. "] = " .. v[arg])
+			if arg ~= "label" then
+				print(v.label .. "[" .. arg .. "] = " .. tostring(v[arg]))
 			else
-				print(i .. " = " .. arg .. ":" .. v[arg])
+				print(i .. " = " .. arg .. ":" .. tostring(v[arg]))
 			end
 		else
 			print("wrong keyword passed as arg")
@@ -240,6 +243,7 @@ function parseApps()
 	end
 	local endTimer = os.clock()
 	SKIN:Bang("!log", "games/apps data loaded in " .. string.format("%.3f", endTimer - startTime) .. " seconds", "Notice")
+	-- games:print("favorite")
 	SKIN:Bang("!UpdateMeasure", "mParseApps")
 end
 
@@ -309,7 +313,7 @@ function Update()
 		SKIN:Bang("!hidemeter", "loadingScreen")
 	end
 	local MAX = 12
-	local start = page * MAX + 1
+	local start = page * MAX
 	local useBoxArt = tonumber(SKIN:GetVariable("useBoxArt"))
 	if useBoxArt == 1 then
 		useBoxArt = "Named_Boxarts"

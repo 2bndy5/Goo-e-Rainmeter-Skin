@@ -2,10 +2,7 @@
 iconSize=153
 iconH=300
 iconW=150
-menuItemH=24
 menuW=200
-menuX=0
-menuY=0
 fontColor=175,173,173
 UpWhite=175,173,173
 DnWhite=175,173,173

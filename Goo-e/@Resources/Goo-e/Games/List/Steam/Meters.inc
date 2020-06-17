@@ -1,3 +1,29 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;~~~~~~~~~~~Right Click Menu~~~~~~~~~~~~~;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[Rainmeter]
+ContextTitle="View Update News"
+ContextAction=[!deactivateConfig "#CurrentConfig#"][steam://updatenews/#activeID#]
+ContextTitle2="Browse in Steam"
+ContextAction2=[!deactivateConfig "#CurrentConfig#"][steam://nav/games/details/#activeID#]
+ContextTitle3="Open Store Page"
+ContextAction3=[!deactivateConfig "#CurrentConfig#"][steam://store/#activeID#]
+ContextTitle4="Browse in Windows"
+ContextAction4=[!deactivateConfig "#CurrentConfig#"][explorer.exe "[mItemDIR#ActiveItem#]"]
+ContextTitle5="Search for preReq"
+ContextAction5=[ "http:////www.google.com/search?q=[mIconSearch]+pc+system+requirements" ][!setClip "[mItemID#ActiveItem#]"][!deactivateConfig "#CurrentConfig#"]
+; ContextTitle6="Check Required Specs"
+; ContextAction6=[!deactivateConfig "#CurrentConfig#"][steam://checksysreqs/#activeID#]
+ContextTitle6="Validate Game Files"
+ContextAction6=[!deactivateConfig "#CurrentConfig#"][steam://validate/#activeID#]
+ContextTitle7="Backup Game Files"
+ContextAction7=[!deactivateConfig "#CurrentConfig#"][steam://backup/#activeID#]
+ContextTitle8="Hide This Item"
+ContextAction8=[!commandMeasure mParseApps "addHidden(#activeID#)"]
+ContextTitle9="Uninstall Game"
+ContextAction9=[!deactivateConfig "#CurrentConfig#"][steam://uninstall/#activeID#]
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;~~~~~~~~~~Meter Styles~~~~~~~~~~~~~~~;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -13,7 +39,7 @@ GradientAngle=60
 dynamicvariables=1
 hidden=1
 leftmouseupaction=[steam://rungameid/[mItemID#CurrentSection#]][!deactivateConfig "#CurrentConfig#"]
-rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeId "[&mItemID#CurrentSection#]"][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y]+#CURRENTCONFIGY#))<(#menuItemH#*10)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*10)):($mouseY$+[#CurrentSection#:Y]))][!hideMeterGroup menus][!showmetergroup rightClickMenu]
+rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeId "[&mItemID#CurrentSection#]"][!hideMeterGroup menus][!SkinCustomMenu]
 
 [mouseOverIconNoBlurBg]
 imageName="#Dir#appcache\librarycache\[&mItemID#CurrentSection#][&activeArtwork]"
@@ -99,23 +125,6 @@ fontsize=#fontsize#
 fontColor=#fontColor#
 dynamicvariables=1
 hidden=1
-
-[RCMenuItem]
-x=#menuX#
-y=R
-w=#menuW#
-h=#menuItemH#
-solidcolor=#BGcolor#
-clipstring=2
-fontface=#fontface#
-fontsize=#fontsize#
-stringalign=LeftCenter
-fontColor=#fontColor#
-dynamicvariables=1
-hidden=1
-group=rightClickMenu | Menus
-MouseOverAction=[!setoption #CurrentSection# solidColor #highlightColor#][!redraw]
-MouseLeaveAction=[!setoption #CurrentSection# solidColor #BGcolor#][!redraw]
 
 [menuStyle]
 solidcolor=#BGcolor#
@@ -292,74 +301,6 @@ leftmouseupaction=[!WriteKeyValue variables revOrder (#revOrder#=1?0:1) "#@##Cur
 [filter]
 Meter=string
 meterStyle=menuStyle | #filter##currentSection#
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;~~~~~~~~~~~Right Click Menu~~~~~~~~~~~~~;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[RightClickMenu1]
-meter=string
-meterStyle=RCMenuItem
-y=#menuY#
-text="View Update News"
-leftmouseupaction=[!deactivateConfig "#CurrentConfig#"][steam://updatenews/#activeID#]
-
-[RightClickMenu3]
-meter=string
-meterStyle=RCMenuItem
-text="Browse in Steam"
-leftMouseUpAction=[!deactivateConfig "#CurrentConfig#"][steam://nav/games/details/#activeID#]
-
-[RightClickMenu4]
-meter=string
-meterStyle=RCMenuItem
-text="Open Store Page"
-leftmouseupaction=[!deactivateConfig "#CurrentConfig#"][steam://store/#activeID#]
-
-[RightClickMenu5]
-meter=string
-meterStyle=RCMenuItem
-text="Browse in Windows"
-leftmouseupaction=[!deactivateConfig "#CurrentConfig#"][explorer.exe "[mItemDIR#ActiveItem#]"]
-
-[RightClickMenu6]
-meter=string
-meterStyle=RCMenuItem
-text="Search for preReq"
-leftMouseUpAction=[ "http:////www.google.com/search?q=[mIconSearch]+pc+system+requirements" ][!setClip "[mItemID#ActiveItem#]"][!deactivateConfig "#CurrentConfig#"]
-; text="Check Required Specs"
-; leftmouseupaction=[!deactivateConfig "#CurrentConfig#"][steam://checksysreqs/#activeID#]
-
-[RightClickMenu7]
-meter=string
-meterStyle=RCMenuItem
-text="Validate Game Files"
-leftmouseupaction=[!deactivateConfig "#CurrentConfig#"][steam://validate/#activeID#]
-
-[RightClickMenu8]
-meter=string
-meterStyle=RCMenuItem
-text="Backup Game Files"
-leftmouseupaction=[!deactivateConfig "#CurrentConfig#"][steam://backup/#activeID#]
-
-[noneRightClickMenu9]
-text="Hide This Item"
-leftMouseUpAction=[!commandMeasure mParseApps "addHidden(#activeID#)"][!hideMeterGroup rightClickMenu]
-
-[hiddenRightClickMenu9]
-text="Show This Item"
-leftMouseUpAction=[!commandMeasure mParseApps "subHidden(#activeID#)"][!hideMeterGroup rightClickMenu]
-
-[RightClickMenu9]
-meter=string
-meterStyle=RCMenuItem | #filter##currentSection#
-
-[RightClickMenu10]
-meter=string
-meterStyle=RCMenuItem
-text="Uninstall Game"
-leftMouseUpAction=[!deactivateConfig "#CurrentConfig#"][steam://uninstall/#activeID#]
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;~~~~~~~~~~Settings Menu~~~~~~~~~~~~;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

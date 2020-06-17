@@ -153,3 +153,11 @@ ifEqualValue=1
 ifEqualAction=[!setOption fullScreenSettings prefix "[\xe73a] "]
 ifBelowValue=1
 ifBelowAction=[!setOption fullScreenSettings prefix "[\xe739] "]
+
+[activeFilter]
+measure=string
+dynamicVariables=1
+string=#filter#
+ifMatch=(?i)hidden
+ifMatchAction=[!SetOption Rainmeter contextTitle5 "Show This Item"][!SetOption Rainmeter contextAction5 """[!commandMeasure mParseApps "addHidden('[&*mItemID[#*activeItem*]*]')"]"""]
+ifNotMatchAction=[!SetOption Rainmeter contextTitle5 "Hide This Item"][!SetOption Rainmeter contextAction5 """[!commandMeasure mParseApps "subHidden('[&*mItemID[#*activeItem*]*]')"]"""]

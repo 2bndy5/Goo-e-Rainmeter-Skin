@@ -131,6 +131,7 @@ function Initialize()
 	percent = tonumber(SELF:GetOption('Percent'))
 end
 
+-- make sure any hex color code is saved as rgb color code
 function forceRGB(c)
 	local rgb = { ParseColor(c) }
 	return table.concat(rgb, ',')

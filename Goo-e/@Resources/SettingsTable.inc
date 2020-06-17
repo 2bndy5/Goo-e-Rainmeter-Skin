@@ -215,15 +215,15 @@ y=(#CellH#/-2)r
 
 [AlphaAction]
 ; default action for clock alpha vars
-LeftMouseUpAction=[!setVariable Alpha (($MouseX:%$)*2.55)][!SetVariable ClockAlpha (($MouseX:%$)*2.55) "#RootConfig#\Clock\Clocks"][!writeKeyValue Variables ClockAlpha (($MouseX:%$)*2.55) "#ROOTCONFIGPATH#Clock\Clocks\#CurrentFile#"][!writeKeyValue Variables Alpha (($MouseX:%$)*2.55)][!Redraw "#RootConfig#\Clock\Clocks"]
+LeftMouseUpAction=[!setVariable Alpha (($MouseX:%$)*2.55)][!SetVariable ClockAlpha (($MouseX:%$)*2.55) "#RootConfig#\clocks"][!writeKeyValue Variables ClockAlpha (($MouseX:%$)*2.55) "#RootConfigPath#\Clocks\#CurrentFile#"][!writeKeyValue Variables Alpha (($MouseX:%$)*2.55)][!Redraw "#RootConfig#\clocks"]
 
 [1WinColorsToggleAction]
 text="Use Windows Colors"
-leftMouseUpAction=[!SetVariable winColors 0][!SetVariable winColors 0 "#RootConfig#\Clock\Clocks"][!WriteKeyValue Variables WinColors 0][!WriteKeyValue Variables WinColors 0 "#RootConfigPath#Clock\Clocks\#CurrentFile#"][!refresh "#RootConfig#\Clock\Clocks"]
+leftMouseUpAction=[!SetVariable winColors 0][!SetVariable winColors 0 "#RootConfig#\clocks"][!WriteKeyValue Variables WinColors 0][!WriteKeyValue Variables WinColors 0 "#RootConfigPath#\Clocks\#CurrentFile#"][!refresh "#RootConfig#\clocks"]
 
 [0WinColorsToggleAction]
 text="Use These Colors"
-leftMouseUpAction=[!SetVariable winColors 1][!SetVariable winColors 1 "#RootConfig#\Clock\Clocks"][!WriteKeyValue Variables WinColors 1][!WriteKeyValue Variables WinColors 1 "#RootConfigPath#Clock\Clocks\#CurrentFile#"][!refresh "#RootConfig#\Clock\Clocks"]
+leftMouseUpAction=[!SetVariable winColors 1][!SetVariable winColors 1 "#RootConfig#\clocks"][!WriteKeyValue Variables WinColors 1][!WriteKeyValue Variables WinColors 1 "#RootConfigPath#\Clocks\#CurrentFile#"][!refresh "#RootConfig#\clocks"]
 
 [WinColorsToggle]
 meter=string

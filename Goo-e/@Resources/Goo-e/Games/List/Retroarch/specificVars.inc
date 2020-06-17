@@ -1,11 +1,11 @@
 [variables]
-sort=lastPlayed
+sort=playtime
 revOrder=1
-filter=none
+filter=db_name
 DIR=%AppData%\Retroarch
 useBoxArt=1
 theme=retrosystem
-console=Sega - Saturn
+console=Sony - PlayStation 2
 page=1
 BgAlpha=216
 scrollPlane=1

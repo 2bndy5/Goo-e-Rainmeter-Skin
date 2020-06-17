@@ -1,3 +1,23 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;~~~~~~~~~~~Right Click Menu~~~~~~~~~~~~~;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[Rainmeter]
+ContextTitle="Search for Image"
+ContextAction=[ "http:////www.google.com/imghp?hl=en&tab=wi&q=[mIconSearch]+boxart" ][!setClip "[mItemName#ActiveItem#]"][!deactivateConfig "#CurrentConfig#"]
+ContextTitle2="Search for preReq"
+ContextAction2=[ "http:////www.google.com/search?q=[mIconSearch]+pc+system+requirements" ][!setClip "[mItemName#ActiveItem#]"][!deactivateConfig "#CurrentConfig#"]
+ContextTitle3="Open Origin"
+ContextAction3=["#OriginPath#"][!deactivateConfig "#CurrentConfig#"]
+ContextTitle4="Browse in Windows"
+ContextAction4=["[&mItemDIR#ActiveItem#]"][!deactivateConfig "#CurrentConfig#"]
+ContextTitle5="Hide This Item"
+ContextAction5=[!commandMeasure mParseApps "addHidden('[&mItemID#activeItem#]')"]
+; ContextTitle5="Show This Item"
+; ContextAction5=[!commandMeasure mParseApps "subHidden('[&mItemID#activeItem#]')"]
+ContextTitle6="Uninstall Game"
+ContextAction6=[!deactivateConfig "#CurrentConfig#"][control appwiz.cpl]
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;MeterStyles~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -13,7 +33,7 @@ dynamicvariables=1
 MouseOverAction=[!showMeterGroup info#CurrentSection#]
 MouseLeaveAction=[!hideMeterGroup info#CurrentSection#]
 leftmouseupaction=["[&mItemRunLink#CurrentSection#]"][!deactivateConfig "#CurrentConfig#"]
-rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!hidemetergroup menus][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y])+#CURRENTCONFIGY#)<(#menuItemH#*8)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*8)):($mouseY$+[#CurrentSection#:Y]))][!showmetergroup rightClickMenu]
+rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!hidemetergroup menus][!SkinCustomMenu]
 
 [InfoBG]
 x=r
@@ -61,23 +81,6 @@ fontsize=#fontsize#
 fontColor=#fontColor#
 dynamicvariables=1
 hidden=1
-
-[RCMenuItem]
-x=#menuX#
-y=R
-w=#menuW#
-h=#menuItemH#
-solidcolor=#BGcolor#
-clipstring=2
-fontface=#fontface#
-fontsize=#fontsize#
-stringalign=LeftCenter
-fontColor=#fontColor#
-dynamicvariables=1
-hidden=1
-group=rightClickMenu | menus
-MouseOverAction=[!setoption #CurrentSection# solidColor #highlightColor#][!redraw]
-MouseLeaveAction=[!setoption #CurrentSection# solidColor #BGcolor#][!redraw]
 
 [menuStyle]
 solidcolor=#BGcolor#
@@ -243,53 +246,6 @@ leftmouseupaction=[!WriteKeyValue variables revOrder (#revOrder#=1?0:1) "#@##Cur
 [filter]
 Meter=string
 meterStyle=menuStyle | #filter##currentSection#
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;~~~~~~~~~~~Right Click Menu~~~~~~~~~~~~~;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[RightClickMenu1]
-meter=string
-meterStyle=RCMenuItem
-y=#menuY#
-text="Search for Image"
-leftMouseUpAction=[ "http:////www.google.com/imghp?hl=en&tab=wi&q=[mIconSearch]+boxart" ][!setClip "[mItemName#ActiveItem#]"][!deactivateConfig "#CurrentConfig#"]
-
-[RightClickMenu2]
-meter=string
-meterStyle=RCMenuItem
-text="Search for preReq"
-leftMouseUpAction=[ "http:////www.google.com/search?q=[mIconSearch]+pc+system+requirements" ][!setClip "[mItemName#ActiveItem#]"][!deactivateConfig "#CurrentConfig#"]
-
-[RightClickMenu3]
-meter=string
-meterStyle=RCMenuItem
-text="Open Origin"
-leftmouseupaction=["#OriginPath#"][!deactivateConfig "#CurrentConfig#"]
-
-[RightClickMenu4]
-meter=string
-meterStyle=RCMenuItem
-text="Browse in Windows"
-leftmouseupaction=["[&mItemDIR#ActiveItem#]"][!deactivateConfig "#CurrentConfig#"]
-
-[noneRightClickMenu5]
-text="Hide This Item"
-leftMouseUpAction=[!commandMeasure mParseApps "addHidden('[&mItemID#activeItem#]')"][!hideMeterGroup rightClickMenu]
-
-[hiddenRightClickMenu5]
-text="Show This Item"
-leftMouseUpAction=[!commandMeasure mParseApps "subHidden('[&mItemID#activeItem#]')"][!hideMeterGroup rightClickMenu]
-
-[RightClickMenu5]
-meter=string
-meterStyle=RCMenuItem | #filter##currentSection#
-
-[RightClickMenu6]
-meter=string
-meterStyle=RCMenuItem
-text="Uninstall Game"
-leftmouseupaction=[!deactivateConfig "#CurrentConfig#"][control appwiz.cpl]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;~~~~~~~~~~Settings Menu~~~~~~~~~~~~;

@@ -213,4 +213,4 @@ meterStyle=SettingsShape
 ButtAttributes=StrokeWidth ((([#CurrentSection#:W]+[#CurrentSection#:H])/2)*0.065) | StrokeColor 255,255,255,#SettingsAlpha# | Fill Color 0,0,0,1
 MouseOverAction=[!setVariable SettingsAlpha 255][!redraw]
 MouseLeaveAction=[!setVariable SettingsAlpha 0][!redraw]
-leftMouseUpAction=[!toggleConfig  "#RootConfig#\Games\Settings" "LogoSettings.ini"][!move "(#WorkAreaWidth#-(#CurrentConfigX#+#CurrentConfigWidth#)>=725?(#CurrentConfigX#+#IconSize#):(#CurrentConfigX#-725))" "(#WorkAreaHeight#-#CurrentConfigY#>=404?(#CurrentConfigY#):(#WorkAreaHeight#-404))" "#RootConfig#\Games\Settings"]
+leftMouseUpAction=[!ToggleConfig  "#CurrentConfig#\Settings" "LogoSettings.ini"][!move "(#WorkAreaWidth#-(#CurrentConfigX#+#CurrentConfigWidth#)>=725?(#CurrentConfigX#+#IconSize#):(#CurrentConfigX#-725))" "(#WorkAreaHeight#-#CurrentConfigY#>=404?(#CurrentConfigY#):(#WorkAreaHeight#-404))" "#CurrentConfig#\Settings"]

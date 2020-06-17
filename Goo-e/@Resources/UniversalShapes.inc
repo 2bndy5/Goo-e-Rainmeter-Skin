@@ -57,6 +57,7 @@ shape=Rectangle 0,0,[#CurrentSection#:W],[#CurrentSection#:H] | extend BGAttribu
 shape2=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.15),([#CurrentSection#:H]*0.15)
 shape3=Path Teeth | Extend ButtAttributes
 shape4=Combine Shape3 | Exclude shape2
+LeftMouseupAction=[!ToggleConfig "#CurrentConfig#\Settings" "#CURRENTFILE#"][!move "(#WorkAreaWidth#-(#CurrentConfigX#+#CurrentConfigWidth#)>=725?(#CurrentConfigX#+#IconSize#):(#CurrentConfigX#-725))" "(#WorkAreaHeight#-#CurrentConfigY#>=404?(#CurrentConfigY#):(#WorkAreaHeight#-404))" "#CurrentConfig#\Settings"]
 
 [SizeShape]
 ButtAttributes=StrokeWidth ([#CurrentSection#:W]*0.065) | StrokeColor #CurrentColor# | Fill Color 0,0,0,1

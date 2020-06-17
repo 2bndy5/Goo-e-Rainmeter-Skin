@@ -1,3 +1,14 @@
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;~~~~~~~~~~~Right Click Menu~~~~~~~~~~~~~;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[Rainmeter]
+ContextTitle="Browse in Windows"
+ContextAction=[!deactivateConfig "#CurrentConfig#"]["[&activePath]"]
+ContextTitle2="change Emulator"
+ContextAction2=[!deactivateConfig "#CurrentConfig#"]["[&activePath]"]
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;~~~~~~~~~~Meter Styles~~~~~~~~~~~~~~~;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -13,14 +24,13 @@ PreserveAspectRatio=1
 hidden=1
 MouseOverAction=[!ShowMeterGroup info#CurrentSection#][!redraw]
 MouseLeaveAction=[!HideMeterGroup info#CurrentSection#][!redraw]
+rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeFile "[mItemDIR#CurrentSection#:EscapeRegExp]"][!hideMeterGroup menus][!SkinCustomMenu]
 
 [ConsoleAction]
 leftMouseUpAction=[!writeKeyValue variables filter "db_name" "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setVariable filter "db_name"][!writeKeyValue variables console "[&mItemName#CurrentSection#]" "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setVariable console "[&mItemName#CurrentSection#]"][!updateMeasure mParseApps][!hideMeterGroup menus]
-rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeFile "[mItemDIR#CurrentSection#:EscapeRegExp]"][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y]+#CURRENTCONFIGY#))<(#menuItemH#*1)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*1)):($mouseY$+[#CurrentSection#:Y]))][!hideMeterGroup menus][!showmetergroup rightClickConsoleMenu]
 
 [GameAction]
 leftmouseupaction=["#DIR#\retroarch.exe" -L "[mItemCore#CurrentSection#]" "[mItemDIR#CurrentSection#]"][!deactivateConfig "#CurrentConfig#"]
-rightMouseUpAction=[!setvariable activeItem "#CurrentSection#"][!setvariable activeFile "[mItemDIR#CurrentSection#:EscapeRegExp]"][!setVariable menuX ((#WorkareaWidth#-($mouseX$+[#CurrentSection#:X])+#CURRENTCONFIGX#)<#menuW#?(($mouseX$+[#CurrentSection#:X])-#menuW#):($mouseX$+[#CurrentSection#:X]))][!setVariable menuY ((#WorkAreaHeight#-($mouseY$+[#CurrentSection#:Y]+#CURRENTCONFIGY#))<(#menuItemH#*1)?(($mouseY$+[#CurrentSection#:Y])-(#menuItemH#*1)):($mouseY$+[#CurrentSection#:Y]))][!hideMeterGroup menus][!showmetergroup rightClickGameMenu]
 
 [InfoBG]
 x=r
@@ -85,23 +95,6 @@ fontsize=#fontsize#
 fontColor=#fontColor#
 dynamicvariables=1
 hidden=1
-
-[RCMenuItem]
-x=#menuX#
-y=R
-w=#menuW#
-h=#menuItemH#
-solidcolor=#BGcolor#
-clipstring=2
-fontface=#fontface#
-fontsize=#fontsize#
-stringalign=LeftCenter
-fontColor=#fontColor#
-dynamicvariables=1
-hidden=1
-group=rightClickMenu | menus
-MouseOverAction=[!setoption #CurrentSection# solidColor #highlightColor#][!redraw]
-MouseLeaveAction=[!setoption #CurrentSection# solidColor #BGcolor#][!redraw]
 
 [menuStyle]
 solidcolor=#BGcolor#
@@ -280,26 +273,6 @@ leftmouseupaction=[!WriteKeyValue variables sort "lastPlayed" "#@##CurrentConfig
 Meter=string
 meterStyle=menuStyle | #revOrder##CurrentSection#
 leftmouseupaction=[!WriteKeyValue variables revOrder (#revOrder#=1?0:1) "#@##CurrentConfig#\#service#\SpecificVars.inc"][!setVariable revOrder (#revOrder#=1?0:1)][!commandMeasure mParseApps "applySort()"][!hidemetergroup menuSelect][!updateMeasure mParseApps]
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;~~~~~~~~~~~Right Click Menu~~~~~~~~~~~~~;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[RightClickBrowse]
-meter=string
-meterStyle=RCMenuItem
-y=#menuY#
-text="Browse in Windows"
-group=rightClickGameMenu | menus
-leftmouseupaction=[!deactivateConfig "#CurrentConfig#"]["[&activePath]"]
-
-[RightClickChangeEmu]
-meter=string
-meterStyle=RCMenuItem
-y=#menuY#
-text="change Emulator"
-group=rightClickConsoleMenu | menus
-leftmouseupaction=[!deactivateConfig "#CurrentConfig#"]["[&activePath]"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;~~~~~~~~~Settings Menu~~~~~~~~~~~~~;

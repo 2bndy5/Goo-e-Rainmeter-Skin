@@ -86,3 +86,12 @@ ifFalseAction2=[!setOption BannerImages prefix "[\xe739] "]
 ifCondition3=#useBoxart# = -1
 ifTrueAction3=[!setOption LogoImages prefix "[\xe73a] "]
 ifFalseAction3=[!setOption LogoImages prefix "[\xe739] "]
+
+[activeFilter]
+measure=string
+dynamicVariables=1
+string=#filter#
+ifMatchMode=1
+ifMatch=(?i)hidden
+ifMatchAction=[!SetOption Rainmeter ContextTitle8 "Show This Item"][!SetOption Rainmeter contextAction8 """[!commandMeasure mParseApps "subHidden(#*activeID*#)"]"""]
+ifNotMatchAction=[!SetOption Rainmeter ContextTitle8 "Hide This Item"][!SetOption Rainmeter contextAction8 """[!commandMeasure mParseApps "addHidden(#*activeID*#)"]"""]
