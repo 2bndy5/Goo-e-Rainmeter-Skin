@@ -1,6 +1,22 @@
 [Variables]
 cellW=175
 cellH=50
+tooltiptext1=""
+tooltiptext2=""
+tooltiptext3=""
+tooltiptext4=""
+tooltiptext5=""
+tooltiptext6=""
+tooltiptext3w=""
+tooltiptext4w=""
+tooltiptext5w=""
+tooltiptext6w=""
+tooltiptext7=""
+tooltiptext8=""
+tooltiptext9=""
+tooltiptext10=""
+tooltiptext11=""
+tooltiptext12=""
 
 [ButtonShape]
 w=#cellW#
@@ -86,6 +102,7 @@ x=r
 y=(#CellH#)r
 w=(#CellW#)
 h=(#CellH#)
+tooltiptext="[#tooltiptext[#CurrentSection]]"
 dynamicVariables=1
 
 [1x2container]
@@ -93,6 +110,7 @@ x=r
 y=(#CellH#)r
 w=(#CellW#*2)
 h=(#CellH#)
+tooltiptext="[#tooltiptext[#CurrentSection]]"
 dynamicVariables=1
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

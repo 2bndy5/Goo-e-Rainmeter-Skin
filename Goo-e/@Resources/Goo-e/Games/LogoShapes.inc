@@ -6,7 +6,7 @@ pivotGlow=fill color #SteamHighlightGrad2#,([calcBodyAlpha] * 255)
 LeftLeg=0,([#CurrentSection#:H]*0.455) | LineTo ([#CurrentSection#:W]*0.38),([#CurrentSection#:H]*0.612) | ArcTo ([#CurrentSection#:W]*0.316),([#CurrentSection#:H]*0.75) | LineTo 0,([#CurrentSection#:H]*0.62) | ClosePath 1
 RightLeg=([#CurrentSection#:W]*0.347),([#CurrentSection#:H]*0.56) | LineTo ([#CurrentSection#:W]*0.49),([#CurrentSection#:H]*0.35) | LineTo ([#CurrentSection#:W]*0.675),([#CurrentSection#:H]*0.54) | LineTo ([#CurrentSection#:W]*0.469),([#CurrentSection#:H]*0.69) | ClosePath 1
 ; predefined gradients
-SteamBgGradient=-90 | #SteamBGgrad2#,([calcBodyAlpha] * #SteamBGAlpha#) ; 1.0 | #SteamBGgrad1#,([calcBodyAlpha] * #SteamBGAlpha#) ; 0.4
+SteamBgGradient=-90 | #SteamBGgrad2#,([calcBodyAlpha] * #SteamBGAlpha# / 2) ; 1.0 | #SteamBGgrad1#,([calcBodyAlpha] * #SteamBGAlpha# / 2) ; 0.4
 snakeGradient=([mAnimLoop] * -3.6) | #SteamHighlightGrad1# ; 1.0 | #SteamHighlightGrad1#,127 ; 0.5
 ; shapes for building the image
 shape=Ellipse ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.5),([#CurrentSection#:W]*0.5) | strokeWidth 0 | fill color 0,0,0,1
@@ -43,7 +43,7 @@ shape6=Combine Shape4 | Exclude shape5 | Union shape2 | Union shape3 | offset ([
 Group=Icons
 
 [RetroarchIconShape]
-bodyGradient=90 | #retroarchBGgrad2#,(round([calcBodyAlpha:]*#retroarchBGAlpha#)) ; 0.25 | #retroarchBGgrad1#,(round([calcBodyAlpha:]*#retroarchBGAlpha#)) ; 0.6
+bodyGradient=90 | #retroarchBGgrad2#,(round([calcBodyAlpha:]*#retroarchBGAlpha#)) ; 0.0 | #retroarchBGgrad1#,(round([calcBodyAlpha:]*#retroarchBGAlpha#)) ; 0.45
 eyeliner=90 | #retroarchHighlightGrad1#,(round([calcBodyAlpha:]*#retroarchBGAlpha#)) ; 0 | #retroarchHighlightGrad2#,(round([calcBodyAlpha:]*#retroarchBGAlpha#)) ; 1
 eyelinerAttributes=stroke LinearGradient eyeliner | strokeWidth ([#CurrentSection#:H]*0.022) | fill color 0,0,0,0
 starWipe=0,0,*,*,([#CurrentSection#:W]),([#CurrentSection#:W]*0.6) | #retroarchHighlightGrad2#,(round([mAnimLoop:]*2.55));0 | #retroarchHighlightGrad2#,0;(0.01+[mAnimLoop:]*0.99/100) | #retroarchHighlightGrad1#;(0.01+[mAnimLoop:]*0.99/100) | #retroarchHighlightGrad1#;(0.1+[mAnimLoop:]*0.9/100) | #retroarchHighlightGrad2#,1;(0.1+[mAnimLoop:]*0.9/100) | #retroarchHighlightGrad2#,255;1
