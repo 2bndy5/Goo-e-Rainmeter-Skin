@@ -1,5 +1,5 @@
 [Variables]
-iconSize=500
+iconSize=153
 iconH=300
 iconW=150
 menuW=200
