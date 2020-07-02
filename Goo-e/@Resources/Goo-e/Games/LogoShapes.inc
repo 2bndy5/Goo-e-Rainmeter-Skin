@@ -43,24 +43,30 @@ shape6=Combine Shape4 | Exclude shape5 | Union shape2 | Union shape3 | offset ([
 Group=Icons
 
 [RetroarchIconShape]
-bodyGradient=90 | #retroarchBGgrad2#,(round([calcBodyAlpha:]*#retroarchBGAlpha#)) ; 0.0 | #retroarchBGgrad1#,(round([calcBodyAlpha:]*#retroarchBGAlpha#)) ; 0.45
-eyeliner=90 | #retroarchHighlightGrad1#,(round([calcBodyAlpha:]*#retroarchBGAlpha#)) ; 0 | #retroarchHighlightGrad2#,(round([calcBodyAlpha:]*#retroarchBGAlpha#)) ; 1
-eyelinerAttributes=stroke LinearGradient eyeliner | strokeWidth ([#CurrentSection#:H]*0.022) | fill color 0,0,0,0
-starWipe=0,0,*,*,([#CurrentSection#:W]),([#CurrentSection#:W]*0.6) | #retroarchHighlightGrad2#,(round([mAnimLoop:]*2.55));0 | #retroarchHighlightGrad2#,0;(0.01+[mAnimLoop:]*0.99/100) | #retroarchHighlightGrad1#;(0.01+[mAnimLoop:]*0.99/100) | #retroarchHighlightGrad1#;(0.1+[mAnimLoop:]*0.9/100) | #retroarchHighlightGrad2#,1;(0.1+[mAnimLoop:]*0.9/100) | #retroarchHighlightGrad2#,255;1
-outlineAttributes=stroke RadialGradient starWipe | strokeWidth ([#CurrentSection#:H]*0.022) | fill color 0,0,0,0
+bodyGradient=-90 | #retroarchBGgrad2#,#retroarchBGAlpha#;0.25 | #retroarchBGgrad2#,#retroarchBGAlpha#;0.3 | #retroarchBGgrad1#,#retroarchBGAlpha#;0.47 | #retroarchBGgrad1#,#retroarchBGAlpha#;0.725 | #retroarchBGgrad2#,#retroarchBGAlpha#;0.85 | #retroarchBGgrad1#,#retroarchBGAlpha#;0.95
+eyeShadow=45 | #retroarchHighlightGrad1#,(#retroarchBGAlpha#*0.75);0 | #retroarchHighlightGrad2#,(#retroarchBGAlpha#*0.75);1
+eyeShadowAttributes=stroke LinearGradient eyeShadow | strokeWidth ([#CurrentSection#:H]*0.015) | fill color 0,0,0,0
+eyeliner=45 | #retroarchHighlightGrad1#;0 | #retroarchHighlightGrad2#;1
+eyelinerAttributes=stroke LinearGradient eyeliner | strokeWidth ([#CurrentSection#:H]*0.01) | fill color 0,0,0,0
+glimmerWave=#retroarchWaveAngle# | 255,255,255,0;(([mAnimLoop]-50)*2/100+1) | 255,255,255,0;(([mAnimLoop]-50)*2/100+0.75) | 255,255,255,185;(([mAnimLoop]-50)*2/100+0.5) | 255,255,255,0;(([mAnimLoop]-50)*2/100+0.25) | 255,255,255,0;(([mAnimLoop]-50)*2/100-1.25) | 255,255,255,0;(([mAnimLoop]-50)*2/100-1)
 body=([#CurrentSection#:W]*0.225),([#CurrentSection#:H]*0.325) | LineTo ([#CurrentSection#:W]*0.775),([#CurrentSection#:H]*0.325) | LineTo ([#CurrentSection#:W]*0.853),([#CurrentSection#:H]*0.636) | LineTo ([#CurrentSection#:W]*0.147),([#CurrentSection#:H]*0.636)
 xShape=([#CurrentSection#:W]*0.29),([#CurrentSection#:H]*0.246) | LineTo ([#CurrentSection#:W]*0.374),([#CurrentSection#:H]*0.246) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.39) | LineTo ([#CurrentSection#:W]*0.626),([#CurrentSection#:H]*0.246) | LineTo ([#CurrentSection#:W]*0.71),([#CurrentSection#:H]*0.246) | LineTo ([#CurrentSection#:W]*0.55),([#CurrentSection#:H]*0.444) | LineTo ([#CurrentSection#:W]*0.815),([#CurrentSection#:H]*0.753) | LineTo ([#CurrentSection#:W]*0.703),([#CurrentSection#:H]*0.753) | LineTo ([#CurrentSection#:W]*0.5),([#CurrentSection#:H]*0.51) | LineTo ([#CurrentSection#:W]*0.297),([#CurrentSection#:H]*0.753) | LineTo ([#CurrentSection#:W]*0.185),([#CurrentSection#:H]*0.753) | LineTo ([#CurrentSection#:W]*0.45),([#CurrentSection#:H]*0.444)
 arms=([#CurrentSection#:W]*0.07),([#CurrentSection#:H]*0.325) | LineTo ([#CurrentSection#:W]*0.15),([#CurrentSection#:H]*0.325) | LineTo ([#CurrentSection#:W]*0.12),([#CurrentSection#:H]*0.442) | LineTo ([#CurrentSection#:W]*0.881),([#CurrentSection#:H]*0.442) | LineTo ([#CurrentSection#:W]*0.851),([#CurrentSection#:H]*0.325) | LineTo ([#CurrentSection#:W]*0.93),([#CurrentSection#:H]*0.325) | LineTo ([#CurrentSection#:W]*0.988),([#CurrentSection#:H]*0.5585) | LineTo ([#CurrentSection#:W]*0.012),([#CurrentSection#:H]*0.5585)
 shape=Rectangle 0,([#CurrentSection#:H]*0.25),([#CurrentSection#:W]),([#CurrentSection#:H]*0.5) | fill color 0,0,0,1 | strokewidth 0
 shape2=path body | Fill LinearGradient bodyGradient | strokeWidth 0
-shape3=path xShape | fill color 0,0,0,0 | extend outlineAttributes
-shape4=path arms
+shape3=path xShape | strokeWidth ([#CurrentSection#:H]*0.022) | fill LinearGradient glimmerWave | stroke LinearGradient glimmerWave
+shape4=path arms | strokeWidth ([#CurrentSection#:H]*0.015) | Fill color 0,0,0,0 | strokeColor #retroarchHighlightGrad2#,(#retroarchBGAlpha#*0.75)
 shape5=Rectangle ([#CurrentSection#:W]*0.298),([#CurrentSection#:H]*0.3995),([#CurrentSection#:W]*0.083),([#CurrentSection#:H]*0.083)
 shape6=Rectangle ([#CurrentSection#:W]*0.621),([#CurrentSection#:H]*0.3995),([#CurrentSection#:W]*0.083),([#CurrentSection#:H]*0.083)
 shape7=combine shape2 | union shape3 | union shape4 | exclude shape5 | exclude shape6
-shape8=combine shape3 | union shape2 | union shape4
-shape9=Rectangle ([#CurrentSection#:W]*0.621),([#CurrentSection#:H]*0.3995),([#CurrentSection#:W]*0.083),([#CurrentSection#:H]*0.083) | extend eyelinerAttributes
-shape10=Rectangle ([#CurrentSection#:W]*0.298),([#CurrentSection#:H]*0.3995),([#CurrentSection#:W]*0.083),([#CurrentSection#:H]*0.083) | extend eyelinerAttributes
+shape8=Rectangle ([#CurrentSection#:W]*0.621),([#CurrentSection#:H]*0.3995),([#CurrentSection#:W]*0.083),([#CurrentSection#:H]*0.083) | extend eyeShadowAttributes
+shape9=Rectangle ([#CurrentSection#:W]*0.298),([#CurrentSection#:H]*0.3995),([#CurrentSection#:W]*0.083),([#CurrentSection#:H]*0.083) | extend eyeShadowAttributes
+shape10=Rectangle ([#CurrentSection#:W]*0.621),([#CurrentSection#:H]*0.3995),([#CurrentSection#:W]*0.083),([#CurrentSection#:H]*0.083) | extend eyelinerAttributes
+shape11=Rectangle ([#CurrentSection#:W]*0.298),([#CurrentSection#:H]*0.3995),([#CurrentSection#:W]*0.083),([#CurrentSection#:H]*0.083) | extend eyelinerAttributes
+shape12=combine shape4 | union shape2 | union shape3
+shape13=path arms | strokeWidth ([#CurrentSection#:H]*0.015) | Fill color 0,0,0,0 | StrokeDashCap Triangle | strokeDashes 4,64 | strokeColor #retroarchHighlightGrad1# | strokeDashOffset (68*[mAnimLoop:/100])
+shape14=combine shape13 | union shape2 | union shape3
+shape15=combine shape3 | union shape2 | union shape4 | exclude shape5 | exclude shape6
 Group=Icons
 
 [emulationStationIconShape]
