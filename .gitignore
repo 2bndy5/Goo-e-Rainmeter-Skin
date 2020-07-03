@@ -2,20 +2,20 @@
 .vscode/
 
 # ignore skin temp files specific to (& created on) end-use scenarios
-Goo-e/@Resources/Goo-e/Games/List/Origin/UTF8.txt
-Goo-e/@Resources/Images/MyComputer/Screenshot.png
-Goo-e/@Resources/Images/FlipClock/hours10.png
-Goo-e/@Resources/Images/FlipClock/hours1.png
-Goo-e/@Resources/Images/FlipClock/minutes10.png
-Goo-e/@Resources/Images/FlipClock/minutes1.png
-Goo-e/@Resources/Images/FlipClock/seconds10.png
-Goo-e/@Resources/Images/FlipClock/seconds.png
-Goo-e/@Resources/Images/FlipClock/Days10.png
-Goo-e/@Resources/Images/FlipClock/Months.png
-Goo-e/@Resources/Images/FlipClock/Am-Pm.png
-Goo-e/@Resources/Images/CircleClock/hours.png
-Goo-e/@Resources/Images/CircleClock/minutes.png
-Goo-e/@Resources/Images/CircleClock/Seconds.png
+Skins/Goo-e/@Resources/Goo-e/Games/List/Origin/UTF8.txt
+Skins/Goo-e/@Resources/Images/MyComputer/Screenshot.png
+Skins/Goo-e/@Resources/Images/FlipClock/hours10.png
+Skins/Goo-e/@Resources/Images/FlipClock/hours1.png
+Skins/Goo-e/@Resources/Images/FlipClock/minutes10.png
+Skins/Goo-e/@Resources/Images/FlipClock/minutes1.png
+Skins/Goo-e/@Resources/Images/FlipClock/seconds10.png
+Skins/Goo-e/@Resources/Images/FlipClock/seconds.png
+Skins/Goo-e/@Resources/Images/FlipClock/Days10.png
+Skins/Goo-e/@Resources/Images/FlipClock/Months.png
+Skins/Goo-e/@Resources/Images/FlipClock/Am-Pm.png
+Skins/Goo-e/@Resources/Images/CircleClock/hours.png
+Skins/Goo-e/@Resources/Images/CircleClock/minutes.png
+Skins/Goo-e/@Resources/Images/CircleClock/Seconds.png
 
 # ignore downloaded boxart images for "any-DRM" games service
-Goo-e/Games/List/User Obtained Boxart/*.*
+Skins/Goo-e/Games/List/User Obtained Boxart/*.*
