@@ -26,10 +26,8 @@ jobs:
         python-version: '3.8'
     
     - uses: actions/checkout@v2
-    # Runs a single command using the runners shell
-    - name: Install Dependencies
-      run: pip install -r requirements.txt
-
-    # Runs a set of commands using the runners shell
-    - name: Build Package
-      run: release.py
+    - name: Install Dependencies & Build Package
+      run: |
+        cd { $GITHUB_WORKSPACE }
+        pip install -r requirements.txt | 
+        release.py
