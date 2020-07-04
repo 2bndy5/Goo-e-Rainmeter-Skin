@@ -25,8 +25,15 @@ jobs:
         # Version range or exact version of a Python version to use, using SemVer's version range syntax.
         python-version: '3.8'
     
-    - uses: actions/checkout@v2
+    - name: checkout repo
+      uses: actions/checkout@v2
+    
+    - name: Checkout action script
+      uses: action/checkout@v2
+      with:
+        repository: 2bndy5/python_release_Rainmeter_action
+    
     - name: Install Dependencies & Build Package
       run: |
         pip install pefile | 
-        release.py
+        python release.py 
