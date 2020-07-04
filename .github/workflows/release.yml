@@ -37,4 +37,4 @@ jobs:
     - name: Install Dependencies & Build Package
       run: |
         pip install -r packRM/requirements.txt 
-        python packRM/release.py --version "0.0"
+        python packRM/release.py
