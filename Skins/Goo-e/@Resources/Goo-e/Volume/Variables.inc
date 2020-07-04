@@ -1,5 +1,5 @@
 [Variables]
 IconSize=153
-MouseX=21
-MouseY=43
+MouseX=18
+MouseY=33
 hideconfigbar=1
