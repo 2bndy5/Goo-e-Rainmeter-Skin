@@ -1,4 +1,6 @@
-    
+.. image:: https://github.com/2bndy5/Goo-e-Rainmeter-Skin/workflows/RMSKIN%20Package/badge.svg
+    :target: https://github.com/2bndy5/Goo-e-Rainmeter-Skin/actions
+
 .. image:: https://img.shields.io/github/v/tag/rainmeter/rainmeter?color=%23009900&label=Rainmeter&style=plastic   :alt: GitHub tag (latest SemVer)
     :target: https://github.com/rainmeter/rainmeter/releases
 
