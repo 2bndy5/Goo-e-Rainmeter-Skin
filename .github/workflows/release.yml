@@ -36,5 +36,5 @@ jobs:
     - name: Install Dependencies & Build Package
       run: |
         ls
-        pip install pefile | 
-        python release.py 
+        pip install -r requirements.txt 
+        python release.py
