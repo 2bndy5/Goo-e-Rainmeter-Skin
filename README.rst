@@ -1,5 +1,9 @@
+
+.. image:: https://github.com/2bndy5/Goo-e-Rainmeter-Skin/workflows/Anti-virus%20Check/badge.svg
+    :target: https://github.com/2bndy5/Goo-e-Rainmeter-Skin/actions?query=workflow%3A%22Anti-virus+Check%22
+
 .. image:: https://github.com/2bndy5/Goo-e-Rainmeter-Skin/workflows/RMSKIN%20Package/badge.svg
-    :target: https://github.com/2bndy5/Goo-e-Rainmeter-Skin/actions
+    :target: https://github.com/2bndy5/Goo-e-Rainmeter-Skin/actions?query=workflow%3A%22RMSKIN+Packager%22
 
 .. image:: https://img.shields.io/github/v/tag/rainmeter/rainmeter?color=%23009900&label=Rainmeter&style=plastic   :alt: GitHub tag (latest SemVer)
     :target: https://github.com/rainmeter/rainmeter/releases
