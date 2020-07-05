@@ -6,7 +6,7 @@
     :target: https://github.com/2bndy5/Goo-e-Rainmeter-Skin/actions?query=workflow%3A%22RMSKIN+Packager%22
 
 .. image:: https://img.shields.io/github/v/release/rainmeter/rainmeter?label=Rainmeter&logo=github&style=plastic
-    :alt: GitHub release (latest stable)
+    :alt: Rainmeter Required (latest stable)
     :target: https://github.com/rainmeter/rainmeter/releases/latest
 
 This is the home for developing my suite of rainmeter skins that are meant to replace the vanilla
