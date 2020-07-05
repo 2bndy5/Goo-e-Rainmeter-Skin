@@ -5,8 +5,9 @@
 .. image:: https://github.com/2bndy5/Goo-e-Rainmeter-Skin/workflows/RMSKIN%20Package/badge.svg
     :target: https://github.com/2bndy5/Goo-e-Rainmeter-Skin/actions?query=workflow%3A%22RMSKIN+Packager%22
 
-.. image:: https://img.shields.io/github/v/tag/rainmeter/rainmeter?color=%23009900&label=Rainmeter&style=plastic   :alt: GitHub tag (latest SemVer)
-    :target: https://github.com/rainmeter/rainmeter/releases
+.. image:: https://img.shields.io/github/v/release/rainmeter/rainmeter?label=Rainmeter&logo=github&style=plastic
+    :alt: GitHub release (latest stable)
+    :target: https://github.com/rainmeter/rainmeter/releases/latest
 
 This is the home for developing my suite of rainmeter skins that are meant to replace the vanilla
 windows 10 desktop icons. Most of these skins are in beta state. The list of skins included are:
