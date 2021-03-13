@@ -36,3 +36,9 @@ measure=script
 DynamicVariables=1
 ScriptFile="#@#WinColor.lua"
 updateDivider=-1
+
+[WindowsDarkMode]
+measure=Plugin
+plugin=DarkContextMenu
+DarkMode=1
+Tooltips=1

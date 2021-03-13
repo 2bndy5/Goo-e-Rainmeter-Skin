@@ -58,7 +58,7 @@ function Update()
 			cellH = math.floor(cellW * 0.467391)
 		end
 	end
-	if Maximize ~= 0 then
+	if Maximize ~= 0 and H * W > 0 then
 		cellH = math.floor(WorkAreaHeight / H)
 		cellW = math.floor((WorkAreaWidth - 90 - ((WorkAreaWidth - 90) % W)) / W + 0.5)
 	end

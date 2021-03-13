@@ -36,11 +36,9 @@ function apps.sort(self, arg, reverse)
 	end
 	-- move favorites to index 1
 	for i = 1, #self do
-		print(self[i].label)
 		if self[i].label == "Favorites" then
 			local temp = table.remove(self, i)
 			table.insert(self, 1, temp)
-			print("found Favoritres; self[1].label = " .. self[1].label)
 			break
 		end
 	end
