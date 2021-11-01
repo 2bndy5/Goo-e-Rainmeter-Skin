@@ -10,10 +10,10 @@ function Update()
     Path2exe = Path2exe:sub(2, #Path2exe - 1)
 	-- print(Path2exe .. 'SteamApps\\libraryFolders.vdf')
 	if Path2exe:len() > 4 then
-		if #steamLibs == 0 then
-            table.insert(steamLibs, Path2exe .. 'SteamApps')
-		end
-		parselibrary(SKIN:MakePathAbsolute(Path2exe .. 'SteamApps\\libraryFolders.vdf'))
+	    -- if #steamLibs == 0 then
+            --     table.insert(steamLibs, Path2exe .. 'SteamApps')
+	    -- end
+	    parselibrary(SKIN:MakePathAbsolute(Path2exe .. 'SteamApps\\libraryFolders.vdf'))
     end
     SKIN:Bang('!writeKeyValue',  'Variables', 'Dir', Path2exe, Path2Var .. CurrentConfig .. '\\List\\Steam\\specificVars.inc')
 	return #steamLibs
