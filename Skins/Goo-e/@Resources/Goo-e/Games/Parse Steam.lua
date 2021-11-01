@@ -1,40 +1,40 @@
 function Initialize()
-	Path2Var = SKIN:MakePathAbsolute(SKIN:GetVariable('@'))
-	CurrentConfig = SKIN:GetVariable('CurrentConfig')
+    Path2Var = SKIN:MakePathAbsolute(SKIN:GetVariable('@'))
+    CurrentConfig = SKIN:GetVariable('CurrentConfig')
     steamLibs = {}
-	return #steamLibs
+    return #steamLibs
 end
 
 function Update()
     Path2exe = SKIN:GetMeasure('mSteamPath'):GetStringValue()
     Path2exe = Path2exe:sub(2, #Path2exe - 1)
-	-- print(Path2exe .. 'SteamApps\\libraryFolders.vdf')
-	if Path2exe:len() > 4 then
-		if #steamLibs == 0 then
-            table.insert(steamLibs, Path2exe .. 'SteamApps')
-		end
-		parselibrary(SKIN:MakePathAbsolute(Path2exe .. 'SteamApps\\libraryFolders.vdf'))
+    -- print(Path2exe .. 'SteamApps\\libraryFolders.vdf')
+    if Path2exe:len() > 4 then
+        -- if #steamLibs == 0 then
+        --     table.insert(steamLibs, Path2exe .. 'SteamApps')
+        -- end
+        parselibrary(SKIN:MakePathAbsolute(Path2exe .. 'SteamApps\\libraryFolders.vdf'))
     end
     SKIN:Bang('!writeKeyValue',  'Variables', 'Dir', Path2exe, Path2Var .. CurrentConfig .. '\\List\\Steam\\specificVars.inc')
-	return #steamLibs
+    return #steamLibs
 end
 
 function parselibrary(str)
-	local file = io.open(str, 'r')
-	for line in file:lines() do
-		if line:match('%".*%".*%".*%:-\\.*%"') ~= nil then
-			local temp = line:match('%".*%".*%"(.*%:-\\.*)%"')
-			temp = temp:gsub('\\\\', '\\')
-			-- print(temp)
-			if temp:match('\\$') then
+    local file = io.open(str, 'r')
+    for line in file:lines() do
+        if line:match('%".*%".*%".*%:-\\.*%"') ~= nil then
+            local temp = line:match('%".*%".*%"(.*%:-\\.*)%"')
+            temp = temp:gsub('\\\\', '\\')
+            -- print(temp)
+            if temp:match('\\$') then
                 temp = temp .. 'SteamApps'
-			else
+            else
                 temp = temp .. '\\SteamApps'
-			end
+            end
             table.insert(steamLibs, temp)
-			-- print(#steamLibs .. ' = ' .. temp)
-		end
-	end
+            print(#steamLibs .. ' = ' .. temp)
+        end
+    end
     if file ~= nil then file:close() end
     if #steamLibs > 0 then
         local libList = ''
@@ -44,8 +44,8 @@ function parselibrary(str)
         end
         -- print('libList = ' .. libList)
         SKIN:Bang('!writeKeyValue',  'Variables', 'libList', '\"' .. libList .. '\"', Path2Var .. CurrentConfig .. '\\List\\steam\\specificVars.inc')
-	end
-	return #steamLibs
+    end
+    return #steamLibs
 end
 
 function cleanUp()

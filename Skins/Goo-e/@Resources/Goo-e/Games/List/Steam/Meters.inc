@@ -29,7 +29,7 @@ ContextAction9=[!deactivateConfig "#CurrentConfig#"][steam://uninstall/#activeID
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [IconBG]
-imageName="#Dir#appcache\librarycache\[&mItemID#CurrentSection#][&activeArtwork]"
+; imageName="#Dir#appcache\librarycache\[&mItemID#CurrentSection#][&activeArtwork]"
 PreserveAspectRatio=(#useBoxArt#<0?1:(1-#maximize#)*2)
 h=#IconH#
 w=#IconW#

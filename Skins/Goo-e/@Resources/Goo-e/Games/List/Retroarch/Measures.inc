@@ -22,21 +22,21 @@ Command1=[!WriteKeyValue Variables DIR "$userInput$" "#@##CurrentConfig#\#Servic
 measure=Plugin
 Plugin=RunCommand
 dynamicVariables=1
-Parameter="dir #Dir#\playlists /B"
+Parameter=""dir "#Dir#\playlists" /B""
 finishaction=[!commandMeasure mListCoreFiles "run"]
 
 [mListCoreFiles]
 measure=Plugin
 Plugin=RunCommand
 dynamicVariables=1
-Parameter="dir #Dir#\cores /B"
+Parameter=""dir "#Dir#\cores" /B""
 finishaction=[!commandMeasure mListRetroarchHistory "run"]
 
 [mListRetroarchHistory]
 measure=Plugin
 Plugin=RunCommand
 dynamicVariables=1
-Parameter="dir #Dir#\playlists\logs\*.lrtl /B"
+Parameter=""dir "#Dir#\playlists\logs\*.lrtl" /B""
 finishAction=[!commandMeasure mParseApps "parseApps()"]
 
 [displayLoading]

@@ -2,11 +2,11 @@
 sort=label
 revOrder=0
 filter=db_name
-DIR=%AppData%\Retroarch
+DIR=C:\Program Files (x86)\Steam\steamapps\common\RetroArch
 useBoxArt=1
 theme=retrosystem
-console=MAME
-page=0
+console=Sony - PlayStation 2
+page=1
 BgAlpha=216
-scrollPlane=1
+scrollPlane=0
 enableAutoLoadSave=0
